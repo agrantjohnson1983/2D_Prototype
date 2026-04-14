@@ -1,0 +1,89 @@
+using UnityEngine;
+
+public class sCharacterControllerTopDown : MonoBehaviour
+{
+    Rigidbody rb;
+
+    [Header("Movemement")]
+    public float characterSpeed;
+    private float characterStartingSpeed;
+    private Vector2 inputVelocity;
+    private Vector3 startingPosition;
+
+    SpriteRenderer spriteRenderer;
+    public Sprite[] spriteMovementArray;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        characterStartingSpeed = characterSpeed;
+        startingPosition = rb.position;
+        inputVelocity = new Vector2();
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        MovementInputs();
+    }
+
+    private void FixedUpdate()
+    {
+        MovementPhysics();
+    }
+
+    void MovementInputs()
+    {
+        // Takes input from vertical and horizontal axis
+        inputVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        inputVelocity.Normalize();
+
+        SpriteController(inputVelocity);
+    }
+
+    void SpriteController(Vector2 _input)
+    {
+        // flips the sprite based on input direction
+        if (_input.x == 1)
+        {
+            spriteRenderer.sprite = spriteMovementArray[3];
+        }
+
+        else if (_input.x == -1)
+        {
+            spriteRenderer.sprite = spriteMovementArray[2];
+        }
+
+        else if (_input.y == 1)
+        {
+            spriteRenderer.sprite = spriteMovementArray[0];
+        }
+
+        else if (_input.y == -1)
+        {
+            spriteRenderer.sprite = spriteMovementArray[1];
+        }
+    }
+
+    void MovementPhysics()
+    {
+        // checks if there is any input magnitute
+        if (inputVelocity.sqrMagnitude > 0.1f)
+        {
+            // sets total speed - leaving this for sprint/speed adjustments later
+            float totalSpeed = characterSpeed;
+
+            // converts direction to work with top down z-movement
+            Vector3 movementDirection = new Vector3(inputVelocity.x, 0, inputVelocity.y);
+
+            // handles the side to side physics movement
+            rb.linearVelocity = movementDirection * characterSpeed;
+
+            //Debug.Log("Moving Character");
+        }
+    }
+}
