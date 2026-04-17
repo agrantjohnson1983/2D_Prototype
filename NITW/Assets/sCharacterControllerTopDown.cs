@@ -13,6 +13,8 @@ public class sCharacterControllerTopDown : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public Sprite[] spriteMovementArray;
 
+    static bool isPaused = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +29,8 @@ public class sCharacterControllerTopDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isPaused) return;
+
         MovementInputs();
     }
 
@@ -85,5 +89,10 @@ public class sCharacterControllerTopDown : MonoBehaviour
 
             //Debug.Log("Moving Character");
         }
+    }
+
+    public static void PauseMovement()
+    {
+        isPaused = !isPaused;
     }
 }
