@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class sCharacterController : MonoBehaviour
@@ -5,14 +7,24 @@ public class sCharacterController : MonoBehaviour
 
     Rigidbody2D rb;
 
-    [Header("Movemement")]
+    [Header("Movemement Side To Side")]
     public float characterSpeed;
     private float characterStartingSpeed;
     private Vector2 inputVelocity;
     private Vector3 startingPosition;
     private Vector2 directionSideToSide;
 
-    SpriteRenderer spriteRenderer;
+    [Header("Movement Flying")]
+    public GameObject broom, witchHat;
+    public float characterFlyingSpeed;
+    public static bool isFlying = false;
+    private Vector2 directionFlying;
+
+    [Header("Movement State")]
+    public float movementStateSwitchCooldownTime = 1.5f;
+    bool canSwitchMovementState = true;
+
+    public SpriteRenderer spriteRenderer;
 
     [Header("Jumping")]
     public float jumpPower;
@@ -21,6 +33,20 @@ public class sCharacterController : MonoBehaviour
     private bool isGrounded;
     public LayerMask groundLayer;
     public Transform groundCheck;
+
+    public GameObject aimArm;
+    public GameObject reticleCanvas;
+
+    sProjectileController projectileController;
+
+    public static bool isOutside = true;
+
+    public static sCharacterController characterControllerGlobal;
+
+    private void Awake()
+    {
+        characterControllerGlobal = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,14 +57,28 @@ public class sCharacterController : MonoBehaviour
         inputVelocity = new Vector2();
         directionSideToSide = new Vector2();
 
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        broom.SetActive(isFlying);
+        
+        witchHat.SetActive(isFlying);
+        
+        reticleCanvas.SetActive(isFlying);
+
+        aimArm.SetActive(isFlying);
+
+        projectileController = GetComponent<sProjectileController>();
+        projectileController.enabled = isFlying;
+
+        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         JumpCheck();
+
         MovementInputs();
+
+        MovementStateSwitcher();
     }
 
     private void FixedUpdate()
@@ -48,6 +88,51 @@ public class sCharacterController : MonoBehaviour
         Jumping();
     }
 
+    void MovementStateSwitcher()
+    {
+        // Input for switching between flight
+        if ((Input.GetKey(KeyCode.F)) && canSwitchMovementState)
+        {
+            canSwitchMovementState = false;
+
+            // When flying - switchies back to walk state and turns gravity on
+            if(isFlying)
+            {
+                Debug.Log("Switching to Walk state");
+                isFlying = false;
+                rb.gravityScale = 1f;
+            }
+
+            // When not flying - switching to flight state and turns gravity off
+            else
+            {
+                Debug.Log("Switching to Flight state");
+                isFlying = true;
+                rb.gravityScale = 0f;
+            }
+
+            broom.SetActive(isFlying);
+            witchHat.SetActive(isFlying);
+            reticleCanvas.SetActive(isFlying);
+            projectileController.enabled = isFlying;
+            aimArm .SetActive(isFlying);
+
+            StartCoroutine(MovementStateSwitchCooldown());
+        }
+    }
+
+    // Cooldown for the state switch so player can't spam it
+    IEnumerator MovementStateSwitchCooldown()
+    {
+        Debug.Log("Starting State Switch Cooldown");
+
+        yield return new WaitForSeconds(movementStateSwitchCooldownTime);
+
+        Debug.Log("State Switch Cooldown Complete");
+
+        canSwitchMovementState = true;
+    }
+
     void MovementInputs()
     {
         // Takes input from vertical and horizontal axis
@@ -55,6 +140,8 @@ public class sCharacterController : MonoBehaviour
 
         // converts inputs to side to side direction
         directionSideToSide = new Vector2(inputVelocity.x, 0);
+
+        //directionFlying = new Vector2(inputVelocity.x)
 
         // flips the sprite based on input direction
         if(inputVelocity.x > 0)
@@ -109,10 +196,26 @@ public class sCharacterController : MonoBehaviour
         {
             float totalSpeed = characterSpeed;
 
-            // handles the side to side physics movement
-            rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed, rb.linearVelocity.y);
+            if(!isFlying)
+            {
+                // handles the side to side physics movement
+                rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed, rb.linearVelocity.y);
 
-            //Debug.Log("Moving Character");
+                //Debug.Log("Moving Character");
+            }
+
+            else
+            {
+                
+
+                rb.linearVelocity = inputVelocity * characterFlyingSpeed;
+            }
+
         }
+    }
+
+    public void SetLocation(Vector3 _pos)
+    {
+        this.transform.position = _pos;
     }
 }

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -50,8 +51,17 @@ TagManager:
   - name: Foreground
     uniqueID: 1672298493
     locked: 0
-  - name: Interactable
+  - name: Building
+    uniqueID: 3256871691
+    locked: 0
+  - name: InteractableOutside
     uniqueID: 2808445837
+    locked: 0
+  - name: Inside
+    uniqueID: 1270460177
+    locked: 0
+  - name: InteractableInside
+    uniqueID: 872560153
     locked: 0
   - name: Character
     uniqueID: 886273507

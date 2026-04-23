@@ -10,7 +10,7 @@ public class sDoorBehavior : MonoBehaviour
 
     bool isTouchingDoor = false;
 
-    bool isInside = false;
+    //bool isInside = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,10 +23,11 @@ public class sDoorBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isInside)
+        if(sCharacterController.isOutside && !sCharacterController.isFlying)
         {
             if (isTouchingDoor && Input.GetKey(KeyCode.W))
             {
+                sCharacterController.isOutside = false;
                 insideHouse.SetActive(true);
                 outsideHouse.SetActive(false);
                 outsideGround.SetActive(false);
@@ -42,7 +43,7 @@ public class sDoorBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player") && sCharacterController.isOutside == true && !sCharacterController.isFlying)
         {
             isTouchingDoor=true;
             uDoorArrow.SetActive(true);
