@@ -8,6 +8,8 @@ public class sMailbox : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    public float deliveryRewardAmount = 10.50f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +29,8 @@ public class sMailbox : MonoBehaviour
             Destroy(_projectile.gameObject);
 
             spriteRenderer.sprite = mailboxFilled;
+
+            cMoney.moneyGlobal.GetMoney(deliveryRewardAmount);
         }
     }
 }
