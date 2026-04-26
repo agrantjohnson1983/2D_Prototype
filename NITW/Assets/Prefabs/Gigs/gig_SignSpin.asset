@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: gig_SignSpin
   m_EditorClassIdentifier: 
   gigName: Sign Spin
+  gigType: 1
   payAmount: 20
   iconSprite: {fileID: 21300000, guid: b6c2f86e68f82ba418dddbe5d4d4160e, type: 3}
   worldObject: {fileID: 0}

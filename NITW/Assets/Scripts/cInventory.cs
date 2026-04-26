@@ -80,6 +80,22 @@ public class cInventory : MonoBehaviour
         itemList.Add(_itemToAdd);
     }
 
+    public void RemoveItem(SO_Item _itemToRemove)
+    {
+        // searches item list
+        for (int i = 0;i < itemList.Count;i++)
+        {
+            // checks if item is same as iterator
+            if(itemList[i] == _itemToRemove)
+            {
+                //Debug.Log("Item has been found and is being removed");
+
+                // removes item
+                itemList.RemoveAt(i);
+            }
+        }
+    }
+
     // returns the item list
     public List<SO_Item> ReturnItemList()
     {

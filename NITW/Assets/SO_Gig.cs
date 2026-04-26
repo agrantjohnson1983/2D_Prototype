@@ -39,6 +39,11 @@ public class SO_Gig : ScriptableObject
 
         // gets gig in gig mgr
         sGigManager.gigManagerGlobal.GetGig(gigType);
+
+        // character text
+        uTextCharacter.textCharacterGlobal.SetText("New gig-er-ino!", 2f);
+
+
     }
 
     public void TriggerOnGigStart()
@@ -53,6 +58,9 @@ public class SO_Gig : ScriptableObject
 
         // Sets player
         sPlayer.playerGlobal.StartGig(gigType);
+
+        // character text
+        uTextCharacter.textCharacterGlobal.SetText("Here we go gig!", 2f);
     }
 
     public void TriggerOnGigComplete()
@@ -65,11 +73,16 @@ public class SO_Gig : ScriptableObject
 
         // Get money
         cMoney.moneyGlobal.GetMoney(payAmount);
+
+        // character text
+        uTextCharacter.textCharacterGlobal.SetText("Another gig bites the dust!", 5f);
     }
 
     public void TriggerOnGigFail()
     {
         // triggers event
         onGigFail.Invoke();
+
+        uTextCharacter.textCharacterGlobal.SetText("Failure isn't your enemy...", 2f);
     }
 }

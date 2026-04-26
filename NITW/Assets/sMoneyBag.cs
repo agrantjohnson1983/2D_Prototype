@@ -16,9 +16,11 @@ public class sMoneyBag : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player triggered money bag");
+            //Debug.Log("Player triggered money bag");
 
             money.GetMoney(amount);
+
+            uTextCharacter.textCharacterGlobal.SetText("Fuck yeah gimme " + (int)amount + " bucks!", 3f);
 
             Destroy(this.gameObject);
         }

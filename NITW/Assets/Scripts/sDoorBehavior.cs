@@ -24,7 +24,6 @@ public class sDoorBehavior : MonoBehaviour
         {
             if (isTouchingDoor && Input.GetKey(KeyCode.W))
             {
-
                 sCharacterController.isOutside = false;
 
                 for (int i = 0; i < turnOnOnEnter.Length; i++)

@@ -67,7 +67,7 @@ public class cPhone : MonoBehaviour
 
         notificationObject.SetActive(false);
 
-        hudPhoneNotificationObject.SetActive(true);
+        hudPhoneNotificationObject.SetActive(false);
     }
 
     // Destroys all the gig buttons when closing
@@ -93,6 +93,15 @@ public class cPhone : MonoBehaviour
         SetNotification();
     }
 
+    // This resets phone when gig is clicked to start
+    public void StartGig()
+    {
+        hudPhoneNotificationObject.SetActive(true);
+
+        this.gameObject.SetActive(false);
+    }
+
+    // This sets notification when you get a new gig
     void SetNotification()
     {
         // increments number of current notifications

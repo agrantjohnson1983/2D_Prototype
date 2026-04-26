@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7559015815847208446}
   - component: {fileID: 6564468072156947250}
   m_Layer: 5
-  m_Name: Button_GIG
+  m_Name: ButtonPhone_GIG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

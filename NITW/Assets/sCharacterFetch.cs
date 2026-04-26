@@ -12,12 +12,14 @@ public class sCharacterFetch : MonoBehaviour
 
     bool hasItem = false;
 
+    bool gigComplete = false;
+
     // This handles turning on and off the canvas
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("Character trigger hit by " + other.gameObject.name);
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !gigComplete)
         {
             //Debug.Log("Player detected - turning on dialogue canvas");
 
@@ -49,6 +51,13 @@ public class sCharacterFetch : MonoBehaviour
 
     public void OnFetchComplete()
     {
+        // sets gig complete to true
+        gigComplete = true;
+
+        // removes item from inventory
+        cInventory.inventoryGlobal.RemoveItem(itemToFetch);
+
+        // triggers SO
         gig.TriggerOnGigComplete();
     }
 

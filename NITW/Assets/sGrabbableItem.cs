@@ -10,6 +10,8 @@ public class sGrabbableItem : MonoBehaviour
         {
             cInventory.inventoryGlobal.AddItem(item);
 
+            uTextCharacter.textCharacterGlobal.SetText("Yeahhh weeeed!", 3f);
+
             Destroy(this.gameObject);
         }
     }

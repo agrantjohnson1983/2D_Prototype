@@ -48,7 +48,7 @@ public class cMoney : MonoBehaviour
 
     public void GetMoney(float _amount)
     {
-        Debug.Log("Getting money...");
+        //Debug.Log("Getting money...");
 
         if (_amount < 0)
             return;
@@ -69,7 +69,7 @@ public class cMoney : MonoBehaviour
 
     void SetTextUI(float _amount)
     {
-        Debug.Log("Setting money text UI");
+        //Debug.Log("Setting money text UI");
         textMoney.text = "$"+_amount.ToString();
     }
     public void Play(float amount, GameObject _tempObj)
