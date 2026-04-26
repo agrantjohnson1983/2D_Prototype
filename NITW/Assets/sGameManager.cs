@@ -8,11 +8,11 @@ public class sGameManager : MonoBehaviour
 
     public eMode sceneMode;
 
-    //public GameObject canvasMain;
+    public GameObject canvasMain;
 
     public cInventory inventory;
 
-    public cTimeSystem timeSystem;
+    public cMoney money;
 
     private void Awake()
     {

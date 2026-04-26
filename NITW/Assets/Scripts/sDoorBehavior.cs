@@ -3,21 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class sDoorBehavior : MonoBehaviour
 {
-    //public GameObject outsideGround;
-
     public GameObject uDoorArrow;
-
-    //public GameObject insideHouse, outsideHouse;
 
     public GameObject[] turnOffOnEnter, turnOnOnEnter;
 
     bool isTouchingDoor = false;
-
-    //bool isInside = false;
-
-    public bool isCorner = false;
-
-    public string sceneToTransitionTo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,10 +24,6 @@ public class sDoorBehavior : MonoBehaviour
         {
             if (isTouchingDoor && Input.GetKey(KeyCode.W))
             {
-                if(isCorner)
-                {
-                    SceneManager.LoadScene(sceneToTransitionTo);
-                }
 
                 sCharacterController.isOutside = false;
 

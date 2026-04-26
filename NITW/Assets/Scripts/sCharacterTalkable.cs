@@ -5,12 +5,12 @@ public class sCharacterTalkable : MonoBehaviour
 
     public GameObject canvasDialogue;
 
-    sDialogueController dialogueController;
+    //sDialogueController dialogueController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dialogueController = GetComponentInChildren<sDialogueController>();
+        //dialogueController = GetComponentInChildren<sDialogueController>();
 
         canvasDialogue.SetActive(false);
     }
@@ -44,7 +44,7 @@ public class sCharacterTalkable : MonoBehaviour
             canvasDialogue.SetActive(false);
 
             // resets dialogue
-            dialogueController.ResetDialogue();
+            //dialogueController.ResetDialogue();
         }
     }
 }

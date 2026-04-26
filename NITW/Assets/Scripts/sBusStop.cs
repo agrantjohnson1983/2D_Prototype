@@ -10,17 +10,22 @@ public class sBusStop : MonoBehaviour
         busCanvas.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(other.CompareTag("Player"))
+        // checks for player collision
+        if (collision.CompareTag("Player"))
         {
             EnterBusStop();
         }
     }
 
+    // gets called when player enters trigger zone
     void EnterBusStop()
     {
+        // turns on bus canvas
         busCanvas.SetActive(true);
-        sCharacterControllerTopDown.PauseMovement();
+
+        // turns player movement off
+        sCharacterController.characterControllerGlobal.SetCanMove(false);
     }
 }

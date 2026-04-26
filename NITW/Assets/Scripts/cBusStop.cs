@@ -19,9 +19,9 @@ public class cBusStop : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        
         cityMap.SetActive(false);
+
+        busStopUI.SetActive(true);
 
         // sets display text based on number of bus passes
         displayText.text = "Wecome to the " + currentNeighborhood.ToString() + 
@@ -48,11 +48,14 @@ public class cBusStop : MonoBehaviour
         // checks if current neighborhood has been selected
         if(_neighborhoodToGoTo == currentNeighborhood)
         {
-            // turns off bus UI
-            busStopUI.SetActive(false);
+            // turns on bus UI to reset
+            busStopUI.SetActive(true);
+
+            // turns off canvas object
+            this.gameObject.SetActive(false);
 
             // unpauses character movement
-            sCharacterControllerTopDown.PauseMovement();
+            sCharacterController.characterControllerGlobal.SetCanMove(true);
         }
 
         else

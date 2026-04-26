@@ -43,6 +43,8 @@ public class sCharacterController : MonoBehaviour
 
     public static sCharacterController characterControllerGlobal;
 
+    bool canMove = true;
+
     private void Awake()
     {
         characterControllerGlobal = this;
@@ -83,9 +85,12 @@ public class sCharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovementPhysics();
+        if ((canMove))
+        {
+            MovementPhysics();
 
-        Jumping();
+            Jumping();
+        }
     }
 
     void MovementStateSwitcher()
@@ -217,5 +222,10 @@ public class sCharacterController : MonoBehaviour
     public void SetLocation(Vector3 _pos)
     {
         this.transform.position = _pos;
+    }
+
+    public void SetCanMove(bool _canMove)
+    {
+        canMove = _canMove;
     }
 }

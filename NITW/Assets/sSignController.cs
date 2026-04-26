@@ -81,6 +81,9 @@ public class sSignController : MonoBehaviour
 
     void Start()
     {
+        // sets transform to same as side scroll
+        this.transform.position = sCharacterController.characterControllerGlobal.transform.position;
+
         if (timerBarImage != null)
             timerBarImage.fillAmount = 0f;
 
