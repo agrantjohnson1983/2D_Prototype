@@ -22,12 +22,16 @@ public class sExitBehavior : MonoBehaviour
         for (int i = 0; i < turnOnOnTrigger.Length; i++)
         {
             turnOnOnTrigger[i].SetActive(true);
+
+            //turnOnOnTrigger[i].transform.localScale = Vector3.one;
         }
 
-        // Turns off stuff
+        // Turns off stuff - scales to zero
         for (int i = 0; i < turnOffOnTrigger.Length; i++)
         {
             turnOffOnTrigger[i].SetActive(false);
+
+            //turnOffOnTrigger[i].transform.localScale = Vector3.zero;
         }
 
         //outsideGround.SetActive(true);

@@ -4,6 +4,7 @@ public class sPlayer : MonoBehaviour
 {
     public GameObject characterSideScroll;
     public GameObject characterSignSpin;
+    public GameObject potionBrewing;
 
     public static sPlayer playerGlobal;
 
@@ -12,6 +13,10 @@ public class sPlayer : MonoBehaviour
         playerGlobal = this;
     }
 
+    // TO - DO - Convert scripts to have methods for stopping and initing without turning on/off game objects
+
+
+    // GIGGING - This controls a lot of the different gameplay
 
     public void StartGig(eGigType _type)
     {
@@ -40,4 +45,19 @@ public class sPlayer : MonoBehaviour
                 break;
         }
     }
+
+    // POTION BREWING
+
+    public void StartPotionBrew()
+    {
+        characterSideScroll.SetActive(false);
+        potionBrewing.SetActive(true);
+    }
+
+    public void StopPotionBrew()
+    {
+        potionBrewing.SetActive(false);
+        characterSideScroll.SetActive(true);
+    }
 }
+

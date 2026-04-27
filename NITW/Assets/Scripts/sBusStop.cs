@@ -8,6 +8,7 @@ public class sBusStop : MonoBehaviour
     void Start()
     {
         busCanvas.SetActive(false);
+        //busCanvas.transform.localScale = Vector3.zero;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,6 +25,8 @@ public class sBusStop : MonoBehaviour
     {
         // turns on bus canvas
         busCanvas.SetActive(true);
+
+        //busCanvas.transform.localScale = Vector3.one;
 
         // turns player movement off
         sCharacterController.characterControllerGlobal.SetCanMove(false);

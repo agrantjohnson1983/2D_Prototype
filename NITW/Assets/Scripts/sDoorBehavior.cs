@@ -12,9 +12,18 @@ public class sDoorBehavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        uDoorArrow.SetActive(false);
+        uDoorArrow.transform.localScale = Vector3.zero;
 
         //insideHouse.SetActive(false);
+
+        // quick init for buildings - turns on and then scales to zero
+        for (int i = 0; i < turnOnOnEnter.Length; i++)
+        {
+            turnOnOnEnter[i].gameObject.SetActive(true);
+            //turnOnOnEnter[i].SetActive(true);
+            //turnOnOnEnter[i].transform.localScale = Vector3.zero;
+            turnOnOnEnter[i].gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -29,10 +38,12 @@ public class sDoorBehavior : MonoBehaviour
                 for (int i = 0; i < turnOnOnEnter.Length; i++)
                 {
                     turnOnOnEnter[i].SetActive(true);
+                    //turnOnOnEnter[i].transform.localScale = Vector3.one;
                 }
 
                 for (int i = 0; i < turnOffOnEnter.Length; i++)
                 {
+                    //turnOffOnEnter[i].transform.localScale = Vector3.zero;
                     turnOffOnEnter[i].SetActive(false);
                 }
 
@@ -54,7 +65,8 @@ public class sDoorBehavior : MonoBehaviour
         if(collision.CompareTag("Player") && sCharacterController.isOutside == true && !sCharacterController.isFlying)
         {
             isTouchingDoor=true;
-            uDoorArrow.SetActive(true);
+            uDoorArrow.transform.localScale = Vector3.one;
+            //uDoorArrow.SetActive(true);
         }
     }
 
@@ -63,7 +75,8 @@ public class sDoorBehavior : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isTouchingDoor = false;
-            uDoorArrow.SetActive(false);
+            uDoorArrow.transform.localScale = Vector3.zero;
+            //uDoorArrow.SetActive(false);
         }
     }
 }
