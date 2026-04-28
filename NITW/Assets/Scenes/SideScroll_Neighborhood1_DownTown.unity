@@ -20836,6 +20836,10 @@ PrefabInstance:
       propertyPath: currentNeighborhood
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3303576683408112797, guid: 1bd21b14598b0ba4a88abd1c59c0c197, type: 3}
+      propertyPath: centerSquareSceneName
+      value: SideScroll_Neighborhood1_CenterSquare
+      objectReference: {fileID: 0}
     - target: {fileID: 5151564470252146139, guid: 1bd21b14598b0ba4a88abd1c59c0c197, type: 3}
       propertyPath: m_Name
       value: TRIGGER_BusStop

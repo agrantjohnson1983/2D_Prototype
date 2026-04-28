@@ -27,7 +27,7 @@ public class sCharacterController : MonoBehaviour
 
     [Header("Jumping")]
     public float jumpPower;
-    private bool isJumping = false;
+    //private bool isJumping = false;
 
     [Tooltip("How long after leaving a ledge the player can still jump (seconds)")]
     public float coyoteTime = 0.15f;
@@ -180,7 +180,7 @@ public class sCharacterController : MonoBehaviour
         // Use buffered input + coyote time instead of raw GetKeyDown + isGrounded
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && !isFlying)
         {
-            isJumping = true;
+            //isJumping = true;
 
             jumpBufferCounter = 0f;
             coyoteTimeCounter = 0f;

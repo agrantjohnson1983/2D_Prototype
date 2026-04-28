@@ -73,7 +73,7 @@ public class sPlayer : MonoBehaviour
 
     public void ResetPositions(Vector3 _newPos)
     {
-        Debug.Log("Resetting player children and setting parent object to " + _newPos.ToString());
+        //Debug.Log("Resetting player children and setting parent object to " + _newPos.ToString());
         this.transform.position = _newPos;
         characterSideScroll.transform.localPosition = Vector3.zero;
         characterSignSpin.transform.localPosition = Vector3.zero;

@@ -48,4 +48,9 @@ public class sGameManager : MonoBehaviour
     {
         sceneMode = _sceneMode;
     }
+
+    public void ToggleCanvasMain(bool _isOn)
+    {
+        canvasMain.SetActive(_isOn);
+    }
 }

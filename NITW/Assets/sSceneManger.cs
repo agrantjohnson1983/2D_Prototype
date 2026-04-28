@@ -40,12 +40,24 @@ public class sSceneManger : MonoBehaviour
         Debug.Log("Scene Loaded: " + scene.name);
         //Debug.Log("Mode: " + mode);
 
+        // Checks if player was on bus during scene change
         if (sBusStop.isOnBus)
         {
-            Debug.Log("Player was on bus from scene loaded - triggering exit");
+            //Debug.Log("Player was on bus from scene loaded - triggering exit");
 
-            // triggering bus stop exit
+            // triggering bus stop exit if player was on bus
             sBusStop.busStopGlobal.ExitBusStop();
+        }
+
+        // Toggles canvas
+        if(sGameManager.gm.sceneMode == eMode.frontend)
+        {
+            sGameManager.gm.ToggleCanvasMain(false);
+        }
+
+        else
+        {
+            sGameManager.gm.ToggleCanvasMain(true);
         }
     }
 }

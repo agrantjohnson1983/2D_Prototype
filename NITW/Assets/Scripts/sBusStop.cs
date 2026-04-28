@@ -49,7 +49,7 @@ public class sBusStop : MonoBehaviour
 
     public void ExitBusStop()
     {
-        Debug.Log("Exiting bus station");
+        //Debug.Log("Exiting bus station");
 
         // resets player pos and moves it to bus exit
         sPlayer.playerGlobal.ResetPositions(busStopExit.position);
