@@ -480,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6571786414256943192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -579,7 +579,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cityMap: {fileID: 351675753470480318}
   busStopUI: {fileID: 7224519047310919852}
-  currentNeighborhood: 1
+  currentNeighborhood: 2
+  basinSceneName: 
+  burbsSceneName: SideScroll_Neighborhood1_HomeBlock
+  downtownScenName: SideScroll_Neighborhood1_DownTown
+  outskirtsSceneName: 
+  centerSquareSceneName: 
   displayText: {fileID: 2583214779447465932}
 --- !u!1 &3322548452413914181
 GameObject:

@@ -24,7 +24,6 @@ public class sCorner : MonoBehaviour
             {
 
                 SceneManager.LoadScene(sceneToTransitionTo);
-
             }
         }
     }

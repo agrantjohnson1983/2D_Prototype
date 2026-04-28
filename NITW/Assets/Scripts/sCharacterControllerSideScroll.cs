@@ -61,9 +61,16 @@ public class sCharacterController : MonoBehaviour
 
     bool canMove = true;
 
+    public float reverseSequenceTime = 2.5f;
+
+    public float reverseXOffset = 3f;
+
     private void Awake()
     {
-        characterControllerGlobal = this;
+        if (characterControllerGlobal == null)
+            characterControllerGlobal = this;
+        else
+            Destroy(this.gameObject);
     }
 
     void Start()
@@ -221,10 +228,16 @@ public class sCharacterController : MonoBehaviour
         inputVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         directionSideToSide = new Vector2(inputVelocity.x, 0);
 
-        if (inputVelocity.x > 0)
-            spriteRenderer.flipX = true;
-        else if (inputVelocity.x < 0)
-            spriteRenderer.flipX = false;
+        // checks if can move before flipping sprite
+        if(canMove)
+        {
+            // flips sprites based on movement direction
+            if (inputVelocity.x > 0)
+                spriteRenderer.flipX = true;
+            else if (inputVelocity.x < 0)
+                spriteRenderer.flipX = false;
+        }    
+        
     }
 
     void MovementPhysics()
@@ -247,11 +260,53 @@ public class sCharacterController : MonoBehaviour
                     rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed, rb.linearVelocity.y);
                 }
             }
+
             else
             {
                 rb.linearVelocity = inputVelocity * characterFlyingSpeed;
             }
         }
+    }
+
+    public void BoundaryTrigger(bool reverseToRight)
+    {
+        StartCoroutine(BoundaryReverseSequence(reverseToRight));
+    }
+
+    IEnumerator BoundaryReverseSequence(bool _reverseToRight)
+    {
+        // turns off movment
+        SetCanMove(false);
+
+        // sets velocity to zero
+        //rb.linearVelocity = Vector2.zero;
+
+        // flips x offset to negative the reverse should go to left
+        if (!_reverseToRight)
+        {
+            reverseXOffset *= -1f;
+        }
+
+        // sets sprite flip
+        spriteRenderer.flipX = _reverseToRight;
+
+
+        float counter = 0f;
+
+        // checks if counter is less than reverse time
+        while (counter < reverseSequenceTime)
+        {
+            // lerps postion to x offset
+            this.transform.position = Vector3.Lerp(this.transform.position, this.transform.position + new Vector3(reverseXOffset, 0, 0), counter / reverseSequenceTime);
+
+            // increments counter by time amount
+            counter += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // toggles movement back on
+        SetCanMove(true);
     }
 
     public void SetLocation(Vector3 _pos)
@@ -262,5 +317,9 @@ public class sCharacterController : MonoBehaviour
     public void SetCanMove(bool _canMove)
     {
         canMove = _canMove;
+
+        // stops velocity if can't move
+        if (!canMove)
+            rb.linearVelocity = Vector2.zero;
     }
 }

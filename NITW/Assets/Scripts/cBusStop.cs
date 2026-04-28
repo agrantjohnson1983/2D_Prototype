@@ -10,6 +10,14 @@ public class cBusStop : MonoBehaviour
 
     public eNeighborhood currentNeighborhood;
 
+    // scene names
+    public string 
+        basinSceneName, 
+        burbsSceneName, 
+        downtownScenName, 
+        outskirtsSceneName, 
+        centerSquareSceneName;
+
     uCityMap cityMapUI;
 
     public TextMeshProUGUI displayText;
@@ -45,54 +53,66 @@ public class cBusStop : MonoBehaviour
 
     public void GoToNewPlace(eNeighborhood _neighborhoodToGoTo)
     {
+        // sets bool to on bus
+        sBusStop.isOnBus = true;
+
         // checks if current neighborhood has been selected
         if(_neighborhoodToGoTo == currentNeighborhood)
         {
+            Debug.Log("Current neighborhood was clicked");
+
             // turns on bus UI to reset
             busStopUI.SetActive(true);
 
+            // unpauses character movement
+            //sCharacterController.characterControllerGlobal.SetCanMove(true);
+
             // turns off canvas object
             this.gameObject.SetActive(false);
-
-            // unpauses character movement
-            sCharacterController.characterControllerGlobal.SetCanMove(true);
         }
 
         else
         {
-            // TO DO - ADD SCENE CHANGING
+            Debug.Log("Going to new neighborhood - " + _neighborhoodToGoTo.ToString());
+
+            // turns on bus UI to reset
+            busStopUI.SetActive(true);
+
+            // unpauses character movement
+            sCharacterController.characterControllerGlobal.SetCanMove(true);
+
             // switches the neighborhoods and then does a scene change to the new one
-            switch (currentNeighborhood)
+            switch (_neighborhoodToGoTo)
             {
                 case eNeighborhood.basin:
 
-
+                    sSceneManger.sceneManagerGlobal.ChangeScene(basinSceneName);
 
                     break;
                 case eNeighborhood.burbs:
 
-
-
+                    sSceneManger.sceneManagerGlobal.ChangeScene(burbsSceneName);
 
                     break;
                    case eNeighborhood.downtown:
 
-
-
+                    sSceneManger.sceneManagerGlobal.ChangeScene(downtownScenName);
 
                     break;
                 case eNeighborhood.outskirts:
 
-
-
+                    sSceneManger.sceneManagerGlobal.ChangeScene(outskirtsSceneName);
 
                     break;
                 case eNeighborhood.centerSquare:
 
-
+                    sSceneManger.sceneManagerGlobal.ChangeScene(centerSquareSceneName);
 
                     break;
             }
+
+            // turns off canvas object
+            this.gameObject.SetActive(false);
         }
     }
 }

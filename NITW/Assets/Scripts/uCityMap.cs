@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class uCityMap : MonoBehaviour
 {
     eNeighborhood currentNeighborhood;
-    string str_currentNeighborhood;
+    //string str_currentNeighborhood;
 
     public Button bBasin, bBurbs, bOutskirts, bDowntown, bCenterSquare;
 
@@ -22,6 +22,8 @@ public class uCityMap : MonoBehaviour
 
     public void SetNeighborhood(eNeighborhood _neighborhood)
     {
+        //Debug.Log("Setting map neighborhood to : " + _neighborhood);
+
         switch(_neighborhood)
         {
             case eNeighborhood.basin:
@@ -30,7 +32,7 @@ public class uCityMap : MonoBehaviour
 
             case eNeighborhood.burbs:
 
-                str_currentNeighborhood = "TheBurbs";
+                //str_currentNeighborhood = "TheBurbs";
 
                 // Sets button color to green of current neighborhood
                 bBurbs.GetComponent<Image>().color = Color.green;
@@ -44,6 +46,18 @@ public class uCityMap : MonoBehaviour
                 break;
 
             case eNeighborhood.downtown:
+
+                //str_currentNeighborhood = "Downtown";
+
+                // Sets button color to green of current neighborhood
+                bDowntown.GetComponent<Image>().color = Color.green;
+
+                // Changes text
+                bDowntown.GetComponentInChildren<TextMeshProUGUI>().text = "You are here! \n Downtown";
+
+                //bBurbs.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
+                bDowntown.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
+
 
                 break;
 
@@ -59,11 +73,13 @@ public class uCityMap : MonoBehaviour
 
     public void OnButtonClick(string _neighborHood)
     {
-        switch(_neighborHood)
+        //Debug.Log("Button clicked for neighborhood: " + _neighborHood.ToString());
+
+        switch (_neighborHood)
         {
             case "TheBasin":
 
-                Debug.Log("You clicked The basin");
+                //Debug.Log("You clicked The basin");
 
                 busStopCanvas.GoToNewPlace(eNeighborhood.basin);
 
@@ -71,7 +87,7 @@ public class uCityMap : MonoBehaviour
 
             case "TheBurbs":
 
-                Debug.Log("You clicked The burbs");
+                //Debug.Log("You clicked The burbs");
 
                 busStopCanvas.GoToNewPlace(eNeighborhood.burbs);
 
@@ -79,7 +95,7 @@ public class uCityMap : MonoBehaviour
 
             case "Downtown":
 
-                Debug.Log("You clicked downtown");
+                //Debug.Log("You clicked downtown");
 
                 busStopCanvas.GoToNewPlace(eNeighborhood.downtown);
 
@@ -87,14 +103,14 @@ public class uCityMap : MonoBehaviour
 
             case "TheOutskirts":
 
-                Debug.Log("You clicked the outskirts");
+                //Debug.Log("You clicked the outskirts");
 
                 busStopCanvas.GoToNewPlace(eNeighborhood.outskirts);
 
                 break;
             case "CenterSquare":
 
-                Debug.Log("You clicked center square");
+                //Debug.Log("You clicked center square");
 
                 busStopCanvas.GoToNewPlace(eNeighborhood.centerSquare);
 

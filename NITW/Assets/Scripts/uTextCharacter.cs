@@ -10,7 +10,10 @@ public class uTextCharacter : MonoBehaviour
     public Vector3 spawnOffset;
     private void Awake()
     {
-        textCharacterGlobal = this;
+        if (textCharacterGlobal == null)
+            textCharacterGlobal = this;
+        else
+            Destroy(this.gameObject);
 
         Invoke("TurnOffText", 0f);
     }

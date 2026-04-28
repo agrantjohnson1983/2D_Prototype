@@ -7,6 +7,7 @@ public class sSceneTransition : MonoBehaviour
 
     public eMode modeToTransitionTo;
 
+
     // This handles the top down
     private void OnCollisionEnter(Collision collision)
     {
