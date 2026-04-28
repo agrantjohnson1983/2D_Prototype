@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class sCharacterController : MonoBehaviour
 {
-
     Rigidbody2D rb;
 
-    [Header("Movemement Side To Side")]
+    [Header("Movement Side To Side")]
     public float characterSpeed;
     private float characterStartingSpeed;
     private Vector2 inputVelocity;
@@ -30,9 +29,27 @@ public class sCharacterController : MonoBehaviour
     public float jumpPower;
     private bool isJumping = false;
 
+    [Tooltip("How long after leaving a ledge the player can still jump (seconds)")]
+    public float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
+
+    [Tooltip("How early a jump input can be buffered before landing (seconds)")]
+    public float jumpBufferTime = 0.15f;
+    private float jumpBufferCounter;
+
     private bool isGrounded;
     public LayerMask groundLayer;
     public Transform groundCheck;
+
+    [Header("Slopes")]
+    public float maxSlopeAngle = 45f;
+    private bool isOnSlope;
+    private bool isOnSlopeMoving;
+    private Vector2 slopeNormalPerp;
+    private float slopeAngle;
+    private PhysicsMaterial2D frictionMaterial;
+    private PhysicsMaterial2D noFrictionMaterial;
+    public BoxCollider2D boxCollider;
 
     public GameObject aimArm;
     public GameObject reticleCanvas;
@@ -40,7 +57,6 @@ public class sCharacterController : MonoBehaviour
     sProjectileController projectileController;
 
     public static bool isOutside = true;
-
     public static sCharacterController characterControllerGlobal;
 
     bool canMove = true;
@@ -50,7 +66,6 @@ public class sCharacterController : MonoBehaviour
         characterControllerGlobal = this;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,59 +74,128 @@ public class sCharacterController : MonoBehaviour
         inputVelocity = new Vector2();
         directionSideToSide = new Vector2();
 
-        broom.SetActive(isFlying);
-        
-        witchHat.SetActive(isFlying);
-        
-        reticleCanvas.SetActive(isFlying);
+        // Create two physics materials at runtime so no asset files are needed
+        frictionMaterial = new PhysicsMaterial2D("Friction");
+        frictionMaterial.friction = 1f;
+        frictionMaterial.bounciness = 0f;
 
+        noFrictionMaterial = new PhysicsMaterial2D("NoFriction");
+        noFrictionMaterial.friction = 0f;
+        noFrictionMaterial.bounciness = 0f;
+
+        broom.SetActive(isFlying);
+        witchHat.SetActive(isFlying);
+        reticleCanvas.SetActive(isFlying);
         aimArm.SetActive(isFlying);
 
         projectileController = GetComponent<sProjectileController>();
         projectileController.enabled = isFlying;
-
-        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         JumpCheck();
-
         MovementInputs();
-
         MovementStateSwitcher();
+
+        // Read jump input in Update so no frames are missed
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
     {
-        if ((canMove))
+        if (canMove)
         {
+            SlopeCheck();
             MovementPhysics();
-
             Jumping();
+        }
+    }
+
+    void SlopeCheck()
+    {
+        // Cast a ray straight down from the ground check point to sample the surface normal
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.3f, groundLayer);
+
+        if (hit)
+        {
+            // Perpendicular to the surface normal gives us the direction to move along the slope
+            slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+
+            // Angle between the surface normal and world up tells us how steep the slope is
+            slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            isOnSlope = slopeAngle != 0f && slopeAngle <= maxSlopeAngle;
+        }
+        else
+        {
+            isOnSlope = false;
+        }
+
+        isOnSlopeMoving = isOnSlope && inputVelocity.sqrMagnitude > 0.1f;
+
+        // Use friction material when standing still on a slope so the player does not slide down
+        // Use no friction when moving or in the air so movement feels snappy
+        if (isOnSlope && inputVelocity.sqrMagnitude < 0.1f && isGrounded)
+        {
+            boxCollider.sharedMaterial = frictionMaterial;
+        }
+        else
+        {
+            boxCollider.sharedMaterial = noFrictionMaterial;
+        }
+    }
+
+    void JumpCheck()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+        // Coyote time: count down from the last moment the player was grounded
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
+    void Jumping()
+    {
+        // Use buffered input + coyote time instead of raw GetKeyDown + isGrounded
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && !isFlying)
+        {
+            isJumping = true;
+
+            jumpBufferCounter = 0f;
+            coyoteTimeCounter = 0f;
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
 
     void MovementStateSwitcher()
     {
-        // Input for switching between flight
-        if ((Input.GetKey(KeyCode.F)) && canSwitchMovementState)
+        if (Input.GetKey(KeyCode.F) && canSwitchMovementState)
         {
             canSwitchMovementState = false;
 
-            // When flying - switchies back to walk state and turns gravity on
-            if(isFlying)
+            if (isFlying)
             {
-                Debug.Log("Switching to Walk state");
                 isFlying = false;
                 rb.gravityScale = 1f;
             }
-
-            // When not flying - switching to flight state and turns gravity off
             else
             {
-                Debug.Log("Switching to Flight state");
                 isFlying = true;
                 rb.gravityScale = 0f;
             }
@@ -120,102 +204,53 @@ public class sCharacterController : MonoBehaviour
             witchHat.SetActive(isFlying);
             reticleCanvas.SetActive(isFlying);
             projectileController.enabled = isFlying;
-            aimArm .SetActive(isFlying);
+            aimArm.SetActive(isFlying);
 
             StartCoroutine(MovementStateSwitchCooldown());
         }
     }
 
-    // Cooldown for the state switch so player can't spam it
     IEnumerator MovementStateSwitchCooldown()
     {
-        Debug.Log("Starting State Switch Cooldown");
-
         yield return new WaitForSeconds(movementStateSwitchCooldownTime);
-
-        Debug.Log("State Switch Cooldown Complete");
-
         canSwitchMovementState = true;
     }
 
     void MovementInputs()
     {
-        // Takes input from vertical and horizontal axis
         inputVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        // converts inputs to side to side direction
         directionSideToSide = new Vector2(inputVelocity.x, 0);
 
-        //directionFlying = new Vector2(inputVelocity.x)
-
-        // flips the sprite based on input direction
-        if(inputVelocity.x > 0)
-        {
+        if (inputVelocity.x > 0)
             spriteRenderer.flipX = true;
-        }
-
         else if (inputVelocity.x < 0)
-        {
             spriteRenderer.flipX = false;
-        }
-    }
-
-    void JumpCheck()
-    {
-        // Perform the ground check
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-
-        //Debug.Log("isGrounded = " + isGrounded);
-
-        // checks if linear velocity is less than or equal to zero when jumping
-        /*if (rb.linearVelocity.y == 0 && isJumping)
-        {
-            // toggles jump bool off
-            isJumping = false;
-            Debug.Log("Toggling Jump off");
-        }*/
-    }
-
-    void Jumping()
-    { 
-        // jump input
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Debug.Log("jumping!");
-
-            // toggles jump bool on
-            isJumping = true;
-
-            // resets velocity before jump
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-
-            // jump movement physics
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        }
     }
 
     void MovementPhysics()
     {
-        // checks if there is any input magnitute
         if (inputVelocity.sqrMagnitude > 0.1f)
         {
-            float totalSpeed = characterSpeed;
-
-            if(!isFlying)
+            if (!isFlying)
             {
-                // handles the side to side physics movement
-                rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed, rb.linearVelocity.y);
-
-                //Debug.Log("Moving Character");
+                if (isOnSlope && isGrounded)
+                {
+                    // Move along the slope surface rather than purely horizontal
+                    // slopeNormalPerp points along the slope; we flip it based on input direction
+                    // so that moving left or right always goes the correct way up or down the slope
+                    float slopeDir = -inputVelocity.x;
+                    rb.linearVelocity = slopeNormalPerp * slopeDir * characterSpeed;
+                }
+                else
+                {
+                    // Normal flat ground movement
+                    rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed, rb.linearVelocity.y);
+                }
             }
-
             else
             {
-                
-
                 rb.linearVelocity = inputVelocity * characterFlyingSpeed;
             }
-
         }
     }
 
