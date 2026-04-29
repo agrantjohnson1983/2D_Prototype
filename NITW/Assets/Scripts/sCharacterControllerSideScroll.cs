@@ -242,28 +242,36 @@ public class sCharacterController : MonoBehaviour
 
     void MovementPhysics()
     {
-        if (inputVelocity.sqrMagnitude > 0.1f)
+        if (!isFlying)
         {
-            if (!isFlying)
+            if (inputVelocity.sqrMagnitude > 0.1f)
             {
                 if (isOnSlope && isGrounded)
                 {
-                    // Move along the slope surface rather than purely horizontal
-                    // slopeNormalPerp points along the slope; we flip it based on input direction
-                    // so that moving left or right always goes the correct way up or down the slope
                     float slopeDir = -inputVelocity.x;
                     rb.linearVelocity = slopeNormalPerp * slopeDir * characterSpeed;
                 }
                 else
                 {
-                    // Normal flat ground movement
                     rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed, rb.linearVelocity.y);
                 }
             }
-
             else
             {
+                // No input - kill horizontal velocity but preserve vertical so gravity still works
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            }
+        }
+        else
+        {
+            if (inputVelocity.sqrMagnitude > 0.1f)
+            {
                 rb.linearVelocity = inputVelocity * characterFlyingSpeed;
+            }
+            else
+            {
+                // No input while flying - stop completely since there is no gravity
+                rb.linearVelocity = Vector2.zero;
             }
         }
     }

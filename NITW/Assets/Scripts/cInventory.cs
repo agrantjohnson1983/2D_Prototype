@@ -20,7 +20,10 @@ public class cInventory : MonoBehaviour
 
     private void Awake()
     {
-        inventoryGlobal = this;
+        if (inventoryGlobal == null)
+            inventoryGlobal = this;
+        else
+            Destroy(this.gameObject);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
