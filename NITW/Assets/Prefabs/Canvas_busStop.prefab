@@ -585,6 +585,11 @@ MonoBehaviour:
   downtownScenName: SideScroll_Neighborhood1_DownTown
   outskirtsSceneName: 
   centerSquareSceneName: 
+  basinDirection: 0
+  burbsDirection: 2
+  downtownDirection: 3
+  outskirtsDirection: 1
+  centerSquareDirection: 0
   displayText: {fileID: 2583214779447465932}
 --- !u!1 &3322548452413914181
 GameObject:

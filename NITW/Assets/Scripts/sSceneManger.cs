@@ -5,10 +5,6 @@ public class sSceneManger : MonoBehaviour
 {
     public static sSceneManger sceneManagerGlobal;
 
-    public string sceneToTransitionTo;
-
-    public eMode modeToTransitionTo;
-
     private void Awake()
     {
         if (sceneManagerGlobal == null)
@@ -27,10 +23,12 @@ public class sSceneManger : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // static function that can be called anywhere
-    public void ChangeScene(string _sceneToTransitionTo)
+    public void LoadScene(string _sceneToTransitionTo, eDirection _directionFacing)
     {
-        // Debug.Log("Scene Transition called to " + _sceneToTransitionTo);
+        // Sets new direction
+        cCompass.compassGlobal.SetDirection(_directionFacing);
+
+        // Loads scene
         SceneManager.LoadScene(_sceneToTransitionTo);
     }
 
@@ -49,7 +47,7 @@ public class sSceneManger : MonoBehaviour
             sBusStop.busStopGlobal.ExitBusStop();
         }
 
-        // Toggles canvas
+        // Toggles canvas off if in Front End
         if(sGameManager.gm.sceneMode == eMode.frontend)
         {
             sGameManager.gm.ToggleCanvasMain(false);

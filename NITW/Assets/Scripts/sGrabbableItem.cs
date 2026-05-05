@@ -8,6 +8,8 @@ public class sGrabbableItem : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            
+            // adds item to inventory
             cInventory.inventoryGlobal.AddItem(item);
 
             uTextCharacter.textCharacterGlobal.SetText("Yeahhh weeeed!", 3f);

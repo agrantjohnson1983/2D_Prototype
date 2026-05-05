@@ -18,6 +18,13 @@ public class cBusStop : MonoBehaviour
         outskirtsSceneName, 
         centerSquareSceneName;
 
+    public eDirection
+        basinDirection,
+        burbsDirection,
+        downtownDirection,
+        outskirtsDirection,
+        centerSquareDirection;
+
     uCityMap cityMapUI;
 
     public TextMeshProUGUI displayText;
@@ -86,27 +93,36 @@ public class cBusStop : MonoBehaviour
             {
                 case eNeighborhood.basin:
 
-                    sSceneManger.sceneManagerGlobal.ChangeScene(basinSceneName);
+                    cLocation.locationGlobal.SetTextLocation("The Basin");
+                    sSceneManger.sceneManagerGlobal.LoadScene(basinSceneName, basinDirection);
 
                     break;
+
                 case eNeighborhood.burbs:
 
-                    sSceneManger.sceneManagerGlobal.ChangeScene(burbsSceneName);
+                    cLocation.locationGlobal.SetTextLocation("The Burbs");
+                    sSceneManger.sceneManagerGlobal.LoadScene(burbsSceneName, burbsDirection);
 
                     break;
+
                    case eNeighborhood.downtown:
 
-                    sSceneManger.sceneManagerGlobal.ChangeScene(downtownScenName);
+                    cLocation.locationGlobal.SetTextLocation("Downtown");
+                    sSceneManger.sceneManagerGlobal.LoadScene(downtownScenName, downtownDirection);
 
                     break;
+
                 case eNeighborhood.outskirts:
 
-                    sSceneManger.sceneManagerGlobal.ChangeScene(outskirtsSceneName);
+                    cLocation.locationGlobal.SetTextLocation("The Outskirts");
+                    sSceneManger.sceneManagerGlobal.LoadScene(outskirtsSceneName, outskirtsDirection);
 
                     break;
+
                 case eNeighborhood.centerSquare:
 
-                    sSceneManger.sceneManagerGlobal.ChangeScene(centerSquareSceneName);
+                    cLocation.locationGlobal.SetTextLocation("Center Square");
+                    sSceneManger.sceneManagerGlobal.LoadScene(centerSquareSceneName, centerSquareDirection);
 
                     break;
             }

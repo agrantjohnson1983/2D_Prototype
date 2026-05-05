@@ -8,6 +8,12 @@ public class sPlayer : MonoBehaviour
 
     public static sPlayer playerGlobal;
 
+    public GameObject pong;
+
+    public GameObject level;
+
+    public GameObject cameraMain;
+
     //bool isOnBus = false;
 
     private void Awake()
@@ -77,6 +83,46 @@ public class sPlayer : MonoBehaviour
         this.transform.position = _newPos;
         characterSideScroll.transform.localPosition = Vector3.zero;
         characterSignSpin.transform.localPosition = Vector3.zero;
+    }
+
+    public void PlayVideoGame(eVideoGames _game)
+    {
+        level.SetActive(false);
+
+        sGameManager.gm.canvasMain.SetActive(false);
+
+        characterSideScroll.gameObject.SetActive(false);
+
+        //sCharacterController.characterControllerGlobal.SetCanMove(false);
+
+        cameraMain.SetActive(false);
+
+        switch (_game)
+        {
+            case eVideoGames.none:
+
+                break;
+
+
+            case eVideoGames.pong:
+
+                pong.gameObject.SetActive(true);
+
+                break;
+        }
+    }
+
+    public void EndVideoGame(eVideoGames _game)
+    {
+        cameraMain.SetActive(true);
+
+        level.SetActive(true);
+
+        sGameManager.gm.canvasMain.SetActive(true);
+
+        characterSideScroll.gameObject.SetActive(true);
+
+        //sCharacterController.characterControllerGlobal.SetCanMove(true);
     }
 }
 
