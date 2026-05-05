@@ -63,7 +63,7 @@ public class sCharacterController : MonoBehaviour
 
     public float reverseSequenceTime = 2.5f;
 
-    public float reverseXOffset = 3f;
+    //private float reverseXOffset;
 
     private void Awake()
     {
@@ -276,12 +276,16 @@ public class sCharacterController : MonoBehaviour
         }
     }
 
-    public void BoundaryTrigger(bool reverseToRight)
+    public void BoundaryTrigger(float _offsetAmount)
     {
-        StartCoroutine(BoundaryReverseSequence(reverseToRight));
+        // stops coroutines
+        StopAllCoroutines();
+
+        // starts the corotuine
+        StartCoroutine(BoundaryReverseSequence(_offsetAmount));
     }
 
-    IEnumerator BoundaryReverseSequence(bool _reverseToRight)
+    IEnumerator BoundaryReverseSequence(float _offsetAmount)
     {
         // turns off movment
         SetCanMove(false);
@@ -290,13 +294,19 @@ public class sCharacterController : MonoBehaviour
         //rb.linearVelocity = Vector2.zero;
 
         // flips x offset to negative the reverse should go to left
-        if (!_reverseToRight)
+        
+        // checks if offset is greater than 0
+        if(_offsetAmount > 0)
         {
-            reverseXOffset *= -1f;
+            // sets sprite flip
+            spriteRenderer.flipX = true;
         }
 
-        // sets sprite flip
-        spriteRenderer.flipX = _reverseToRight;
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
+       
 
 
         float counter = 0f;
@@ -305,7 +315,7 @@ public class sCharacterController : MonoBehaviour
         while (counter < reverseSequenceTime)
         {
             // lerps postion to x offset
-            this.transform.position = Vector3.Lerp(this.transform.position, this.transform.position + new Vector3(reverseXOffset, 0, 0), counter / reverseSequenceTime);
+            this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, this.transform.localPosition + new Vector3(_offsetAmount, 0, 0), counter / reverseSequenceTime);
 
             // increments counter by time amount
             counter += Time.deltaTime;
