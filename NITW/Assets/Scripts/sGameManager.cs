@@ -8,7 +8,7 @@ public class sGameManager : MonoBehaviour
 
     public eMode sceneMode;
 
-    public GameObject canvasMain;
+    public GameObject canvasMain, canvasDialogue;
 
     public cInventory inventory;
 

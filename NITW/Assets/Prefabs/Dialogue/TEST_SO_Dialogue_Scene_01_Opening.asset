@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a0cc31485e5d64e816e5e788c761ba, type: 3}
+  m_Name: TEST_SO_Dialogue_Scene_01_Opening
+  m_EditorClassIdentifier: 
+  dialogueBits:
+  - characterImage: {fileID: -894542136, guid: bb01e7ef587b2364a8d1617a213f9e84, type: 3}
+    duration: 5
+    textDialogue: Hey This is my test dialogue sequence
+  - characterImage: {fileID: -894542136, guid: bb01e7ef587b2364a8d1617a213f9e84, type: 3}
+    duration: 5
+    textDialogue: Ok I've got some ranting to do....
+  - characterImage: {fileID: -894542136, guid: bb01e7ef587b2364a8d1617a213f9e84, type: 3}
+    duration: 5
+    textDialogue: Blah BLah blah blah blah
+  - characterImage: {fileID: -894542136, guid: bb01e7ef587b2364a8d1617a213f9e84, type: 3}
+    duration: 5
+    textDialogue: Ok rant over
