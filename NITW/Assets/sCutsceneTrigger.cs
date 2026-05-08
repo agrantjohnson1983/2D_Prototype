@@ -4,6 +4,8 @@ public class sCutsceneTrigger : MonoBehaviour
 {
     public bool triggerOnEnable = false;
 
+    public bool destroyAfterTrigger = false;
+
     public SO_Dialogue dialogue;
 
     private void OnEnable()
@@ -26,5 +28,8 @@ public class sCutsceneTrigger : MonoBehaviour
     void StartScene()
     {
         sDialogueManager.dialogueManagerGlobal.StartDialogue(dialogue, eDialogueBoxLocation.center);
+
+        if (destroyAfterTrigger)
+            Destroy(this.gameObject);
     }
 }
