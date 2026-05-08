@@ -13,13 +13,21 @@ public class SO_Gig : ScriptableObject
 
     public float payAmount;
 
+    float currentPayAmount;
+
     public Sprite iconSprite;
 
     public GameObject worldObject;
 
-    public string gigOfferText;
+    public string 
+        gigOfferText, 
+        gigCompleteText;
 
-    public UnityEvent onGetGig, onGigStart, onGigComplete, onGigFail;
+    public UnityEvent 
+        onGetGig, 
+        onGigStart, 
+        onGigComplete, 
+        onGigFail;
 
     private void OnEnable()
     {
@@ -30,6 +38,8 @@ public class SO_Gig : ScriptableObject
         if(onGigComplete != null) onGigComplete = new UnityEvent();
 
         if(onGigFail != null) onGigFail = new UnityEvent();
+
+        currentPayAmount = payAmount;
     }
 
     public void TriggerOnGetGig()
@@ -38,12 +48,10 @@ public class SO_Gig : ScriptableObject
         onGetGig.Invoke();
 
         // gets gig in gig mgr
-        sGigManager.gigManagerGlobal.GetGig(gigType);
+        sGigManager.gigManagerGlobal.GetGig(this);
 
         // character text
         uTextCharacter.textCharacterGlobal.SetText("New gig-er-ino!", 2f);
-
-
     }
 
     public void TriggerOnGigStart()
@@ -54,10 +62,10 @@ public class SO_Gig : ScriptableObject
         onGigStart.Invoke();
 
         // starts gig in gig mgr
-        sGigManager.gigManagerGlobal.StartGig(gigType);
+        sGigManager.gigManagerGlobal.StartGig(this);
 
-        // Sets player
-        sPlayer.playerGlobal.StartGig(gigType);
+        // starts gig with player character
+        sPlayer.playerGlobal.StartGig(this);
 
         // character text
         uTextCharacter.textCharacterGlobal.SetText("Here we go gig!", 2f);
@@ -68,11 +76,14 @@ public class SO_Gig : ScriptableObject
         // Triggers event
         onGigComplete.Invoke();
 
-        // Finish gig in gig mgr
+        // Finish gig in gig mgr - not sure yet if this is really needed
         sGigManager.gigManagerGlobal.FinishGig();
 
         // Get money
-        cMoney.moneyGlobal.GetMoney(payAmount);
+        cMoney.moneyGlobal.GetMoney(currentPayAmount);
+
+        // Calls player to set end gig state
+        sPlayer.playerGlobal.EndGig(this);
 
         // character text
         uTextCharacter.textCharacterGlobal.SetText("Another gig bites the dust!", 5f);
@@ -83,6 +94,17 @@ public class SO_Gig : ScriptableObject
         // triggers event
         onGigFail.Invoke();
 
+        // sends text message
         uTextCharacter.textCharacterGlobal.SetText("Failure isn't your enemy...", 2f);
+    }
+
+    // The gig will call this before completing so the final pay amount will be set correct
+    public void PayUp(float _payPercent)
+    {
+        // calculates pay amount based on percent - so 1 will equal full pay
+        currentPayAmount = payAmount * _payPercent;
+
+        // returns pay amount
+        //return currentPayAmount;
     }
 }

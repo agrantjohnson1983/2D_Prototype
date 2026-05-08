@@ -4,40 +4,50 @@ using UnityEngine;
 
 public class sGigManager : MonoBehaviour
 {
-    eGigType currentGig = eGigType.none;
+    SO_Gig currentGig = null;
 
     public static sGigManager gigManagerGlobal;
 
     // list of gig types that have been unlocked/made available
-    List<eGigType> gigTypesUnlocked;
+    List<SO_Gig> gigTypesUnlocked;
 
     private void Awake()
     {
         gigManagerGlobal = this;
 
-        gigTypesUnlocked = new List<eGigType>();
+        gigTypesUnlocked = new List<SO_Gig>();
     }
 
-    public void GetGig(eGigType _gigType)
+    public void GetGig(SO_Gig _gig)
     {
         // when you get a gig it adds it too the unlocked
-        gigTypesUnlocked.Add(_gigType);
+        gigTypesUnlocked.Add(_gig);
     }
 
-    public void StartGig(eGigType _type)
+    public void StartGig(SO_Gig _gig)
     {
         // sets the current gig type
-        currentGig = _type;
+        currentGig = _gig;
+
+        // Turns on main canvas
+        sGameManager.gm.ToggleCanvasMain(false);
     }
 
     public void FinishGig()
     {
+        // triggers event
+        //currentGig.TriggerOnGigComplete();
+
+        // Turns on main canvas
+        sGameManager.gm.ToggleCanvasMain(true);
+
         // sets current get type to none
-        currentGig = eGigType.none;
+        currentGig = null;
+            
     }
 
     // this returns the current gig type
-    public eGigType ReturnCurrentGigType()
+    public SO_Gig ReturnCurrentGigType()
     {
         return currentGig;
     }

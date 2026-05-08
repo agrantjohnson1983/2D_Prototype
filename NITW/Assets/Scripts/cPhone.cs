@@ -121,6 +121,11 @@ public class cPhone : MonoBehaviour
         this.gameObject.transform.localScale = Vector3.zero;
     }
 
+    public void EndGig(SO_Gig _gig)
+    {
+        
+    }
+
     // This sets notification when you get a new gig
     void SetNotification()
     {

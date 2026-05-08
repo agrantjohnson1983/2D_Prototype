@@ -223,9 +223,9 @@ GameObject:
   - component: {fileID: 5705421515400461174}
   - component: {fileID: 3077101405473026929}
   - component: {fileID: 1724637934270467023}
-  - component: {fileID: -1485557990260670563}
+  - component: {fileID: 2752952306391689849}
   m_Layer: 5
-  m_Name: buttonPotion
+  m_Name: ButtonInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,20 +333,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3077101405473026929}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -1485557990260670563}
-        m_TargetAssemblyTypeName: uPotionButton, Assembly-CSharp
-        m_MethodName: OnItemClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &-1485557990260670563
+      m_Calls: []
+--- !u!114 &2752952306391689849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -355,7 +343,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7656575442662295265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e71f995d863a4a499f69cfac2aa794f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3027611981d6bbe4e97111e84371fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryImage: {fileID: 94067456172375807}

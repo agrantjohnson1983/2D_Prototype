@@ -18,7 +18,7 @@ MonoBehaviour:
     textDialogue: What is this place?
     choices: []
     nextDialogueBit: []
-    editorPosition: {x: 80, y: 80}
+    editorPosition: {x: 82, y: 80}
   - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
     typingLettersPerSec: 0.1
     textDialogue: It's an abandoned shop!
@@ -62,7 +62,7 @@ MonoBehaviour:
         nextDialogueBit: []
         editorPosition: {x: 0, y: 0}
     nextDialogueBit: []
-    editorPosition: {x: 393, y: 177}
+    editorPosition: {x: 393, y: 176}
   - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
     typingLettersPerSec: 0.1
     textDialogue: So I heard there's possibly some REAL magic stuff hidden here!
@@ -84,7 +84,7 @@ MonoBehaviour:
         nextDialogueBit: []
         editorPosition: {x: 0, y: 0}
     nextDialogueBit: []
-    editorPosition: {x: 637, y: 48}
+    editorPosition: {x: 652, y: 53}
   - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
     typingLettersPerSec: 0.1
     textDialogue: I'm going to look around and see if there's anything interesting.

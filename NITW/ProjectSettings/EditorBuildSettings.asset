@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/FrontEnd.unity
     guid: 5ef4f8bfc7a943f438bc7557688cea73
   - enabled: 1
-    path: Assets/Scenes/SideScroll_Neighborhood1_HomeBlock.unity
+    path: Assets/Scenes/SideScroll_Neighborhood1_Burbs_01_Homeblock.unity
     guid: 62ab92e3ac4bde245b4405bdc1995998
   - enabled: 1
-    path: Assets/Scenes/SideScroll_Neighborhood1_Alley1.unity
+    path: Assets/Scenes/SideScroll_Neighborhood1_Burbs_02_Alley1.unity
     guid: 2b63d2dcc84dfcc4dad59206448c50e9
   - enabled: 1
     path: Assets/Scenes/SideScroll_Neighborhood1_DownTown.unity

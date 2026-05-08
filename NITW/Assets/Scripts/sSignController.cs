@@ -8,6 +8,8 @@ public enum eSignState { up, down, left, right, none }
 
 public class sSignController : MonoBehaviour
 {
+    public SO_Gig signSpinSO;
+
     [Header("UI References")]
     public GameObject signCanvas;
     public GameObject signMoveToBustArrowPrefab;
@@ -56,6 +58,7 @@ public class sSignController : MonoBehaviour
     [Header("Game Settings")]
     public int numberOfRoundsTillExtraMoveAdded = 3;
     public int numberOfFailsAllowed = 3;
+    public int maxNumberOfRounds = 10;
 
     // Private state
     List<int> currentIndexComboList = new List<int>();
@@ -75,6 +78,9 @@ public class sSignController : MonoBehaviour
     Coroutine feedbackCoroutine;
     Coroutine signCoroutine;
 
+    int successPoints = 0;
+    int failurePoints = 0;
+
     // -------------------------------------------------------------------------
     // Unity Lifecycle
     // -------------------------------------------------------------------------
@@ -93,6 +99,8 @@ public class sSignController : MonoBehaviour
             c.a = 0f;
             feedbackText.color = c;
         }
+
+
 
         StartCoroutine(SignDisplayRoutine());
     }
@@ -365,6 +373,8 @@ public class sSignController : MonoBehaviour
 
         currentSignIndex++;
 
+        successPoints++;
+
         if (currentSignIndex >= currentIndexComboList.Count)
         {
             Debug.Log("Combo complete! Starting next round.");
@@ -395,6 +405,8 @@ public class sSignController : MonoBehaviour
 
         numberOfCurrentFails++;
 
+        failurePoints++;
+
         if (numberOfCurrentFails >= numberOfFailsAllowed)
             GameOver();
         else
@@ -404,14 +416,34 @@ public class sSignController : MonoBehaviour
     void GameOver()
     {
         Debug.Log("GAME OVER");
+
+        // stops coroutines
+        //StopAllCoroutines();
+
+        // calculates success percentage
+        float successPercentage = successPoints / (successPoints + failurePoints);
+
+        // turns off controls
         canControl = false;
+
+        // stops timer
         StopInputTimer();
+
+        // clears arrows
         ClearSpawnedArrows();
 
+        // shows feedback
         ShowFeedback(new string[] { "Game Over!", "You're done.", "That's all!", "No more!" },
                      new Color(1f, 0.2f, 0.2f));
 
-        // TODO: Show game-over screen, fire event, load scene, etc.
+        // shows text feedback above character
+        //uTextCharacter.textCharacterGlobal.SetText("I got " + (int)successPercentage*100 + " perecent.", 5f);
+
+        // sets final pay
+        signSpinSO.PayUp(signSpinSO.payAmount * successPercentage);
+
+        // triggers gig complete method
+        signSpinSO.TriggerOnGigComplete();
     }
 
     // -------------------------------------------------------------------------
@@ -425,6 +457,12 @@ public class sSignController : MonoBehaviour
 
         round++;
         roundSwitcher++;
+
+        if(round == maxNumberOfRounds)
+        {
+            GameOver();
+            
+        }
 
         if (roundSwitcher >= numberOfRoundsTillExtraMoveAdded)
         {

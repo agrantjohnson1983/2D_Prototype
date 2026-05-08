@@ -35,11 +35,9 @@ public class sPlayer : MonoBehaviour
 
     // GIGGING - This controls a lot of the different gameplay
 
-    public void StartGig(eGigType _type)
+    public void StartGig(SO_Gig _gig)
     {
-        Debug.Log("Starting gig..." + _type);
-
-        switch(_type)
+        switch (_gig.gigType)
         {
             case eGigType.signSpin:
 
@@ -50,9 +48,11 @@ public class sPlayer : MonoBehaviour
         }
     }
 
-    public void EndGig(eGigType _type)
+    // Gets called at the end of every gig and handles canvas, payment
+    public void EndGig(SO_Gig _gig)
     {
-        switch (_type)
+        // switches back to non-gig state
+        switch (_gig.gigType)
         {
             case eGigType.signSpin:
 
