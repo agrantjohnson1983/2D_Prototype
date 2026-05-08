@@ -8,19 +8,26 @@ public class SO_Dialogue : ScriptableObject
     [System.Serializable]
     public class DialogueBits
     {
-        public string characterName;
-        public Sprite characterImage;
+        public SO_Character character;
+
         public float typingLettersPerSec = 0.1f;
-        //public float delayAtEndOfTyping = 1f;
+
+        [TextArea(2,5)]
         public string textDialogue;
+
         public DialogueChoice[] choices;
-        public DialogueBits nextDialogueBit;
+
+        public DialogueBits[] nextDialogueBit;
+
+        [HideInInspector]
+        public Vector2 editorPosition;
     }
 
     [System.Serializable]
     public class DialogueChoice
     {
-        public string textChoice;
+        public string textButtonChoice;
+
         public DialogueBits nextDialogueBit;
     }
 }

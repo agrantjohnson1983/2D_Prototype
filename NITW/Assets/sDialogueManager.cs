@@ -33,10 +33,13 @@ public class sDialogueManager : MonoBehaviour
     bool isTyping = false;
     bool waitingForInput = false;
 
+    //current dialogue ref
     SO_Dialogue currentDialogue = null;
 
+    // button prefab
     public GameObject pButtonChoice;
 
+    // where the buttons spawn
     public Transform transformButtonsChoice;
 
     // active button references
@@ -180,13 +183,13 @@ public class sDialogueManager : MonoBehaviour
     IEnumerator DialogueSequence(SO_Dialogue.DialogueBits _dialogueBit)
     {
         // sets speaker name
-        textSpeakerName.text = _dialogueBit.characterName;
+        textSpeakerName.text = _dialogueBit.character.characterName;
 
         // resets dialogue text to remove exisiting text
         textDialogue.text = "";
 
-        // changes character sprite
-        imageCharacter.sprite = _dialogueBit.characterImage;
+        // changes character head sprite
+        imageCharacter.sprite = _dialogueBit.character.characterHead;
 
         // typewriter seqeunce
         isTyping = true;
@@ -194,7 +197,7 @@ public class sDialogueManager : MonoBehaviour
         {
             // if it's not typing (this will allow a quickstop) then it breaks;
             if (!isTyping) { textDialogue.text = _dialogueBit.textDialogue; break; } // skip pressed
-            
+
             // adds letter 
             textDialogue.text += _c;
 
@@ -208,7 +211,8 @@ public class sDialogueManager : MonoBehaviour
         // if there are no choices then it just waits for user input to go to next dialogue
         if (_dialogueBit.choices == null || _dialogueBit.choices.Length == 0)
         {
-            if(_dialogueBit.nextDialogueBit == null)
+            // if the next bit is null or has nothing in array
+            if (_dialogueBit.nextDialogueBit == null || _dialogueBit.nextDialogueBit.Length == 0)
             {
                 // turns on press space to continue text
                 pressSpaceToContinueText.gameObject.transform.localScale = Vector3.one;
@@ -222,7 +226,8 @@ public class sDialogueManager : MonoBehaviour
 
             else
             {
-                NextBranchingDialogueBit(_dialogueBit.nextDialogueBit);
+                // calls the next branching dialogue bit - there should only be one so the array index will always be 0
+                NextBranchingDialogueBit(_dialogueBit.nextDialogueBit[0]);
             }
 
             
@@ -240,7 +245,7 @@ public class sDialogueManager : MonoBehaviour
                 //var captured = choice; // closure capture
 
                 // spawns a button for each choice and sends it text and event subscription
-                SpawnButton(_choice.textChoice, () =>
+                SpawnButton(_choice.textButtonChoice, () =>
                 {
                     if (_choice.nextDialogueBit != null)
                     {

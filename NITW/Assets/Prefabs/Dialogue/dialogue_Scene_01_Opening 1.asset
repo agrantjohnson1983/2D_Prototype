@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a0cc31485e5d64e816e5e788c761ba, type: 3}
+  m_Name: dialogue_Scene_01_Opening 1
+  m_EditorClassIdentifier: 
+  dialogueBits:
+  - character: {fileID: 11400000, guid: c51aace6523d4e3448a615d42e90436e, type: 2}
+    typingLettersPerSec: 0.1
+    textDialogue: What is this place?
+    choices: []
+    nextDialogueBit: []
+    editorPosition: {x: 80, y: 80}
+  - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+    typingLettersPerSec: 0.1
+    textDialogue: It's an abandoned shop!
+    choices:
+    - textButtonChoice: Gross!
+      nextDialogueBit:
+        character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: Come on live a little and let's explore!
+        choices: []
+        nextDialogueBit:
+        - character: {fileID: 11400000, guid: c51aace6523d4e3448a615d42e90436e, type: 2}
+          typingLettersPerSec: 0.1
+          textDialogue: Why is everything always an adventure with you!
+          choices: []
+          nextDialogueBit: []
+          editorPosition: {x: 0, y: 0}
+        editorPosition: {x: 0, y: 0}
+    - textButtonChoice: Coool!
+      nextDialogueBit:
+        character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: Yeah!  Right!?
+        choices:
+        - textButtonChoice: It's actually kind of creepy
+          nextDialogueBit:
+            character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+            typingLettersPerSec: 0.1
+            textDialogue: You're kind of creepy!
+            choices: []
+            nextDialogueBit: []
+            editorPosition: {x: 0, y: 0}
+        - textButtonChoice: Yeah!
+          nextDialogueBit:
+            character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+            typingLettersPerSec: 0
+            textDialogue: I knew you'd like it!
+            choices: []
+            nextDialogueBit: []
+            editorPosition: {x: 0, y: 0}
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
+    nextDialogueBit: []
+    editorPosition: {x: 393, y: 177}
+  - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+    typingLettersPerSec: 0.1
+    textDialogue: So I heard there's possibly some REAL magic stuff hidden here!
+    choices:
+    - textButtonChoice: Oh gawd
+      nextDialogueBit:
+        character: {fileID: 11400000, guid: c51aace6523d4e3448a615d42e90436e, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: Oh god is this going to be another one of your rants...?
+        choices: []
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
+    - textButtonChoice: Awesome!
+      nextDialogueBit:
+        character: {fileID: 11400000, guid: c51aace6523d4e3448a615d42e90436e, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: That is so cool!  I wonder what there could be....
+        choices: []
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
+    nextDialogueBit: []
+    editorPosition: {x: 637, y: 48}
+  - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+    typingLettersPerSec: 0.1
+    textDialogue: I'm going to look around and see if there's anything interesting.
+    choices:
+    - textButtonChoice: I'm apprehensive
+      nextDialogueBit:
+        character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: You do you!
+        choices: []
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
+    - textButtonChoice: Ooook!  Kewl!
+      nextDialogueBit:
+        character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: Let me know if you find anything intersting
+        choices: []
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
+    - textButtonChoice: Ughh....
+      nextDialogueBit:
+        character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: Dont' be a tuna head!
+        choices: []
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
+    nextDialogueBit: []
+    editorPosition: {x: 1006, y: 98}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b28d01cd6d37845a1876c59fdc3b61, type: 3}
+  m_Name: character_Gael
+  m_EditorClassIdentifier: 
+  characterName: Gael
+  characterHead: {fileID: -75513689, guid: c136d9b9fd0e1a44eb2ce6126da4e7b8, type: 3}
+  characterFull: {fileID: 21300000, guid: 29ccaa77dbc44c747a9884684a8474fa, type: 3}

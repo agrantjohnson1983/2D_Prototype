@@ -19,16 +19,13 @@ public class sCutsceneTrigger : MonoBehaviour
         StartScene();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void StartScene()
     {
+        // Calls dialogue mgr to start Dialogue
         sDialogueManager.dialogueManagerGlobal.StartDialogue(dialogue, eDialogueBoxLocation.center);
 
+        // Destroys after starting scene
         if (destroyAfterTrigger)
             Destroy(this.gameObject);
     }

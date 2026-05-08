@@ -8,12 +8,20 @@ public class cPhone : MonoBehaviour
 {
     public static cPhone phoneGlobal;
 
+    // GIGS
     public GameObject pGigPhoneButton;
 
     List<SO_Gig> gigList;
 
     public Transform gigsButtonTransform;
 
+    List<GameObject> gigButtons;
+
+    // CALENDAR
+
+    public GameObject calendar;
+
+    // NOTIFICATIONS
     public GameObject notificationObject, hudPhoneNotificationObject;
 
     public Image notificationImage;
@@ -21,8 +29,6 @@ public class cPhone : MonoBehaviour
     public TextMeshProUGUI notificationText;
 
     int currentNumberOfNotifications = 0;
-
-    List<GameObject> gigButtons;
 
     private void Awake()
     {
