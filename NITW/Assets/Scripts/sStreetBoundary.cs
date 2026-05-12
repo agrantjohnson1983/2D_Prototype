@@ -11,7 +11,7 @@ public class sStreetBoundary : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // checks for character controller on trigger
-        if(collision.TryGetComponent<sCharacterController>(out sCharacterController _controller))
+        if(collision.TryGetComponent<sCharacterControllerSideScroll>(out sCharacterControllerSideScroll _controller))
         {
             //Debug.Log("Triggering street boundary reversal");
             if (!reversesToRight)

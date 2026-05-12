@@ -42,7 +42,7 @@ public class uGigPhoneButton : MonoBehaviour
 
     public void OnClick()
     {
-        if(!sCharacterController.isOutside)
+        if(!sCharacterControllerBASE.isOutside)
         {
             uTextCharacter.textCharacterGlobal.SetText("Gotta be outside to gig!", 2f);
 

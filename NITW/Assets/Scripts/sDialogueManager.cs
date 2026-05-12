@@ -104,7 +104,9 @@ public class sDialogueManager : MonoBehaviour
         currentDialogue = _dialogue;
 
         // Turns off character movement
-        sCharacterController.characterControllerGlobal.SetCanMove(false);
+        //sCharacterControllerBASE.characterControllerGlobal.SetCanMove(false);
+
+        sPlayer.playerGlobal.ToggleMovement(false);
 
         // turns off main canvas
         sGameManager.gm.ToggleCanvasMain(false);
@@ -303,7 +305,8 @@ public class sDialogueManager : MonoBehaviour
         currentIndex = 0;
 
         // turns character movement back on
-        sCharacterController.characterControllerGlobal.SetCanMove(true);
+        //sCharacterController.characterControllerGlobal.SetCanMove(true);
+        sPlayer.playerGlobal.ToggleMovement(true);
 
         // turns main canvas back on
         sGameManager.gm.ToggleCanvasMain(true);

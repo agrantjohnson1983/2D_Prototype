@@ -46,7 +46,7 @@ public class sCharacterControllerTopDown : MonoBehaviour
 
         inputVelocity.Normalize();
 
-        SpriteController(inputVelocity);
+        //SpriteController(inputVelocity);
     }
 
     void SpriteController(Vector2 _input)

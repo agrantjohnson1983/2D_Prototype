@@ -39,6 +39,12 @@ public class sProjectileController : MonoBehaviour
             return;
         }
 
+        // resets mainCam if needed
+        if(mainCam == null)
+        {
+            mainCam = Camera.main;
+        }
+
         // IMPORTANT: pass abs camera z as the z component so world position is correct
         Vector3 mouseScreen = Input.mousePosition;
         mouseScreen.z = Mathf.Abs(mainCam.transform.position.z);

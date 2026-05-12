@@ -44,7 +44,11 @@ public class sBusStop : MonoBehaviour
         //busCanvas.transform.localScale = Vector3.one;
 
         // turns player movement off
-        sCharacterController.characterControllerGlobal.SetCanMove(false);
+
+        sPlayer.playerGlobal.ToggleMovement(false);
+
+        //sCharacterControllerBASE.canMove = false;
+        //sC.SetCanMove(false);
     }
 
     public void ExitBusStop()
@@ -52,10 +56,13 @@ public class sBusStop : MonoBehaviour
         //Debug.Log("Exiting bus station");
 
         // resets player pos and moves it to bus exit
-        sPlayer.playerGlobal.ResetPositions(busStopExit.position);
+        sPlayer.playerGlobal.SetPosition(busStopExit.position);
 
         // resets character movement
-        sCharacterController.characterControllerGlobal.SetCanMove(true);
+        //sCharacterController.characterControllerGlobal.SetCanMove(true);
+
+        sPlayer.playerGlobal.ToggleMovement(true);
+        //sCharacterControllerBASE.canMove = true;
 
         isOnBus = false;
     }

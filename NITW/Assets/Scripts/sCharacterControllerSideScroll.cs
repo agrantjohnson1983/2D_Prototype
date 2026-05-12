@@ -2,9 +2,9 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class sCharacterController : MonoBehaviour
+public class sCharacterControllerSideScroll : sCharacterControllerBASE
 {
-    Rigidbody2D rb;
+    //Rigidbody2D rb;
 
     [Header("Movement Side To Side")]
     public float characterSpeed;
@@ -13,17 +13,15 @@ public class sCharacterController : MonoBehaviour
     private Vector3 startingPosition;
     private Vector2 directionSideToSide;
 
-    [Header("Movement Flying")]
-    public GameObject broom, witchHat;
-    public float characterFlyingSpeed;
-    public static bool isFlying = false;
-    private Vector2 directionFlying;
+    //[Header("Movement Flying")]
+    //public GameObject broom, witchHat;
+    //public float characterFlyingSpeed;
+    //public static bool isFlying = false;
+    //private Vector2 directionFlying;
 
     [Header("Movement State")]
     public float movementStateSwitchCooldownTime = 1.5f;
     bool canSwitchMovementState = true;
-
-    public SpriteRenderer spriteRenderer;
 
     [Header("Jumping")]
     public float jumpPower;
@@ -51,31 +49,21 @@ public class sCharacterController : MonoBehaviour
     private PhysicsMaterial2D noFrictionMaterial;
     public BoxCollider2D boxCollider;
 
-    public GameObject aimArm;
-    public GameObject reticleCanvas;
-
-    sProjectileController projectileController;
-
-    public static bool isOutside = true;
-    public static sCharacterController characterControllerGlobal;
-
-    bool canMove = true;
-
-    public float reverseSequenceTime = 2.5f;
-
-    //private float reverseXOffset;
-
     private void Awake()
     {
-        if (characterControllerGlobal == null)
-            characterControllerGlobal = this;
-        else
-            Destroy(this.gameObject);
+        //if (characterControllerSideScrollGlobal == null)
+        //    characterControllerSideScrollGlobal = this;
+        //else
+        //    Destroy(this.gameObject);
     }
 
-    void Start()
+    public override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
+
+        // calls the base
+        base.Start();
+
         characterStartingSpeed = characterSpeed;
         startingPosition = rb.position;
         inputVelocity = new Vector2();
@@ -90,20 +78,20 @@ public class sCharacterController : MonoBehaviour
         noFrictionMaterial.friction = 0f;
         noFrictionMaterial.bounciness = 0f;
 
-        broom.SetActive(isFlying);
-        witchHat.SetActive(isFlying);
-        reticleCanvas.SetActive(isFlying);
-        aimArm.SetActive(isFlying);
+        //broom.SetActive(isFlying);
+        //witchHat.SetActive(isFlying);
+        //reticleCanvas.SetActive(isFlying);
+        //aimArm.SetActive(isFlying);
 
-        projectileController = GetComponent<sProjectileController>();
-        projectileController.enabled = isFlying;
+        //projectileController = GetComponent<sProjectileController>();
+        //projectileController.enabled = isFlying;
     }
 
     void Update()
     {
         JumpCheck();
         MovementInputs();
-        MovementStateSwitcher();
+        //MovementStateSwitcher();
 
         // Read jump input in Update so no frames are missed
         if (Input.GetKeyDown(KeyCode.Space))
@@ -178,7 +166,7 @@ public class sCharacterController : MonoBehaviour
     void Jumping()
     {
         // Use buffered input + coyote time instead of raw GetKeyDown + isGrounded
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && !isFlying)
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             //isJumping = true;
 
@@ -188,39 +176,6 @@ public class sCharacterController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
-    }
-
-    void MovementStateSwitcher()
-    {
-        if (Input.GetKey(KeyCode.F) && canSwitchMovementState)
-        {
-            canSwitchMovementState = false;
-
-            if (isFlying)
-            {
-                isFlying = false;
-                rb.gravityScale = 1f;
-            }
-            else
-            {
-                isFlying = true;
-                rb.gravityScale = 0f;
-            }
-
-            broom.SetActive(isFlying);
-            witchHat.SetActive(isFlying);
-            reticleCanvas.SetActive(isFlying);
-            projectileController.enabled = isFlying;
-            aimArm.SetActive(isFlying);
-
-            StartCoroutine(MovementStateSwitchCooldown());
-        }
-    }
-
-    IEnumerator MovementStateSwitchCooldown()
-    {
-        yield return new WaitForSeconds(movementStateSwitchCooldownTime);
-        canSwitchMovementState = true;
     }
 
     void MovementInputs()
@@ -242,8 +197,8 @@ public class sCharacterController : MonoBehaviour
 
     void MovementPhysics()
     {
-        if (!isFlying)
-        {
+        //if (!isFlying)
+        //{
             if (inputVelocity.sqrMagnitude > 0.1f)
             {
                 if (isOnSlope && isGrounded)
@@ -261,19 +216,21 @@ public class sCharacterController : MonoBehaviour
                 // No input - kill horizontal velocity but preserve vertical so gravity still works
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             }
-        }
-        else
-        {
-            if (inputVelocity.sqrMagnitude > 0.1f)
-            {
-                rb.linearVelocity = inputVelocity * characterFlyingSpeed;
-            }
-            else
-            {
-                // No input while flying - stop completely since there is no gravity
-                rb.linearVelocity = Vector2.zero;
-            }
-        }
+        //}
+
+        // Flying Controls
+        //else
+        //{
+        //    if (inputVelocity.sqrMagnitude > 0.1f)
+        //    {
+        //        rb.linearVelocity = inputVelocity * characterFlyingSpeed;
+        //    }
+        //    else
+        //    {
+        //        // No input while flying - stop completely since there is no gravity
+        //        rb.linearVelocity = Vector2.zero;
+        //    }
+        //}
     }
 
     public void BoundaryTrigger(float _offsetAmount)
@@ -327,17 +284,4 @@ public class sCharacterController : MonoBehaviour
         SetCanMove(true);
     }
 
-    public void SetLocation(Vector3 _pos)
-    {
-        this.transform.position = _pos;
-    }
-
-    public void SetCanMove(bool _canMove)
-    {
-        canMove = _canMove;
-
-        // stops velocity if can't move
-        if (!canMove)
-            rb.linearVelocity = Vector2.zero;
-    }
 }

@@ -16415,7 +16415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui_Display: {fileID: 7283802659490848055}
-  sceneToTransitionTo: SideScroll_Neighborhood1_HomeBlock
+  sceneToTransitionTo: SideScroll_Neighborhood1_Burbs_01_Homeblock
   directionToTurn: 2
 --- !u!224 &8026799275149053636
 RectTransform:

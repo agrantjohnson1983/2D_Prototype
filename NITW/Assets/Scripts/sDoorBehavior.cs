@@ -29,11 +29,13 @@ public class sDoorBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(sCharacterController.isOutside && !sCharacterController.isFlying)
+        // if you are outside and not flying
+        if(sCharacterControllerBASE.isOutside && !sCharacterControllerBASE.isFlying)
         {
+            // if you are touching door and press 'W'
             if (isTouchingDoor && Input.GetKey(KeyCode.W))
             {
-                sCharacterController.isOutside = false;
+                sCharacterControllerBASE.isOutside = false;
 
                 for (int i = 0; i < turnOnOnEnter.Length; i++)
                 {
@@ -62,7 +64,7 @@ public class sDoorBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player") && sCharacterController.isOutside == true && !sCharacterController.isFlying)
+        if(collision.CompareTag("Player") && sCharacterControllerBASE.isOutside == true)
         {
             isTouchingDoor=true;
             uDoorArrow.transform.localScale = Vector3.one;

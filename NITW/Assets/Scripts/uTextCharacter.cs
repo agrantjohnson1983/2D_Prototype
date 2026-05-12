@@ -22,7 +22,7 @@ public class uTextCharacter : MonoBehaviour
     {
         // sets transform to character pos + offset
         this.gameObject.transform.position = 
-               sCharacterController.characterControllerGlobal.transform.position + spawnOffset;
+               sPlayer.playerGlobal.GetActiveMovementObject().transform.position + spawnOffset;
 
         // sets text
         characterText.text = _text;

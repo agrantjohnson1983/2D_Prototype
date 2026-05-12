@@ -20,7 +20,7 @@ public class sCorner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (sCharacterController.isOutside && !sCharacterController.isFlying)
+        if (sCharacterControllerBASE.isOutside)
         {
             if (isTouchingDoor && Input.GetKey(KeyCode.W))
             {
@@ -33,7 +33,7 @@ public class sCorner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && sCharacterController.isOutside == true && !sCharacterController.isFlying)
+        if (collision.CompareTag("Player") && sCharacterControllerBASE.isOutside == true)
         {
             isTouchingDoor = true;
             ui_Display.SetActive(true);

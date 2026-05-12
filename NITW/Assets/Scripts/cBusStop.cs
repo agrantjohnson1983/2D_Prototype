@@ -86,7 +86,7 @@ public class cBusStop : MonoBehaviour
             busStopUI.SetActive(true);
 
             // unpauses character movement
-            sCharacterController.characterControllerGlobal.SetCanMove(true);
+            sCharacterControllerBASE.canMove = false;
 
             // switches the neighborhoods and then does a scene change to the new one
             switch (_neighborhoodToGoTo)

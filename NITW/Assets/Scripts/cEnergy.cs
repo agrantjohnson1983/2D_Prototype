@@ -10,6 +10,7 @@ public class cEnergy : MonoBehaviour
     float currentEnergy;
     public float energyDrainPerSec = 1f;
 
+    // Toggle this statically to turn on/off stamina drain
     public static bool canDrain = false;
 
     public float drainCooldownTime = 5f;
@@ -58,7 +59,11 @@ public class cEnergy : MonoBehaviour
 
     IEnumerator StaminaDrainCooldown()
     {
-        sCharacterController.characterControllerGlobal.SetCanMove(false);
+        //sCharacterControllerSideScroll.characterControllerSideScrollGlobal.SetCanMove(false);
+
+        //sCharacterControllerFlyingSideToSide.characterControllerFlyingGlobal.SetCanMove(false);
+
+        sPlayer.playerGlobal.ToggleMovement(false);
 
         uTextCharacter.textCharacterGlobal.SetText("Oh man I gotta chill... I'm out of energy", drainCooldownTime);
 
@@ -66,9 +71,12 @@ public class cEnergy : MonoBehaviour
 
         canDrain = true;
 
-        sCharacterController.characterControllerGlobal.SetCanMove(true);
+        //sCharacterController.characterControllerGlobal.SetCanMove(true);
+
+        //sCharacterControllerFlyingSideToSide.characterControllerFlyingGlobal.SetCanMove(true);
+
+        sPlayer.playerGlobal.ToggleMovement(true);
 
         uTextCharacter.textCharacterGlobal.SetText("Ok I'm good now", drainCooldownTime);
-
     }
 }
