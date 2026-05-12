@@ -8,6 +8,10 @@ public class sOverworldTrigger : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            // sets game mode
+            sGameManager.gm.SetGameMode(eMode.topdown);
+
+            // loads scene
             sSceneManger.sceneManagerGlobal.LoadScene(sceneToChange, eDirection.north);
         }
     }

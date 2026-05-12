@@ -10,14 +10,23 @@ public class sProjectileController : MonoBehaviour
     [Header("Fire Settings")]
     public float fireRate = 5f;
     public bool autoFire = true;
+    public Vector3 fireOffset;
+    //public float firePower = 1f;
 
     private float fireCooldown;
     private Camera mainCam;
+
+    eMode gameMode;
 
     void Awake()
     {
         mainCam = Camera.main;
         if (firePoint == null) firePoint = transform;
+    }
+
+    private void Start()
+    {
+        gameMode = sGameManager.gm.GetGameMode();
     }
 
     void Update()
@@ -45,18 +54,44 @@ public class sProjectileController : MonoBehaviour
             mainCam = Camera.main;
         }
 
-        // IMPORTANT: pass abs camera z as the z component so world position is correct
-        Vector3 mouseScreen = Input.mousePosition;
-        mouseScreen.z = Mathf.Abs(mainCam.transform.position.z);
-        Vector3 mouseWorld = mainCam.ScreenToWorldPoint(mouseScreen);
-        mouseWorld.z = 0f;
+        Vector2 direction = new Vector2();
+        Quaternion rotation = new Quaternion();
 
-        Vector2 direction = ((Vector2)mouseWorld - (Vector2)firePoint.position).normalized;
+        switch (gameMode)
+        {
+            case eMode.topdown:
 
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        sProjectile projectile = proj.GetComponent<sProjectile>();
+                // converts to z direction motion
+                direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+                rotation = Quaternion.Euler(90, 0, 0);
+
+                //direction = new Vector2(aimDirection.x, aimDirection.z);
+
+                break;
+
+            case eMode.sidescroll:
+
+                // IMPORTANT: pass abs camera z as the z component so world position is correct
+                Vector3 mouseScreen = Input.mousePosition;
+                mouseScreen.z = Mathf.Abs(mainCam.transform.position.z);
+                Vector3 mouseWorld = mainCam.ScreenToWorldPoint(mouseScreen);
+                mouseWorld.z = 0f;
+                direction = ((Vector2)mouseWorld - (Vector2)firePoint.position).normalized;
+
+                rotation = Quaternion.identity;
+
+                break;
+        }
+
+        Debug.Log("Projectile direction is " + direction);
+
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position + fireOffset, rotation);
+        sProjectileBASE projectile = proj.GetComponent<sProjectileBASE>();
         if (projectile != null)
             projectile.Initialize(direction);
+
+
     }
 
     void OnDrawGizmosSelected()

@@ -16,21 +16,29 @@ public class sMailbox : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+/*    // for side to side with 2d colliders
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.gameObject + " triggered mailbox trigger");
 
-        if (collision.TryGetComponent<sProjectile>(out sProjectile _projectile) && !isFilled)
+        if (collision.CompareTag("Projectile") && !isFilled)
         {
             isFilled = true;
 
             //Debug.Log("Projectile Triggered Mailbox");
 
-            Destroy(_projectile.gameObject);
+            Destroy(collision.gameObject);
 
-            spriteRenderer.sprite = mailboxFilled;
-
-            cMoney.moneyGlobal.GetMoney(deliveryRewardAmount);
+            
         }
+    }*/
+
+    public void FillBox()
+    {
+        isFilled = true;
+
+        spriteRenderer.sprite = mailboxFilled;
+
+        cMoney.moneyGlobal.GetMoney(deliveryRewardAmount);
     }
 }

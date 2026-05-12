@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1181695786407509504}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiniGames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3128211868362377468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SignSpinUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 604785761544461319}
   - component: {fileID: 1509749776751570807}
   - component: {fileID: 7692985803948978927}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4951275870420896996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: textSpawnPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8494675735262725902}
   - component: {fileID: 6326759464500850841}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MoveToBustTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8167722763847410801}
   - component: {fileID: 242436415241824464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WitchHat1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6983786146301623585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SignSpinRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 1579154527910653960}
   - component: {fileID: 43419865390567185}
   - component: {fileID: 8332862199326210121}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas_PotionBrewing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2577014186334828542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: textFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 2677336369079202853}
   - component: {fileID: 4173999735343330574}
   - component: {fileID: 7418497008399243614}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,7 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2157669559059371}
   - component: {fileID: 3307821496675748845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Broom1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9004211191147272249}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8355806374000470772}
   - component: {fileID: 5125816263557388969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: saleImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 2600188459799541891}
   - component: {fileID: 1372744241012169946}
   - component: {fileID: 4408807830122427290}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: imageTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -935,7 +935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3445100995164049097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SignSpinTransformHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -971,7 +971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 692456881855554272}
   - component: {fileID: 9084595189283001137}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sign1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 2452476118266715225}
   - component: {fileID: 5906461014786899416}
   - component: {fileID: 3453634372183789529}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas_SignSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1166,7 +1166,7 @@ GameObject:
   - component: {fileID: 677463791412267105}
   - component: {fileID: 1688086148064091237}
   - component: {fileID: 6551293153937823509}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CinemachineCameraSignSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1271,7 +1271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 549235680741627942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 3465735003653829762}
   - component: {fileID: 3210801171659729265}
   - component: {fileID: 530748490986566909}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: textInstructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,7 +1439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7793596388501702843}
   - component: {fileID: 5266862301024111969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: armPointerAim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1530,7 +1530,7 @@ GameObject:
   - component: {fileID: 5420970024682356485}
   - component: {fileID: 4267346360721187478}
   - component: {fileID: 5675302575252513813}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CanvasWorld_TextCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1643,7 +1643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 629793235835003167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SignSpinDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,7 +1677,7 @@ GameObject:
   - component: {fileID: 6267317680779590523}
   - component: {fileID: 886810298790112749}
   - component: {fileID: 3714296174531763736}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button_QuitBrewin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1807,7 +1807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6704145112605671826}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SignSpinLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1840,7 +1840,7 @@ GameObject:
   - component: {fileID: 443625328128809076}
   - component: {fileID: 4022041048315941999}
   - component: {fileID: 5913484774299017564}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1975,7 +1975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2727334011842892935}
   - component: {fileID: 7608377729094222112}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ArmAim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,7 +2022,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7825503170961331674}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Inventory_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2063,7 +2063,7 @@ GameObject:
   - component: {fileID: 6552646144785288725}
   - component: {fileID: 2444962821911876408}
   - component: {fileID: 3366369099601362745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CharacterSignSpin
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2246,9 +2246,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6803262296234542354}
   - component: {fileID: 6482020674573091699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PLAYER
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   characterFlying: {fileID: 6689077846105393186}
   characterSignSpin: {fileID: 6383562983669416035}
   potionBrewing: {fileID: 2341881483804491843}
-  pong: {fileID: 724413644332111535}
+  pong: {fileID: 0}
   level: {fileID: 0}
   cameraMain: {fileID: 0}
 --- !u!1 &7297123563560084506
@@ -2305,7 +2305,7 @@ GameObject:
   - component: {fileID: 5068211213099960986}
   - component: {fileID: 4852891721317600949}
   - component: {fileID: 7463788730644352892}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button_BrewThatShit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2438,7 +2438,7 @@ GameObject:
   - component: {fileID: 3153261931731194743}
   - component: {fileID: 4175434865225489562}
   - component: {fileID: 751973070076224404}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Open_Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2535,7 +2535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6580213043788900710}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: textSpawnPoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2571,7 +2571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3870016878141149344}
   - component: {fileID: 2682173028995271981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spr_Mae
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2659,7 +2659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4215261745496400958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: textSpawnPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2696,7 +2696,7 @@ GameObject:
   - component: {fileID: 7010279424579403729}
   - component: {fileID: 8919738115377903509}
   - component: {fileID: 965888030454334977}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2830,7 +2830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4580160975708278511}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: textSpawnPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2867,7 +2867,7 @@ GameObject:
   - component: {fileID: 4773755980349023259}
   - component: {fileID: 3725078328969544565}
   - component: {fileID: 4787832754803343791}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3000,13 +3000,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1181695786407509504}
     m_Modifications:
+    - target: {fileID: 560524576104315715, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 860572031378313209, guid: aeac09338565f734e954bd3abf664c20, type: 3}
       propertyPath: m_Name
       value: Pong
       objectReference: {fileID: 0}
     - target: {fileID: 860572031378313209, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 860572031378313209, guid: aeac09338565f734e954bd3abf664c20, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 951991764359470331, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 966248383213394778, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131716185483407249, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315683033826563445, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678914636478402837, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580126291542444643, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3969669724229463577, guid: aeac09338565f734e954bd3abf664c20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3048,16 +3080,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5510991404659679505, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6311880036350418043, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6585782791859655478, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678555142478827310, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909797898818158400, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319633186962992448, guid: aeac09338565f734e954bd3abf664c20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac09338565f734e954bd3abf664c20, type: 3}
---- !u!1 &724413644332111535 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 860572031378313209, guid: aeac09338565f734e954bd3abf664c20, type: 3}
-  m_PrefabInstance: {fileID: 143270681225484630}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3957510100939028303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3969669724229463577, guid: aeac09338565f734e954bd3abf664c20, type: 3}
@@ -3071,6 +3122,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6803262296234542354}
     m_Modifications:
+    - target: {fileID: 364166700702498166, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243698506703250630, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2813052092891158855, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178484379663906554, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411967111489544304, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5399592581651980291, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3111,13 +3182,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6505268591557130633, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567155383250062846, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6862851591644373343, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549805272041548412, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8053167325886438621, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_Name
       value: CharacterSideScroll
       objectReference: {fileID: 0}
     - target: {fileID: 8053167325886438621, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053167325886438621, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8942699712966374189, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9005342057200979394, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: boxCollider
@@ -3157,16 +3252,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 6803262296234542354}
     m_Modifications:
     - target: {fileID: 364166700702498166, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 364166700702498166, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243698506703250630, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1888293066439148922, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2813052092891158855, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2813052092891158855, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178484379663906554, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3400734002112910972, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3179,6 +3290,10 @@ PrefabInstance:
     - target: {fileID: 4004893802213589824, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411967111489544304, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5399592581651980291, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3220,25 +3335,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6505268591557130633, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6536116961952232351, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6567155383250062846, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567155383250062846, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6862851591644373343, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549805272041548412, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8053167325886438621, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_Name
       value: CharacterFlying
       objectReference: {fileID: 0}
     - target: {fileID: 8053167325886438621, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053167325886438621, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8130063980604430140, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8942699712966374189, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8942699712966374189, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_IsActive
@@ -3301,8 +3440,16 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4043635395030774000}
   stateSwitchCooldownTime: 2.5
   reverseSequenceTime: 2.5
-  characterFlyingForce: 500
-  maxSpeed: 100
+  broomAccelerationPower: 1
+  maxSpeedMagnitude: 60
+  glideGravity: 6
+  loopRadius: 2.2
+  loopDegreesPerSecond: 200
+  loopThrottleMultiplier: 1.35
+  minimumLoopHeight: 5
+  spriteTransform: {fileID: 0}
+  rotationSmoothSpeed: 10
+  spriteRotationOffset: 0
 --- !u!114 &1915736431102925609
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 10982707398711816}
   - component: {fileID: 3625119166251493347}
   m_Layer: 0
-  m_Name: OverheadTownTrigger
+  m_Name: TRIGGER_OVERWORLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

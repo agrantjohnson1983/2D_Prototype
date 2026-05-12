@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class sCharacterControllerTopDown : MonoBehaviour
 {
-    Rigidbody rb;
+    Rigidbody2D rb;
 
     [Header("Movemement")]
     public float characterSpeed;
@@ -18,7 +18,7 @@ public class sCharacterControllerTopDown : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         characterStartingSpeed = characterSpeed;
         startingPosition = rb.position;
         inputVelocity = new Vector2();
@@ -82,12 +82,17 @@ public class sCharacterControllerTopDown : MonoBehaviour
             float totalSpeed = characterSpeed;
 
             // converts direction to work with top down z-movement
-            Vector3 movementDirection = new Vector3(inputVelocity.x, 0, inputVelocity.y);
+            Vector2 movementDirection = new Vector3(inputVelocity.x, inputVelocity.y);
 
             // handles the side to side physics movement
             rb.linearVelocity = movementDirection * characterSpeed;
 
             //Debug.Log("Moving Character");
+        }
+
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
