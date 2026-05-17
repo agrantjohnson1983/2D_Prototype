@@ -20,7 +20,9 @@ public class sMoneyBag : MonoBehaviour
 
             money.GetMoney(amount);
 
-            uTextCharacter.textCharacterGlobal.SetText("Fuck yeah gimme " + (int)amount + " bucks!", 3f);
+            sPlayer.playerGlobal.DisplayText("Fuck yeah gimme " + (int)amount + " bucks!", 3f);
+
+            sAudioPlayer.audioPlayerGlobal.TriggerSFX("getPaid", eSFXTriggerType.eSFXtriggerBasic, eAudioMixerType.ui);
 
             Destroy(this.gameObject);
         }

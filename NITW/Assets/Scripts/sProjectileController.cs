@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.ProBuilder;
 
 public class sProjectileController : MonoBehaviour
 {
@@ -18,6 +17,13 @@ public class sProjectileController : MonoBehaviour
 
     eMode gameMode;
 
+    public float magicCostAmount = 1f;
+    sCharacterDungeonCrawl dungeonCrawler;
+
+    public SO_AudioData audioData;
+    public string audioFireCue;
+    AudioSource audioSource;
+
     void Awake()
     {
         mainCam = Camera.main;
@@ -27,6 +33,12 @@ public class sProjectileController : MonoBehaviour
     private void Start()
     {
         gameMode = sGameManager.gm.GetGameMode();
+        TryGetComponent<sCharacterDungeonCrawl>(out dungeonCrawler);
+
+        //if (audioData != null)
+        //    audioData.SetupAudio();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -48,11 +60,31 @@ public class sProjectileController : MonoBehaviour
             return;
         }
 
+        if(dungeonCrawler != null)
+        {
+            // if magic is at zero;
+            if(dungeonCrawler.ReturnMagicAmount() <= 0f)
+            {
+                //Debug.Log("out of magic");
+                sPlayer.playerGlobal.DisplayText("Out of magic", 3f);
+                return;
+            }
+
+            else
+            {
+                sPlayer.playerGlobal.DisplayText("-"+magicCostAmount+" magic", 3f);
+                dungeonCrawler.UseMagic(magicCostAmount);
+            }
+        }
+
         // resets mainCam if needed
         if(mainCam == null)
         {
             mainCam = Camera.main;
         }
+
+        if (audioSource != null)
+            audioData.TriggerAudio(audioFireCue, audioSource);
 
         Vector2 direction = new Vector2();
         Quaternion rotation = new Quaternion();
@@ -90,8 +122,6 @@ public class sProjectileController : MonoBehaviour
         sProjectileBASE projectile = proj.GetComponent<sProjectileBASE>();
         if (projectile != null)
             projectile.Initialize(direction);
-
-
     }
 
     void OnDrawGizmosSelected()

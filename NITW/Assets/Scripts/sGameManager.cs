@@ -8,11 +8,22 @@ public class sGameManager : MonoBehaviour
 
     public eMode sceneMode;
 
-    public GameObject canvasMain, canvasDialogue;
+    public GameObject canvasMain, canvasDialogue,
+        inventoryUI, moneyUI, energyUI, timeOfDayUI, locationUI, compassUI, phoneUI;
 
     public cInventory inventory;
 
     public cMoney money;
+
+    public cEnergy energy;
+
+    public TimeOfDay timeOfDay;
+
+    public cLocation location;
+
+    public cCompass compass;
+
+    public cPhone phone;
 
     private void Awake()
     {
@@ -47,6 +58,21 @@ public class sGameManager : MonoBehaviour
     public void SetGameMode(eMode _sceneMode)
     {
         sceneMode = _sceneMode;
+    }
+
+    public void ToggleDungeonCanvas(bool _dungeonModeOn)
+    {
+        // turns off broom energy in dungeon mode
+        energy.enabled = !_dungeonModeOn;
+        energyUI.SetActive(!_dungeonModeOn);
+
+        // turns off phone in dungeon mode
+        phone.enabled = !_dungeonModeOn;
+        phoneUI.gameObject.SetActive(!_dungeonModeOn);
+
+        // turns off location when in dungeon mode
+        location.enabled = !_dungeonModeOn;
+        locationUI.gameObject.SetActive(!_dungeonModeOn);
     }
 
     public void ToggleCanvasMain(bool _isOn)

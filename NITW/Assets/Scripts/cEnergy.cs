@@ -65,7 +65,7 @@ public class cEnergy : MonoBehaviour
 
         sPlayer.playerGlobal.ToggleMovement(false);
 
-        uTextCharacter.textCharacterGlobal.SetText("Oh man I gotta chill... I'm out of energy", drainCooldownTime);
+        sPlayer.playerGlobal.DisplayText("Oh man I gotta chill... I'm out of energy", drainCooldownTime);
 
         yield return new WaitForSeconds(drainCooldownTime);
 
@@ -77,6 +77,6 @@ public class cEnergy : MonoBehaviour
 
         sPlayer.playerGlobal.ToggleMovement(true);
 
-        uTextCharacter.textCharacterGlobal.SetText("Ok I'm good now", drainCooldownTime);
+        sPlayer.playerGlobal.DisplayText("Ok I'm good now", drainCooldownTime);
     }
 }

@@ -51,7 +51,7 @@ public class SO_Gig : ScriptableObject
         sGigManager.gigManagerGlobal.GetGig(this);
 
         // character text
-        uTextCharacter.textCharacterGlobal.SetText("New gig-er-ino!", 2f);
+        sPlayer.playerGlobal.DisplayText("New gig-er-ino!", 2f);
     }
 
     public void TriggerOnGigStart()
@@ -68,7 +68,7 @@ public class SO_Gig : ScriptableObject
         sPlayer.playerGlobal.StartGig(this);
 
         // character text
-        uTextCharacter.textCharacterGlobal.SetText("Here we go gig!", 2f);
+        sPlayer.playerGlobal.DisplayText("Here we go gig!", 2f);
     }
 
     public void TriggerOnGigComplete()
@@ -86,7 +86,7 @@ public class SO_Gig : ScriptableObject
         sPlayer.playerGlobal.EndGig(this);
 
         // character text
-        uTextCharacter.textCharacterGlobal.SetText("Another gig bites the dust!", 5f);
+        sPlayer.playerGlobal.DisplayText("Another gig bites the dust!", 5f);
     }
 
     public void TriggerOnGigFail()
@@ -95,7 +95,7 @@ public class SO_Gig : ScriptableObject
         onGigFail.Invoke();
 
         // sends text message
-        uTextCharacter.textCharacterGlobal.SetText("Failure isn't your enemy...", 2f);
+        sPlayer.playerGlobal.DisplayText("Failure isn't your enemy...", 2f);
     }
 
     // The gig will call this before completing so the final pay amount will be set correct

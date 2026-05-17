@@ -23,7 +23,7 @@ public class sStreetBoundary : MonoBehaviour
             _controller.BoundaryTrigger(offsetMovementAmount);
 
             // displays text
-            uTextCharacter.textCharacterGlobal.SetText("I can't cross this sreet", 3.5f);
+            sPlayer.playerGlobal.DisplayText("I can't cross this sreet", 3.5f);
         }
     }
 }

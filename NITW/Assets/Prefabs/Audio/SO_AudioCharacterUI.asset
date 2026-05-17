@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20239e5892e23bc47a7ba80f8a74f816, type: 3}
+  m_Name: SO_AudioCharacterUI
+  m_EditorClassIdentifier: 
+  sfxList:
+  - tag: getPaid
+    audioClips:
+    - {fileID: 8300000, guid: 42e682aa4d6ae1140afb9baac49a645b, type: 3}
+    currentIndex: 0
+    volume: 0.847
+    randomizeVolume: 1
+    minVolume: 0.4
+    maxVolume: 0.8
+    pitch: 0
+    randomizePitch: 1
+    minPitch: 0.8
+    maxPitch: 1.2
+    allowOverplay: 1
+    noInterrupt: 0
+  - tag: grabSuccess
+    audioClips:
+    - {fileID: 8300000, guid: 42e682aa4d6ae1140afb9baac49a645b, type: 3}
+    currentIndex: 0
+    volume: 0.847
+    randomizeVolume: 1
+    minVolume: 0.4
+    maxVolume: 0.8
+    pitch: 0
+    randomizePitch: 1
+    minPitch: 0.8
+    maxPitch: 1.2
+    allowOverplay: 1
+    noInterrupt: 0
+  audioMixer: {fileID: 24100000, guid: 9f9bf77b5efa98c4d96d73b4eaf7d321, type: 2}

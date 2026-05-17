@@ -30,7 +30,11 @@ public class sPlayer : MonoBehaviour
 
     //GameObject[] childrenObjects; 
 
-    Rigidbody2D [] movementRBs; 
+    Rigidbody2D [] movementRBs;
+
+    uTextCharacter textPopup;
+
+    
 
     private void Awake()
     {
@@ -43,9 +47,13 @@ public class sPlayer : MonoBehaviour
         else
             Destroy(this.gameObject);
 
+        textPopup = GetComponentInChildren<uTextCharacter>();
+
         // Gets RB refs in children - TRUE is set to get the inactive ones
         movementRBs = GetComponentsInChildren<Rigidbody2D>(true);
     }
+
+
 
     // TO - DO - Convert scripts to have methods for stopping and initing without turning on/off game objects
 
@@ -221,6 +229,33 @@ public class sPlayer : MonoBehaviour
                 // sets velocity to zero
                 _rb.linearVelocity = Vector3.zero;
             }
+        }
+    }
+
+    // Use this for changing transform for text popup to current controller
+    public void SetCurrentController(GameObject currentControllerObject)
+    {
+        if (textPopup != null)
+        {
+            textPopup.SetTransform(currentControllerObject.transform);
+        }
+
+        else
+        {
+            Debug.LogError("No text popup found!");
+        }
+    }
+
+    public void DisplayText(string _text, float _duration)
+    {
+        if(textPopup != null)
+        {
+            textPopup.SetText(_text, _duration);
+        }
+
+        else
+        {
+            Debug.LogError("No text popup found!");
         }
     }
 }

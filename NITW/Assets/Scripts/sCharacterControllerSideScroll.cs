@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class sCharacterControllerSideScroll : sCharacterControllerBASE
@@ -23,6 +22,10 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
     public float movementStateSwitchCooldownTime = 1.5f;
     bool canSwitchMovementState = true;
 
+    bool isSprinting = false;
+    public float sprintMultiplier = 2.5f;
+    float currentSprintMultiplier = 1f;
+
     [Header("Jumping")]
     public float jumpPower;
     //private bool isJumping = false;
@@ -34,6 +37,8 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
     [Tooltip("How early a jump input can be buffered before landing (seconds)")]
     public float jumpBufferTime = 0.15f;
     private float jumpBufferCounter;
+
+    public string jumpAudioCue = "jump";
 
     private bool isGrounded;
     public LayerMask groundLayer;
@@ -48,6 +53,7 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
     private PhysicsMaterial2D frictionMaterial;
     private PhysicsMaterial2D noFrictionMaterial;
     public BoxCollider2D boxCollider;
+
 
     private void Awake()
     {
@@ -102,6 +108,8 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
         {
             jumpBufferCounter -= Time.deltaTime;
         }
+
+        isSprinting = Input.GetKey(KeyCode.LeftShift);
     }
 
     private void FixedUpdate()
@@ -168,6 +176,8 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
         // Use buffered input + coyote time instead of raw GetKeyDown + isGrounded
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
+            audioData.TriggerAudio("jump", audioSource);
+
             //isJumping = true;
 
             jumpBufferCounter = 0f;
@@ -199,38 +209,34 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
     {
         //if (!isFlying)
         //{
-            if (inputVelocity.sqrMagnitude > 0.1f)
+        if (inputVelocity.sqrMagnitude > 0.1f)
+        {
+            if(isSprinting)
             {
-                if (isOnSlope && isGrounded)
-                {
-                    float slopeDir = -inputVelocity.x;
-                    rb.linearVelocity = slopeNormalPerp * slopeDir * characterSpeed;
-                }
-                else
-                {
-                    rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed, rb.linearVelocity.y);
-                }
+                currentSprintMultiplier = sprintMultiplier;
             }
+
             else
             {
-                // No input - kill horizontal velocity but preserve vertical so gravity still works
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+                currentSprintMultiplier = 1f;
             }
-        //}
 
-        // Flying Controls
-        //else
-        //{
-        //    if (inputVelocity.sqrMagnitude > 0.1f)
-        //    {
-        //        rb.linearVelocity = inputVelocity * characterFlyingSpeed;
-        //    }
-        //    else
-        //    {
-        //        // No input while flying - stop completely since there is no gravity
-        //        rb.linearVelocity = Vector2.zero;
-        //    }
-        //}
+            if (isOnSlope && isGrounded)
+            {
+                float slopeDir = -inputVelocity.x;
+                rb.linearVelocity = slopeNormalPerp * slopeDir * characterSpeed * currentSprintMultiplier;
+            }
+
+            else
+            {
+                rb.linearVelocity = new Vector2(directionSideToSide.x * characterSpeed * currentSprintMultiplier, rb.linearVelocity.y);
+            }
+        }
+        else
+        {
+            // No input - kill horizontal velocity but preserve vertical so gravity still works
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
     }
 
     public void BoundaryTrigger(float _offsetAmount)

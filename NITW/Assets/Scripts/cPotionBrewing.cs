@@ -37,7 +37,7 @@ public class cPotionBrewing : MonoBehaviour
         inventory.RemoveItem(_itemToAdd);
 
         // text display
-        uTextCharacter.textCharacterGlobal.SetText("Adding in a " + _itemToAdd.itemName, 5f);
+        sPlayer.playerGlobal.DisplayText("Adding in a " + _itemToAdd.itemName, 5f);
     }
 
     public void PopulateInventory()

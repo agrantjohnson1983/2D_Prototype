@@ -21,6 +21,11 @@ public class sCharacterControllerBASE : MonoBehaviour
 
     sPlayer player;
 
+    // AUDIO
+
+    public SO_AudioData audioData;
+    public AudioSource audioSource;
+
     private void OnEnable()
     {
         player = GetComponentInParent<sPlayer>();
@@ -30,6 +35,9 @@ public class sCharacterControllerBASE : MonoBehaviour
             player.SetActiveMovementObject(this.gameObject);
         else
             Debug.LogWarning("Player is null for " + this.gameObject + " enable");
+
+        //if(audioData != null)
+        //    audioData.SetupAudio();
 
         StartCoroutine(StateSwitchCooldown(stateSwitchCooldownTime));
     }
@@ -55,6 +63,8 @@ public class sCharacterControllerBASE : MonoBehaviour
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        sPlayer.playerGlobal.SetCurrentController(this.gameObject);
     }
 
     IEnumerator StateSwitchCooldown(float _time)

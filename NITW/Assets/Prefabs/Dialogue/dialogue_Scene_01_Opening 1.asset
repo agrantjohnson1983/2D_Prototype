@@ -16,7 +16,15 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: c51aace6523d4e3448a615d42e90436e, type: 2}
     typingLettersPerSec: 0.1
     textDialogue: What is this place?
-    choices: []
+    choices:
+    - textButtonChoice: 
+      nextDialogueBit:
+        character: {fileID: 0}
+        typingLettersPerSec: 0
+        textDialogue: 
+        choices: []
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
     nextDialogueBit: []
     editorPosition: {x: 82, y: 80}
   - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}

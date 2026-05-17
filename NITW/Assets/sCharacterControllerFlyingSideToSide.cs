@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
@@ -46,7 +45,6 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
     private float loopStartAngle;
     private float loopProgress;     // radians completed (0 to 2*PI)
     private int loopSpin;           // +1 = CCW, -1 = CW
-    private bool midLoopFlipDone;
 
     sProjectileController projectileController;
 
@@ -135,9 +133,9 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
             Mathf.Sin(flightAngle) * currentSpeed
         );
 
-        // Transition into loop or drop — requires throttle, direction key, and minimum speed.
-        // The flightState check prevents chaining a new loop before the current one completes.
-        if (flightState == FlightState.Glide && isHoldingThrottle && currentSpeed > 0.5f)
+        // Transition into loop or drop — requires throttle, direction key, minimum speed, and height.
+        if (flightState == FlightState.Glide && isHoldingThrottle && currentSpeed > 0.5f
+            && transform.position.y >= minimumLoopHeight)
         {
             if (loopKey)
                 BeginLoop(FlightState.Loop);
@@ -154,22 +152,23 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
     {
         flightState = newState;
         loopProgress = 0f;
-        midLoopFlipDone = false;
 
-        // CCW for loop-de-loop, CW for death drop
-        loopSpin = newState == FlightState.Loop ? 1 : -1;
-
-        // Orbit center is perpendicular to current velocity
-        float perpAngle = flightAngle + (loopSpin > 0 ? Mathf.PI / 2f : -Mathf.PI / 2f);
-        loopCenter = (Vector2)transform.position + new Vector2(
-            Mathf.Cos(perpAngle) * loopRadius,
-            Mathf.Sin(perpAngle) * loopRadius
-        );
-
-        loopStartAngle = Mathf.Atan2(
-            transform.position.y - loopCenter.y,
-            transform.position.x - loopCenter.x
-        );
+        if (newState == FlightState.Loop)
+        {
+            // Pull-back loop: orbit center directly above, character starts at 6 o'clock.
+            // Facing right travels CCW (loopSpin = -1), facing left travels CW (loopSpin = 1).
+            loopCenter = (Vector2)transform.position + Vector2.up * loopRadius;
+            loopStartAngle = -Mathf.PI / 2f;
+            loopSpin = isFacingRight ? -1 : 1;
+        }
+        else
+        {
+            // Nose-dive drop: orbit center directly below, character starts at 12 o'clock.
+            // Facing right travels CW (loopSpin = 1), facing left travels CCW (loopSpin = -1).
+            loopCenter = (Vector2)transform.position + Vector2.down * loopRadius;
+            loopStartAngle = Mathf.PI / 2f;
+            loopSpin = isFacingRight ? 1 : -1;
+        }
 
         rb.gravityScale = 0f;
     }
@@ -184,64 +183,40 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
             ? (isFacingRight ? inputVelocity.x < 0f : inputVelocity.x > 0f)
             : (isFacingRight ? inputVelocity.x > 0f : inputVelocity.x < 0f);
 
-        // Mid-loop flip: direction key released before completing the circle
-        if (!triggerKey && !midLoopFlipDone)
+        // Exit immediately if the trigger key or throttle is released mid-loop.
+        // Only flip facing when released within the turnaround window:
+        // top loop: 10-2 o'clock, bottom loop: 8-4 o'clock (both = 2PI/3 to 4PI/3).
+        if (!triggerKey || !isHoldingThrottle)
         {
-            midLoopFlipDone = true;
-            isFacingRight = !isFacingRight;
-
-            spriteRenderer.flipX = isFacingRight;
-
-                // Restart the orbit from current position in reverse
-                loopStartAngle = Mathf.Atan2(
-                    transform.position.y - loopCenter.y,
-                    transform.position.x - loopCenter.x
-                );
-            loopSpin *= -1;
-            loopProgress = 0f;
-        }
-
-        // Exit to glide if throttle is released mid-loop
-        if (!isHoldingThrottle)
-        {
-            flightState = FlightState.Glide;
-            loopProgress = 0f;
-            midLoopFlipDone = false;
-            currentSpeed = maxSpeedMagnitude * 0.6f;
-            rb.linearVelocity = new Vector2(
-                Mathf.Cos(flightAngle) * currentSpeed,
-                Mathf.Sin(flightAngle) * currentSpeed
-            );
+            bool inFlipWindow = loopProgress >= Mathf.PI * 2f / 3f
+                             && loopProgress <= Mathf.PI * 4f / 3f;
+            ExitLoop(!triggerKey && inFlipWindow);
             return;
         }
 
-        // Advance around the circle
-        float speedMult = isHoldingThrottle ? loopThrottleMultiplier : 1f;
-        loopProgress += loopDegreesPerSecond * Mathf.Deg2Rad * Time.fixedDeltaTime * speedMult;
+        // Advance around the circle.
+        loopProgress += loopDegreesPerSecond * Mathf.Deg2Rad * Time.fixedDeltaTime * loopThrottleMultiplier;
 
-        // Target position on the orbit circle
+        // Target position on the orbit circle.
         float curAngle = loopStartAngle + loopProgress * -loopSpin;
         Vector2 targetPos = loopCenter + new Vector2(
             Mathf.Cos(curAngle) * loopRadius,
             Mathf.Sin(curAngle) * loopRadius
         );
 
-        // Drive position via velocity
+        // Drive position via velocity.
         rb.linearVelocity = (targetPos - (Vector2)transform.position) / Time.fixedDeltaTime;
 
-        // Store tangent angle for clean exit into glide
+        // Store tangent angle so glide exit feels continuous.
         flightAngle = curAngle + (Mathf.PI / 2f) * -loopSpin;
 
-        // Full revolution completed
+        // Full revolution completed.
         if (loopProgress >= Mathf.PI * 2f)
         {
-            // If the trigger key is still held, keep looping from the top.
-            // Mark midLoopFlipDone so releasing the key afterward exits cleanly
-            // instead of triggering an unwanted reverse flip.
             if (triggerKey)
             {
+                // Key still held: restart from current position for another revolution.
                 loopProgress = 0f;
-                midLoopFlipDone = true;
                 loopStartAngle = Mathf.Atan2(
                     transform.position.y - loopCenter.y,
                     transform.position.x - loopCenter.x
@@ -249,39 +224,30 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
                 return;
             }
 
-            // Otherwise exit cleanly into glide
-            flightState = FlightState.Glide;
-            loopProgress = 0f;
-            midLoopFlipDone = false;
-            currentSpeed = maxSpeedMagnitude * 0.85f;
-            rb.linearVelocity = new Vector2(
-                Mathf.Cos(flightAngle) * currentSpeed,
-                Mathf.Sin(flightAngle) * currentSpeed
-            );
+            ExitLoop();
         }
+    }
+
+    void ExitLoop(bool flipFacing = false)
+    {
+        if (flipFacing) isFacingRight = !isFacingRight;
+        flightState = FlightState.Glide;
+        loopProgress = 0f;
+        currentSpeed = maxSpeedMagnitude * 0.75f;
+        rb.linearVelocity = new Vector2(
+            Mathf.Cos(flightAngle) * currentSpeed,
+            Mathf.Sin(flightAngle) * currentSpeed
+        );
     }
 
     // -------------------------------------------------------------------------
     // Sprite rotation
     // -------------------------------------------------------------------------
 
-    void SetSpriteDirectionRotation(Transform _transform)
-    {
-        if (isFacingRight)
-        {
-            Vector3 rightRot = new Vector3(_transform.rotation.x, _transform.rotation.y + 180f, _transform.rotation.z);
-
-            _transform.localRotation = Quaternion.Euler(rightRot);
-        }
-
-        else
-        {
-            _transform.localRotation = spriteTransform.rotation;
-        }
-    }
-
     void UpdateSpriteRotation()
     {
+        spriteRenderer.flipX = isFacingRight;
+
         Transform t = spriteTransform != null ? spriteTransform : transform;
         float targetZDeg;
 
@@ -290,22 +256,17 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
             // Return to default resting rotation (zero + any art offset) while gliding.
             Quaternion restRotation = Quaternion.Euler(0f, 0f, spriteRotationOffset);
             t.rotation = Quaternion.Slerp(t.rotation, restRotation, rotationSmoothSpeed * Time.fixedDeltaTime);
-            
-            //SetSpriteDirectionRotation(t);
         }
-
         else
         {
-            // During a loop the head always points toward the orbit center.
-            // Use Slerp so the entry from glide eases in rather than snapping.
+            // During a loop the head always points toward the orbit center (pull-back loop)
+            // or away from it (drop), chosen so both start at 0-deg matching glide rest pose
+            // and the Slerp has no ambiguous 180-deg crossings.
             Vector2 toCenter = loopCenter - (Vector2)transform.position;
-            targetZDeg = Mathf.Atan2(toCenter.y, toCenter.x) * Mathf.Rad2Deg - 90f + spriteRotationOffset;
-
+            float angleOffset = flightState == FlightState.Loop ? -90f : 90f;
+            targetZDeg = Mathf.Atan2(toCenter.y, toCenter.x) * Mathf.Rad2Deg + angleOffset + spriteRotationOffset;
             Quaternion loopTarget = Quaternion.Euler(0f, 0f, targetZDeg);
-
             t.rotation = Quaternion.Slerp(t.rotation, loopTarget, rotationSmoothSpeed * 2f * Time.fixedDeltaTime);
-
-            //SetSpriteDirectionRotation(t);
         }
     }
 
