@@ -1952,6 +1952,7 @@ GameObject:
   - component: {fileID: 282355643}
   - component: {fileID: 282355645}
   - component: {fileID: 282355644}
+  - component: {fileID: 282355646}
   m_Layer: 0
   m_Name: CanvasGigDontHave
   m_TagString: Untagged
@@ -2019,6 +2020,20 @@ Canvas:
   m_SortingLayerID: -230929585
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &282355646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282355642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368195478895ad14d9c22afb70ef739d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1622948873}
+  typingLettersPerSec: 0.1
 --- !u!1 &285971767
 GameObject:
   m_ObjectHideFlags: 0
@@ -7332,7 +7347,7 @@ Transform:
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0011946841, y: -0.00000014576989, z: 1.7414908e-10, w: 0.9999993}
-  m_LocalPosition: {x: 24, y: 4.3315187, z: -9.994866}
+  m_LocalPosition: {x: 26.42, y: 4.3315187, z: -9.994866}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7961,7 +7976,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022561956}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -8304,13 +8319,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 251454267957171285, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 251454267957171285, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 251454267957171285, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 558.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 251454267957171285, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -120
+      objectReference: {fileID: 0}
     - target: {fileID: 3118921545576722585, guid: 3319937720730234587afd5943ddb4bb, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3155444450193746321, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3270462842162484461, guid: 3319937720730234587afd5943ddb4bb, type: 3}
       propertyPath: sceneMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201871831430492998, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201871831430492998, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201871831430492998, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201871831430492998, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -120
       objectReference: {fileID: 0}
     - target: {fileID: 6745801246496987640, guid: 3319937720730234587afd5943ddb4bb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8437,7 +8488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6803262296234542354, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24
+      value: 26.42
       objectReference: {fileID: 0}
     - target: {fileID: 6803262296234542354, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16060,6 +16111,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3147177801311062342}
     m_Modifications:
+    - target: {fileID: 1836352504909979767, guid: 530aa8c3d88c40543af7329c5d52bafb, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2407667717833542044, guid: 530aa8c3d88c40543af7329c5d52bafb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -16179,7 +16234,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8216936158173342269, guid: 530aa8c3d88c40543af7329c5d52bafb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6893880977179614968}
   m_SourcePrefab: {fileID: 100100000, guid: 530aa8c3d88c40543af7329c5d52bafb, type: 3}
 --- !u!1 &4831466130997352583
 GameObject:
@@ -16283,6 +16341,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8216936158173342269, guid: 530aa8c3d88c40543af7329c5d52bafb, type: 3}
   m_PrefabInstance: {fileID: 4819546853928216040}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6893880977179614968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6893880977179614967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368195478895ad14d9c22afb70ef739d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  typingLettersPerSec: 0.1
 --- !u!61 &7047444782913512236
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16290,7 +16362,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5389649368839689002}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -16417,6 +16489,7 @@ MonoBehaviour:
   ui_Display: {fileID: 7283802659490848055}
   sceneToTransitionTo: SideScroll_Neighborhood1_Burbs_01_Homeblock
   directionToTurn: 2
+  loadingOffset: {x: 26, y: 0, z: 0}
 --- !u!224 &8026799275149053636
 RectTransform:
   m_ObjectHideFlags: 0

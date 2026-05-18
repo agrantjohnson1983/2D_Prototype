@@ -25,6 +25,13 @@ public class cBusStop : MonoBehaviour
         outskirtsDirection,
         centerSquareDirection;
 
+    public Vector3
+        basinLoadOffset,
+        burbsLoadOffset,
+        downtownLoadOffset,
+        outskirtsLoadOffset,
+        centerSquareLoadOffset;
+
     uCityMap cityMapUI;
 
     public TextMeshProUGUI displayText;
@@ -94,35 +101,35 @@ public class cBusStop : MonoBehaviour
                 case eNeighborhood.basin:
 
                     cLocation.locationGlobal.SetTextLocation("The Basin");
-                    sSceneManger.sceneManagerGlobal.LoadScene(basinSceneName, basinDirection);
+                    sSceneManger.sceneManagerGlobal.LoadScene(basinSceneName, basinDirection, basinLoadOffset);
 
                     break;
 
                 case eNeighborhood.burbs:
 
                     cLocation.locationGlobal.SetTextLocation("The Burbs");
-                    sSceneManger.sceneManagerGlobal.LoadScene(burbsSceneName, burbsDirection);
+                    sSceneManger.sceneManagerGlobal.LoadScene(burbsSceneName, burbsDirection, burbsLoadOffset);
 
                     break;
 
                    case eNeighborhood.downtown:
 
                     cLocation.locationGlobal.SetTextLocation("Downtown");
-                    sSceneManger.sceneManagerGlobal.LoadScene(downtownScenName, downtownDirection);
+                    sSceneManger.sceneManagerGlobal.LoadScene(downtownScenName, downtownDirection, downtownLoadOffset);
 
                     break;
 
                 case eNeighborhood.outskirts:
 
                     cLocation.locationGlobal.SetTextLocation("The Outskirts");
-                    sSceneManger.sceneManagerGlobal.LoadScene(outskirtsSceneName, outskirtsDirection);
+                    sSceneManger.sceneManagerGlobal.LoadScene(outskirtsSceneName, outskirtsDirection, outskirtsLoadOffset);
 
                     break;
 
                 case eNeighborhood.centerSquare:
 
                     cLocation.locationGlobal.SetTextLocation("Center Square");
-                    sSceneManger.sceneManagerGlobal.LoadScene(centerSquareSceneName, centerSquareDirection);
+                    sSceneManger.sceneManagerGlobal.LoadScene(centerSquareSceneName, centerSquareDirection, centerSquareLoadOffset);
 
                     break;
             }

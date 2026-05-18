@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class sMailbox : MonoBehaviour
 {
-    bool isFilled = false;
+    //bool isFilled = false;
 
     public Sprite mailboxFilled;
 
@@ -35,7 +35,7 @@ public class sMailbox : MonoBehaviour
 
     public void FillBox()
     {
-        isFilled = true;
+        //isFilled = true;
 
         spriteRenderer.sprite = mailboxFilled;
 

@@ -18,6 +18,7 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 0b12798af5f7c844386c4e5e24b5de66, type: 3}
   worldObject: {fileID: 0}
   gigOfferText: Gimme gimme gimme somme weed maaaan!
+  gigCompleteText: Oh yeah time to blaze it up!
   onGetGig:
     m_PersistentCalls:
       m_Calls: []

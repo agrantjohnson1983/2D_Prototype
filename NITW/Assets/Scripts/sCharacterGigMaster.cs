@@ -7,7 +7,7 @@ public class sCharacterGigMaster : MonoBehaviour
 
     public SO_Gig gig;
 
-    bool gigComplete = false;
+    //bool gigComplete = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

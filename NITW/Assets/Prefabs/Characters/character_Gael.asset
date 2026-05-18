@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: character_Gael
   m_EditorClassIdentifier: 
   characterName: Gael
-  characterHead: {fileID: -75513689, guid: c136d9b9fd0e1a44eb2ce6126da4e7b8, type: 3}
-  characterFull: {fileID: 21300000, guid: 29ccaa77dbc44c747a9884684a8474fa, type: 3}
+  characterHead: {fileID: 21300000, guid: 405b394530d05cc48b6125356c0f3c35, type: 3}
+  characterFull: {fileID: 0}

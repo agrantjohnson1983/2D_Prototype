@@ -28,7 +28,11 @@ public class sCharacterControllerBASE : MonoBehaviour
 
     private void OnEnable()
     {
+        // gets player reference
         player = GetComponentInParent<sPlayer>();
+
+        // sets active movement object
+        player.SetActiveMovementObject(this.gameObject);
 
         // Sets active movmenet object when enabled
         if (player != null)
@@ -36,14 +40,11 @@ public class sCharacterControllerBASE : MonoBehaviour
         else
             Debug.LogWarning("Player is null for " + this.gameObject + " enable");
 
-        //if(audioData != null)
-        //    audioData.SetupAudio();
-
         StartCoroutine(StateSwitchCooldown(stateSwitchCooldownTime));
     }
 
     // Use this for state checking
-    private void LateUpdate()
+    public virtual void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && canSwitchState)
         {
@@ -64,7 +65,7 @@ public class sCharacterControllerBASE : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        sPlayer.playerGlobal.SetCurrentController(this.gameObject);
+        sPlayer.playerGlobal.SetActiveMovementObject(this.gameObject);
     }
 
     IEnumerator StateSwitchCooldown(float _time)

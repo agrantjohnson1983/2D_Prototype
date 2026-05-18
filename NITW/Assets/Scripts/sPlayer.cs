@@ -11,6 +11,8 @@ public class sPlayer : MonoBehaviour
     public GameObject characterSignSpin;
     sSignController signController;
 
+    public GameObject characterDungeonCrawler;
+    sCharacterDungeonCrawl dungeonCrawler;
 
     public GameObject potionBrewing;
     cPotionBrewing potionBrewingController;
@@ -33,8 +35,6 @@ public class sPlayer : MonoBehaviour
     Rigidbody2D [] movementRBs;
 
     uTextCharacter textPopup;
-
-    
 
     private void Awake()
     {
@@ -175,11 +175,23 @@ public class sPlayer : MonoBehaviour
         Debug.Log("Active movement object set to " + _go);
 
         activeMovementObject = _go;
+
+        if (textPopup != null)
+        {
+            textPopup.SetTransform(activeMovementObject.transform);
+        }
+
+        else
+        {
+            Debug.LogError("No text popup found!");
+        }
     }
 
     // Sets player pos and resets all controller objects pos to zero
     public void SetPosition(Vector3 pos)
     {
+        Debug.Log("Setting pos to: " + pos);
+
         this.transform.position = pos;
 
         foreach (Transform child in transform)
@@ -208,7 +220,8 @@ public class sPlayer : MonoBehaviour
             SetActiveMovementObject(characterSideScroll);
         }
 
-        //sCharacterControllerBASE.isFlying = _canFly;
+        sCharacterControllerBASE.isFlying = _canFly;
+        sCharacterControllerBASE.canSwitchState = true;
 
         characterSideScroll.SetActive(!_canFly);
         characterFlying.SetActive(_canFly);
@@ -232,8 +245,19 @@ public class sPlayer : MonoBehaviour
         }
     }
 
+    // Handles player switching between dungeon mode and non-dungeon modes
+    public void ToggleDungeon(bool _isInDungeonMode)
+    {
+        activeMovementObject.SetActive(!_isInDungeonMode);
+        characterDungeonCrawler.SetActive(_isInDungeonMode);
+        characterSideScroll.SetActive(!_isInDungeonMode);
+
+        // resets the text
+        DisplayText("", 0f);
+    }
+
     // Use this for changing transform for text popup to current controller
-    public void SetCurrentController(GameObject currentControllerObject)
+    /*public void SetCurrentController(GameObject currentControllerObject)
     {
         if (textPopup != null)
         {
@@ -244,7 +268,7 @@ public class sPlayer : MonoBehaviour
         {
             Debug.LogError("No text popup found!");
         }
-    }
+    }*/
 
     public void DisplayText(string _text, float _duration)
     {

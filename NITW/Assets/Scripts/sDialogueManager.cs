@@ -12,7 +12,7 @@ public class sDialogueManager : MonoBehaviour
 {
     public static sDialogueManager dialogueManagerGlobal;
 
-    public GameObject dialogueCanvas;
+    //public GameObject dialogueTransforms;
 
     public GameObject dialogueBox;
 
@@ -58,7 +58,7 @@ public class sDialogueManager : MonoBehaviour
     {
         pressSpaceToContinueText.transform.localScale = Vector3.zero;
 
-        dialogueCanvas.SetActive(false);
+        //dialogueTransforms.SetActive(false);
     }
 
     void Update()
@@ -102,17 +102,6 @@ public class sDialogueManager : MonoBehaviour
 
         // sets current dialogue
         currentDialogue = _dialogue;
-
-        // Turns off character movement
-        //sCharacterControllerBASE.characterControllerGlobal.SetCanMove(false);
-
-        sPlayer.playerGlobal.ToggleMovement(false);
-
-        // turns off main canvas
-        sGameManager.gm.ToggleCanvasMain(false);
-
-        // turns on dialogue canvas
-        dialogueCanvas.SetActive(true);
 
         // Clears Buttons
         ClearButtons();
@@ -293,7 +282,7 @@ public class sDialogueManager : MonoBehaviour
     void EndDialogue()
     {
         // turns off dialogue canvas box
-        dialogueCanvas.SetActive(false);
+        //dialogueTransforms.SetActive(false);
 
         // clears buttons
         ClearButtons();
@@ -304,11 +293,7 @@ public class sDialogueManager : MonoBehaviour
         // resets index
         currentIndex = 0;
 
-        // turns character movement back on
-        //sCharacterController.characterControllerGlobal.SetCanMove(true);
-        sPlayer.playerGlobal.ToggleMovement(true);
-
-        // turns main canvas back on
-        sGameManager.gm.ToggleCanvasMain(true);
+        // toggles dialogue mode off
+        sGameManager.gm.ToggleDialoge(false);
     }
 }

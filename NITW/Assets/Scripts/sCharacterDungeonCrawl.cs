@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum eDungeon { none, cactusForest, }
+
 public class sCharacterDungeonCrawl : sCharacterControllerBASE
 {
-    //Rigidbody2D rb;
-
     // HEALTH
 
     public int maxHealth;
@@ -29,10 +29,17 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
 
     public float damageSequenceTime = 1.5f;
 
+    eDungeon currentDungeon;
+    string exitDungeonScene;
+    public Vector3 dungeonExitOffset;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Start();
+
+        // turns off state switch so flying can't be turned on in dungeon
+        canSwitchState = false;
 
         healthHeartList = new List<GameObject>();
 
@@ -43,9 +50,12 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
         // inits magic
         currentMagic = maxMagic;
         UpdateMagicUI();
+    }
 
-        // turns off some canvas stuff for dungeon crawl
-        sGameManager.gm.ToggleDungeonCanvas(true);
+    public void SetDungeon(eDungeon _dungeon, string _exitScene)
+    {
+        currentDungeon = _dungeon;
+        exitDungeonScene = _exitScene;
     }
 
     void UpdateHealthUI()
@@ -115,6 +125,7 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
         if (currentHealth <= 0)
         {
             GameOver();
+            return;
         }
 
         StartCoroutine(DamageSeqeunce());
@@ -141,6 +152,10 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
         Debug.Log("Your crawl has come to and end player");
 
         // ends dungeon crawl
+        if(exitDungeonScene != null)
+        {
+            sSceneManger.sceneManagerGlobal.LoadScene(exitDungeonScene, eDirection.north, dungeonExitOffset);
+        }
     }
 
 }

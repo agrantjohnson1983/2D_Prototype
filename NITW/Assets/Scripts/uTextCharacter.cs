@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class uTextCharacter : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class uTextCharacter : MonoBehaviour
 
     public Transform parent;
 
+    bool isTyping = false;
+
     private void Awake()
     {
         //if (textCharacterGlobal == null)
@@ -21,7 +24,13 @@ public class uTextCharacter : MonoBehaviour
         Invoke("TurnOffText", 0f);
     }
 
-    public void SetText(string _text, float _duration)
+    private void Start()
+    {
+        //typewriter = GetComponent<uTypewriter>();
+    }
+
+    // optional parameter for typewriter speed
+    public void SetText(string _text, float _duration, float _typewriterSpeed = 0.1f)
     {
         // sets transform to character pos + offset
         this.transform.position =
@@ -30,8 +39,39 @@ public class uTextCharacter : MonoBehaviour
         // sets text
         characterText.text = _text;
 
+        // typewriter effect
+        StartCoroutine(TypewriterEffect(characterText, _typewriterSpeed, _duration));
+
         // turns text back off after duration
-        Invoke("TurnOffText", _duration);
+        //Invoke("TurnOffText", _duration);
+    }
+
+    IEnumerator TypewriterEffect(TextMeshProUGUI _textMesh, float _rate, float _duration)
+    {
+        string textToDisplay = _textMesh.text;
+
+        // sets speaker name
+        _textMesh.text = "";
+
+        // typewriter seqeunce
+        isTyping = true;
+        foreach (char _c in textToDisplay)
+        {
+            // if it's not typing (this will allow a quickstop) then it breaks;
+            if (!isTyping) { _textMesh.text = textToDisplay; break; } // skip pressed
+
+            // adds letter 
+            _textMesh.text += _c;
+
+            // waits for the letters per sec value from the SO
+            yield return new WaitForSeconds(_rate);
+        }
+
+        isTyping = false;
+
+        yield return new WaitForSeconds(_duration);
+        
+        TurnOffText();
     }
 
     public void SetTransform(Transform _transform)
@@ -42,5 +82,6 @@ public class uTextCharacter : MonoBehaviour
     void TurnOffText()
     {
         characterText.text = "";
+        //isTyping = false;
     }
 }

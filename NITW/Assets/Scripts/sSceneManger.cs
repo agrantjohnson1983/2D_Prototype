@@ -5,12 +5,16 @@ public class sSceneManger : MonoBehaviour
 {
     public static sSceneManger sceneManagerGlobal;
 
+    public static Vector3 loadPos;
+
     private void Awake()
     {
         if (sceneManagerGlobal == null)
             sceneManagerGlobal = this;
         else
             Destroy(sceneManagerGlobal.gameObject);
+
+        //loadPos = new Vector3();
     }
 
     private void OnEnable()
@@ -23,10 +27,17 @@ public class sSceneManger : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void LoadScene(string _sceneToTransitionTo, eDirection _directionFacing)
+    public void LoadScene(string _sceneToTransitionTo, eDirection _directionFacing, Vector3 _loadPosOffset)
     {
+        //Debug.Log("Load pos offset is " + _loadPosOffset);
+
         // Sets new direction
-        cCompass.compassGlobal.SetDirection(_directionFacing);
+        //cCompass.compassGlobal.SetDirection(_directionFacing);
+
+        // sets load position
+        loadPos = _loadPosOffset;
+
+        //Debug.Log("Load pos is set to:" + loadPos);
 
         // Loads scene
         SceneManager.LoadScene(_sceneToTransitionTo);
@@ -38,6 +49,14 @@ public class sSceneManger : MonoBehaviour
         Debug.Log("Scene Loaded: " + scene.name);
         //Debug.Log("Mode: " + mode);
 
+        Debug.Log("Scene Loaded - load pos is: " + loadPos);
+
+        if(loadPos != null)
+            sPlayer.playerGlobal.SetPosition(loadPos);
+
+        // clears text
+        sPlayer.playerGlobal.DisplayText("", 0f);
+
         // Checks if player was on bus during scene change
         if (sBusStop.isOnBus)
         {
@@ -46,6 +65,9 @@ public class sSceneManger : MonoBehaviour
             // triggering bus stop exit if player was on bus
             sBusStop.busStopGlobal.ExitBusStop();
         }
+
+        // turns off dialogue box
+        sGameManager.gm.ToggleDialoge(false);
 
         // Toggles canvas off if in Front End
         if(sGameManager.gm.sceneMode == eMode.frontend)
@@ -56,6 +78,11 @@ public class sSceneManger : MonoBehaviour
         else
         {
             sGameManager.gm.ToggleCanvasMain(true);
+        }
+
+        if(sGameManager.gm.sceneMode == eMode.topdown)
+        {
+            
         }
     }
 }

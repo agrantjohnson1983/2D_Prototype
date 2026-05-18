@@ -20,7 +20,7 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
 
     [Header("Movement State")]
     public float movementStateSwitchCooldownTime = 1.5f;
-    bool canSwitchMovementState = true;
+    //bool canSwitchMovementState = true;
 
     bool isSprinting = false;
     public float sprintMultiplier = 2.5f;
@@ -93,8 +93,10 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
         //projectileController.enabled = isFlying;
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         JumpCheck();
         MovementInputs();
         //MovementStateSwitcher();
@@ -237,57 +239,6 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
             // No input - kill horizontal velocity but preserve vertical so gravity still works
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
-    }
-
-    public void BoundaryTrigger(float _offsetAmount)
-    {
-        // stops coroutines
-        StopAllCoroutines();
-
-        // starts the corotuine
-        StartCoroutine(BoundaryReverseSequence(_offsetAmount));
-    }
-
-    IEnumerator BoundaryReverseSequence(float _offsetAmount)
-    {
-        // turns off movment
-        SetCanMove(false);
-
-        // sets velocity to zero
-        //rb.linearVelocity = Vector2.zero;
-
-        // flips x offset to negative the reverse should go to left
-        
-        // checks if offset is greater than 0
-        if(_offsetAmount > 0)
-        {
-            // sets sprite flip
-            spriteRenderer.flipX = true;
-        }
-
-        else
-        {
-            spriteRenderer.flipX = false;
-        }
-       
-
-
-        float counter = 0f;
-
-        // checks if counter is less than reverse time
-        while (counter < reverseSequenceTime)
-        {
-            // lerps postion to x offset
-            this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, this.transform.localPosition + new Vector3(_offsetAmount, 0, 0), counter / reverseSequenceTime);
-
-            // increments counter by time amount
-            counter += Time.deltaTime;
-
-            yield return null;
-        }
-
-        // toggles movement back on
-        SetCanMove(true);
     }
 
 }

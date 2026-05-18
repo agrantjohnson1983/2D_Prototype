@@ -59,8 +59,9 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
         projectileController = GetComponent<sProjectileController>();
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
         ReadInput();
         ThrottleCheck();
     }
@@ -90,6 +91,7 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
     {
         isHoldingThrottle = Input.GetKey(KeyCode.Space);
         rb.gravityScale = (flightState == FlightState.Glide && !isHoldingThrottle) ? glideGravity : 0f;
+        cEnergy.energyGlobal.ToggleDrain(isHoldingThrottle);
     }
 
     // -------------------------------------------------------------------------

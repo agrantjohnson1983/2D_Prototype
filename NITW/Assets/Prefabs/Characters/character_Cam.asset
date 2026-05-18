@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: character_Cam
   m_EditorClassIdentifier: 
   characterName: Cam
-  characterHead: {fileID: -894542136, guid: bb01e7ef587b2364a8d1617a213f9e84, type: 3}
+  characterHead: {fileID: 21300000, guid: 4cd785bc6f46e9d4293d21d219f73dd6, type: 3}
   characterFull: {fileID: 0}

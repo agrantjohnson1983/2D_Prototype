@@ -38,7 +38,7 @@ public class cCompass : MonoBehaviour
         {
             case eDirection.north:
 
-                textN.gameObject.transform.parent = transformNorth;
+                textN.gameObject.transform.SetParent(transformNorth);
 
                 textN.gameObject.transform.localPosition = Vector3.zero;
 
@@ -48,7 +48,7 @@ public class cCompass : MonoBehaviour
 
             case eDirection.south:
 
-                textN.gameObject.transform.parent = transformSouth;
+                textN.gameObject.transform.SetParent(transformSouth);
 
                 textN.gameObject.transform.localPosition = Vector3.zero;
 
@@ -58,7 +58,7 @@ public class cCompass : MonoBehaviour
 
             case eDirection.west:
 
-                textN.gameObject.transform.parent = transformWest;
+                textN.gameObject.transform.SetParent(transformWest);
 
                 textN.gameObject.transform.localPosition = Vector3.zero;
 
@@ -68,7 +68,7 @@ public class cCompass : MonoBehaviour
 
             case eDirection.east:
 
-                textN.gameObject.transform.parent = transformEast;
+                textN.gameObject.transform.SetParent(transformEast);
 
                 textN.gameObject.transform.localPosition = Vector3.zero;
 

@@ -102,6 +102,8 @@ public class sProjectileController : MonoBehaviour
 
                 break;
 
+            case eMode.dungeon:
+
             case eMode.sidescroll:
 
                 // IMPORTANT: pass abs camera z as the z component so world position is correct
@@ -116,7 +118,10 @@ public class sProjectileController : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Projectile direction is " + direction);
+        // returns if vector is zero / no movement
+        if (direction == Vector2.zero) return;
+
+        //Debug.Log("Projectile direction is " + direction);
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position + fireOffset, rotation);
         sProjectileBASE projectile = proj.GetComponent<sProjectileBASE>();

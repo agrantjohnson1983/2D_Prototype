@@ -40,14 +40,21 @@ public class sAudioManager : MonoBehaviour
     {
         Debug.Log("Checking Active Audio");
 
-        if(activeAudioSources.Count > 0)
-            foreach (AudioSource source in activeAudioSources)
+        //if(activeAudioSources.Count > 0)
+
+        for (int i = 0; i < activeAudioSources.Count; i++)
+        {
+            if(activeAudioSources[i] == null)
             {
-                if (!source.isPlaying)
-                {
-                    activeAudioSources.Remove(source);
-                }
+                activeAudioSources.RemoveAt(i);
+                return;
             }
+
+            if (!activeAudioSources[i].isPlaying)
+            {
+                activeAudioSources.Remove(activeAudioSources[i]);
+            }
+        }
     }
 
     public void StopAllAudio()

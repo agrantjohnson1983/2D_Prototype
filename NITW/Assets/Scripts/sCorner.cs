@@ -11,6 +11,8 @@ public class sCorner : MonoBehaviour
 
     public eDirection directionToTurn;
 
+    public Vector3 loadingOffset;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +26,7 @@ public class sCorner : MonoBehaviour
         {
             if (isTouchingDoor && Input.GetKey(KeyCode.W))
             {
-                sSceneManger.sceneManagerGlobal.LoadScene(sceneToTransitionTo, directionToTurn);
+                sSceneManger.sceneManagerGlobal.LoadScene(sceneToTransitionTo, directionToTurn, loadingOffset);
 
                 
             }

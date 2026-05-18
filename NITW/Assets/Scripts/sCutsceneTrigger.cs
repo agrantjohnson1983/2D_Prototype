@@ -22,6 +22,8 @@ public class sCutsceneTrigger : MonoBehaviour
 
     void StartScene()
     {
+        sGameManager.gm.ToggleDialoge(true);
+
         // Calls dialogue mgr to start Dialogue
         sDialogueManager.dialogueManagerGlobal.StartDialogue(dialogue, eDialogueBoxLocation.center);
 
