@@ -9,66 +9,64 @@ public class sDoorBehavior : MonoBehaviour
 
     bool isTouchingDoor = false;
 
+    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { player = value; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // sets ui to zero
         uDoorArrow.transform.localScale = Vector3.zero;
-
-        //insideHouse.SetActive(false);
 
         // quick init for buildings - turns on and then scales to zero
         for (int i = 0; i < turnOnOnEnter.Length; i++)
         {
             turnOnOnEnter[i].gameObject.SetActive(true);
-            //turnOnOnEnter[i].SetActive(true);
-            //turnOnOnEnter[i].transform.localScale = Vector3.zero;
+
             turnOnOnEnter[i].gameObject.SetActive(false);
         }
+
+        player = sPlayer.playerGlobal;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if you are outside and not flying
-        if(sCharacterControllerBASE.isOutside && !sCharacterControllerBASE.isFlying)
+        if (player == null) return;
+
+        if (!player.CheckIfOutside() || player.CheckIfFlying()) return;
+
+        // if you are touching door and press 'W'
+        if (isTouchingDoor && Input.GetKey(KeyCode.W))
         {
-            // if you are touching door and press 'W'
-            if (isTouchingDoor && Input.GetKey(KeyCode.W))
+            // tells player script you are inside
+            player.ToggleOutside(false);
+
+            // turns on objects on enter
+            for (int i = 0; i < turnOnOnEnter.Length; i++)
             {
-                sCharacterControllerBASE.isOutside = false;
-
-                for (int i = 0; i < turnOnOnEnter.Length; i++)
-                {
-                    turnOnOnEnter[i].SetActive(true);
-                    //turnOnOnEnter[i].transform.localScale = Vector3.one;
-                }
-
-                for (int i = 0; i < turnOffOnEnter.Length; i++)
-                {
-                    //turnOffOnEnter[i].transform.localScale = Vector3.zero;
-                    turnOffOnEnter[i].SetActive(false);
-                }
-
-                //insideHouse.SetActive(true);
-                //outsideHouse.SetActive(false);
-                //outsideGround.SetActive(false);
+                turnOnOnEnter[i].SetActive(true);
             }
-        }
 
-        // when inside
-        else
-        {
-
+            // turns off objects on enter
+            for (int i = 0; i < turnOffOnEnter.Length; i++)
+            {
+                turnOffOnEnter[i].SetActive(false);
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player") && sCharacterControllerBASE.isOutside == true)
+        // returns if you are not outside
+        if (!player.CheckIfOutside()) return;
+
+        if (collision.CompareTag("Player"))
         {
-            isTouchingDoor=true;
+            // toggles if you are touching
+            isTouchingDoor = true;
+
+            // sets ui
             uDoorArrow.transform.localScale = Vector3.one;
-            //uDoorArrow.SetActive(true);
         }
     }
 
@@ -76,9 +74,11 @@ public class sDoorBehavior : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            // toggles if you are touching
             isTouchingDoor = false;
+
+            // sets ui
             uDoorArrow.transform.localScale = Vector3.zero;
-            //uDoorArrow.SetActive(false);
         }
     }
 }

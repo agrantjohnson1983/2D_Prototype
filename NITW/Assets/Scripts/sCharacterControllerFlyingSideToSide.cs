@@ -52,7 +52,7 @@ public class sCharacterControllerFlyingSideToSide : sCharacterControllerBASE
     {
         base.Start();
 
-        isFlying = true;
+        //sPlayer.playerGlobal.isFlying = true;
         flightAngle = ANGLE_UP_RIGHT;
         currentSpeed = 0f;
 

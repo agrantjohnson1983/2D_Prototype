@@ -19,6 +19,9 @@ public class cEnergy : MonoBehaviour
 
     public float drainCooldownTime = 5f;
 
+    // lazy loading
+    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player;  } set { player = value; } }
+
     private void Awake()
     {
         if (energyGlobal == null)
@@ -31,6 +34,7 @@ public class cEnergy : MonoBehaviour
     void Start()
     {
         currentEnergy = startingEnergy;
+        player = sPlayer.playerGlobal;
     }
 
     // Update is called once per frame
@@ -38,41 +42,37 @@ public class cEnergy : MonoBehaviour
     {
         if(canDrain)
         {
-            if(!isRecovering)
-            {
-                currentEnergy -= energyDrainPerSec * Time.deltaTime;
+            currentEnergy -= energyDrainPerSec * Time.deltaTime;
 
-                // If energy is full depleted
-                if (currentEnergy <= 0)
-                {
-                    NoEnergyTrigger();
-                }
+            // If energy is full depleted
+            if (currentEnergy <= 0)
+            {
+                NoEnergyTrigger();
             }
+            
         }
 
-        else
+        else if (isRecovering)
         {
-            if(!isRecovering)
-            {
-                currentEnergy += energyDrainPerSec * Time.deltaTime;
+            currentEnergy += energyDrainPerSec * Time.deltaTime;
 
-                if ((currentEnergy >= startingEnergy))
-                {
-                    currentEnergy = startingEnergy;
-                }
+            if ((currentEnergy >= startingEnergy))
+            {
+                currentEnergy = startingEnergy;
             }
+            
         }
 
         // Set UI
 
-        Debug.Log("Setting eneryg bar to : " + currentEnergy / startingEnergy);
+        //Debug.Log("Setting eneryg bar to : " + currentEnergy / startingEnergy);
 
         imageEnergyBar.fillAmount = (currentEnergy / startingEnergy);
     }
 
     public void ToggleDrain(bool _canDrain)
     {
-        Debug.Log("Toggling can drain to: " + _canDrain);
+        //Debug.Log("Toggling can drain to: " + _canDrain);
         canDrain = _canDrain;
     }
 
@@ -80,31 +80,45 @@ public class cEnergy : MonoBehaviour
     {
         canDrain = false;
 
+        if (player == null) return;
+
         if(!isRecovering)
             StartCoroutine(StaminaDrainCooldown());
     }
 
     IEnumerator StaminaDrainCooldown()
     {
-        isRecovering = true;
+        //isRecovering = true;
 
-        sPlayer.playerGlobal.ToggleMovement(false);
+        player.ToggleMovement(false);
 
-        sPlayer.playerGlobal.DisplayText("Oh man I gotta chill... I'm out of energy", drainCooldownTime);
+        player.DisplayText("Oh man I gotta chill for a sec... I'm out of energy", drainCooldownTime);
 
-        if(sCharacterControllerBASE.isFlying)
+        if(player.CheckIfFlying())
         {
-            sPlayer.playerGlobal.ToggleFlying(false);
+            player.ToggleFlying(false);
         }
 
         yield return new WaitForSeconds(drainCooldownTime);
 
-        sPlayer.playerGlobal.SetPosition(sPlayer.playerGlobal.GetActiveMovementObject().transform.position);
+        player.SetPosition(player.GetActiveMovementObject().transform.position);
 
-        sPlayer.playerGlobal.ToggleMovement(true);
+        player.ToggleMovement(true);
 
-        sPlayer.playerGlobal.DisplayText("Ok I'm good now", drainCooldownTime);
+        player.DisplayText("Ok I'm good now but I need to sleep", drainCooldownTime);
 
-        isRecovering = false;
+        //isRecovering = false;
+    }
+
+    public void ToggleRecovery(bool _canRecover)
+    {
+        isRecovering = _canRecover;
+    }
+
+    public bool CheckIfEnergyIsFull()
+    {
+        if (currentEnergy == startingEnergy) return true;
+
+        else return false;
     }
 }

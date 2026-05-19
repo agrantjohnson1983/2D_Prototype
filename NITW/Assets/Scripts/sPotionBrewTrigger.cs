@@ -8,10 +8,13 @@ public class sPotionBrewTrigger : MonoBehaviour
 
     public static bool isBrewing = false;
 
+    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ui_DisplayOnTriggerEnter.SetActive(false);   
+        ui_DisplayOnTriggerEnter.SetActive(false);
+        player = sPlayer.playerGlobal;
     }
 
     // Update is called once per frame
@@ -23,7 +26,7 @@ public class sPotionBrewTrigger : MonoBehaviour
             {
                 isBrewing = true;
 
-                sPlayer.playerGlobal.StartPotionBrew();
+                player.StartPotionBrew();
 
                 //sCharacterController.isOutside = false;
 
@@ -46,7 +49,7 @@ public class sPotionBrewTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !sCharacterControllerBASE.isFlying)
+        if (collision.CompareTag("Player") && !player.CheckIfFlying())
         {
             isTouchingTrigger = true;
             ui_DisplayOnTriggerEnter.SetActive(true);

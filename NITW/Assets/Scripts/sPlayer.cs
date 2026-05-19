@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class sPlayer : MonoBehaviour
@@ -36,6 +37,16 @@ public class sPlayer : MonoBehaviour
 
     uTextCharacter textPopup;
 
+    bool canSwitchState;
+
+    public bool startOutside = true;
+
+    bool isOutside;
+
+    bool isFlying;
+
+    public float stateSwitchCooldownTime = 2.5f;
+
     private void Awake()
     {
         if (playerGlobal == null)
@@ -47,13 +58,25 @@ public class sPlayer : MonoBehaviour
         else
             Destroy(this.gameObject);
 
-        textPopup = GetComponentInChildren<uTextCharacter>();
-
         // Gets RB refs in children - TRUE is set to get the inactive ones
         movementRBs = GetComponentsInChildren<Rigidbody2D>(true);
+
+        // sets outside state
+        ToggleOutside(startOutside);
+
+        // quick cooldown for state switch
+        StartCoroutine(StateSwitchCooldown(0.5f));
     }
 
+    private void Start()
+    {
+        textPopup = GetComponentInChildren<uTextCharacter>();
+    }
 
+    private void Update()
+    {
+        CheckFlyingToggleInput();
+    }
 
     // TO - DO - Convert scripts to have methods for stopping and initing without turning on/off game objects
 
@@ -201,6 +224,50 @@ public class sPlayer : MonoBehaviour
         }
     }
 
+    IEnumerator StateSwitchCooldown(float _time)
+    {
+        //Debug.Log("Starting state switch cooldown");
+
+        yield return new WaitForSeconds(_time);
+
+        canSwitchState = true;
+    }
+
+    // returns a bool whether player is outside or not
+    public bool CheckIfOutside()
+    {
+        return isOutside;
+    }
+
+    // toggles the player being outside
+    public void ToggleOutside(bool _isOutside)
+    {
+        isOutside = _isOutside;
+    }
+
+
+    void CheckFlyingToggleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && canSwitchState)
+        {
+            Debug.Log("Input detected and can switch state");
+
+            isFlying = !isFlying;
+
+            // stops from spamming - needs cooldown
+            canSwitchState = false;
+
+            // Switches state with player - this should turn off this gameObject
+            ToggleFlying(isFlying);
+        }
+    }
+
+    // Checks if player is flying
+    public bool CheckIfFlying()
+    {
+        return isFlying;
+    }
+
     // This toggles the flying on/off
     public void ToggleFlying(bool _canFly)
     {
@@ -220,8 +287,8 @@ public class sPlayer : MonoBehaviour
             SetActiveMovementObject(characterSideScroll);
         }
 
-        sCharacterControllerBASE.isFlying = _canFly;
-        sCharacterControllerBASE.canSwitchState = true;
+        isFlying = _canFly;
+        StartCoroutine(StateSwitchCooldown(2f));
 
         characterSideScroll.SetActive(!_canFly);
         characterFlying.SetActive(_canFly);
@@ -269,6 +336,46 @@ public class sPlayer : MonoBehaviour
             Debug.LogError("No text popup found!");
         }
     }*/
+
+    public void TriggerSleep()
+    {
+        StartCoroutine(SleepRoutine());
+    }
+
+    IEnumerator SleepRoutine()
+    {
+        // TO-DO move character sprite into bed somehow
+
+        // turns movement on
+        ToggleMovement(false);
+
+        // toggles recovery on
+        cEnergy.energyGlobal.ToggleRecovery(true);
+
+        // displays some yawn text
+        DisplayText("Yawn...", 4f);
+
+        // while energy is not full return
+        while (!cEnergy.energyGlobal.CheckIfEnergyIsFull())
+        {
+            yield return null;
+        }
+
+        // done sleeping
+        Debug.Log("Done sleeping");
+
+        // TO DO - Character sprite gets out of bed here
+
+        // displays rested text
+        DisplayText("Ok I feel rested now!", 4f);
+
+
+        // turns recovery state off in energy
+        cEnergy.energyGlobal.ToggleRecovery(false);
+
+        // turns movement back on 
+        ToggleMovement(true);
+    }
 
     public void DisplayText(string _text, float _duration)
     {

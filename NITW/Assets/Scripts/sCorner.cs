@@ -13,29 +13,34 @@ public class sCorner : MonoBehaviour
 
     public Vector3 loadingOffset;
 
+    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { player = value; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ui_Display.SetActive(false);
+        player = sPlayer.playerGlobal;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (sCharacterControllerBASE.isOutside)
+        // returns if you aren't outside
+        if (!player.CheckIfOutside()) return;
+
+        // checks if you are touching and pressed W
+        if (isTouchingDoor && Input.GetKey(KeyCode.W))
         {
-            if (isTouchingDoor && Input.GetKey(KeyCode.W))
-            {
-                sSceneManger.sceneManagerGlobal.LoadScene(sceneToTransitionTo, directionToTurn, loadingOffset);
+            sSceneManger.sceneManagerGlobal.LoadScene(sceneToTransitionTo, directionToTurn, loadingOffset);
 
                 
-            }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && sCharacterControllerBASE.isOutside == true)
+        if (collision.CompareTag("Player") && player.CheckIfOutside())
         {
             isTouchingDoor = true;
             ui_Display.SetActive(true);

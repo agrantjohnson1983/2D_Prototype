@@ -25,11 +25,13 @@ public class sGameManager : MonoBehaviour
 
     public cPhone phone;
 
+    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { player = value; } }
+
     private void Awake()
     {
 
         // Persistant Singleton setup
-        if (sGameManager.gm != null)
+        if (gm != null)
         {
             Destroy(this);
         }
@@ -39,6 +41,8 @@ public class sGameManager : MonoBehaviour
             gm = this;
             DontDestroyOnLoad(gm.gameObject);
         }
+
+        player = sPlayer.playerGlobal;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -86,7 +90,7 @@ public class sGameManager : MonoBehaviour
     public void ToggleDialoge(bool _isOn)
     {
         // turns off player movement
-        sPlayer.playerGlobal.ToggleMovement(!_isOn);
+        player.ToggleMovement(!_isOn);
 
         // turns off main canvas when dialogue mode is on
         canvasMain.SetActive(!_isOn);

@@ -9,13 +9,20 @@ public class sExitBehavior : MonoBehaviour
     public GameObject[] turnOffOnTrigger;
     public GameObject[] turnOnOnTrigger;
 
+    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { } }
+
+    private void Start()
+    {
+        player = sPlayer.playerGlobal;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Toggles if outside
-        sCharacterControllerBASE.isOutside = goesOutside;
+        player.ToggleOutside(goesOutside);
 
         // Sets exit position
-        sPlayer.playerGlobal.SetPosition(exitTransform.position);
+        player.SetPosition(exitTransform.position);
 
         // Turns on stuff - Do this first so you don't accidently turn this off before turning stuff on
         for (int i = 0; i < turnOnOnTrigger.Length; i++)

@@ -39,7 +39,7 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
         base.Start();
 
         // turns off state switch so flying can't be turned on in dungeon
-        canSwitchState = false;
+        //canSwitchState = false;
 
         healthHeartList = new List<GameObject>();
 

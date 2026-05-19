@@ -10,12 +10,12 @@ public class sCharacterControllerBASE : MonoBehaviour
 
     public static bool canMove = true;
 
-    public static bool isOutside = true;
+    //public static bool isOutside = true;
 
-    public static bool isFlying = false;
+    //public static bool isFlying = false;
 
-    public float stateSwitchCooldownTime = 2.5f;
-    public static bool canSwitchState = false;
+    //public float stateSwitchCooldownTime = 2.5f;
+    //public static bool canSwitchState = false;
 
     public float reverseSequenceTime = 2.5f;
 
@@ -40,13 +40,13 @@ public class sCharacterControllerBASE : MonoBehaviour
         else
             Debug.LogWarning("Player is null for " + this.gameObject + " enable");
 
-        StartCoroutine(StateSwitchCooldown(stateSwitchCooldownTime));
+        //StartCoroutine(StateSwitchCooldown(stateSwitchCooldownTime));
     }
 
     // Use this for state checking
     public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canSwitchState)
+        /*if (Input.GetKeyDown(KeyCode.F) && canSwitchState)
         {
             Debug.Log("Input detected and can switch state");
 
@@ -57,7 +57,7 @@ public class sCharacterControllerBASE : MonoBehaviour
 
             // Switches state with player - this should turn off this gameObject
             sPlayer.playerGlobal.ToggleFlying(isFlying);
-        }
+        }*/
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,15 +66,6 @@ public class sCharacterControllerBASE : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         sPlayer.playerGlobal.SetActiveMovementObject(this.gameObject);
-    }
-
-    IEnumerator StateSwitchCooldown(float _time)
-    {
-        //Debug.Log("Starting state switch cooldown");
-
-        yield return new WaitForSeconds(_time);
-
-        canSwitchState = true;
     }
 
     public virtual void SetLocation(Vector3 _pos)

@@ -14,6 +14,8 @@ public class uGigPhoneButton : MonoBehaviour
 
     cPhone phone;
 
+    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { } }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +27,8 @@ public class uGigPhoneButton : MonoBehaviour
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
 
         phone = GetComponentInParent<cPhone>();
+
+        player = sPlayer.playerGlobal;
     }
 
     // This sets the phone buttons
@@ -42,7 +46,7 @@ public class uGigPhoneButton : MonoBehaviour
 
     public void OnClick()
     {
-        if(!sCharacterControllerBASE.isOutside)
+        if(!player.CheckIfOutside())
         {
             sPlayer.playerGlobal.DisplayText("Gotta be outside to gig!", 2f);
 
