@@ -41,14 +41,8 @@ public class sBusStop : MonoBehaviour
         // turns on bus canvas
         busCanvas.SetActive(true);
 
-        //busCanvas.transform.localScale = Vector3.one;
-
         // turns player movement off
-
         sPlayer.playerGlobal.ToggleMovement(false);
-
-        //sCharacterControllerBASE.canMove = false;
-        //sC.SetCanMove(false);
     }
 
     public void ExitBusStop()
@@ -58,21 +52,18 @@ public class sBusStop : MonoBehaviour
         // resets player pos and moves it to bus exit
         sPlayer.playerGlobal.SetPosition(busStopExit.position);
 
-        // resets character movement
-        //sCharacterController.characterControllerGlobal.SetCanMove(true);
-
+        // toggles player movement
         sPlayer.playerGlobal.ToggleMovement(true);
-        //sCharacterControllerBASE.canMove = true;
 
         isOnBus = false;
     }
 
-    void SetCharacterPos(Vector3 _pos)
-    {
-        // Should this be done with the sPlayer script?
+    //void SetCharacterPos(Vector3 _pos)
+    //{
+    //    // Should this be done with the sPlayer script?
 
-        //sCharacterController.characterControllerGlobal.transform.position = _pos;
+    //    //sCharacterController.characterControllerGlobal.transform.position = _pos;
 
-        sPlayer.playerGlobal.transform.position = _pos;
-    }
+    //    sPlayer.playerGlobal.transform.position = _pos;
+    //}
 }

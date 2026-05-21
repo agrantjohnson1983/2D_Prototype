@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum eMode { sidescroll, topdown, frontend, dungeon }
 
@@ -6,7 +7,7 @@ public class sGameManager : MonoBehaviour
 {
     public static sGameManager gm;
 
-    public eMode sceneMode;
+    public eMode gameMode;
 
     public GameObject canvasMain, canvasDialogue,
         inventoryUI, moneyUI, energyUI, timeOfDayUI, locationUI, compassUI, phoneUI;
@@ -25,7 +26,9 @@ public class sGameManager : MonoBehaviour
 
     public cPhone phone;
 
-    sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { player = value; } }
+    public sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { player = value; } }
+
+    public EventSystem eventSystem;
 
     private void Awake()
     {
@@ -41,27 +44,45 @@ public class sGameManager : MonoBehaviour
             gm = this;
             DontDestroyOnLoad(gm.gameObject);
         }
-
-        player = sPlayer.playerGlobal;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //player = sPlayer.playerGlobal;
+
+        if(gameMode == eMode.frontend)
+        {
+            player.gameObject.SetActive(false);
+        }
     }
 
+    public void StartGame()
+    {
+        SetGameMode(eMode.sidescroll);
+
+        //ToggleCanvasMain(true);
+
+        player.gameObject.SetActive(true);
+
+        player.characterSideScroll.SetActive(true);
+    }
 
     // This returns the current game mode
     public eMode GetGameMode()
     {
-        return sceneMode;
+        return gameMode;
     }
 
     // This gets called to change game mode
     public void SetGameMode(eMode _sceneMode)
     {
-        sceneMode = _sceneMode;
+        gameMode = _sceneMode;
+    }
+
+    public void ToggleOverworld(bool _isInOverworld)
+    {
+        ToggleCanvasMain(!_isInOverworld);
     }
 
     public void ToggleDungeonCanvas(bool _dungeonModeOn)
@@ -89,6 +110,12 @@ public class sGameManager : MonoBehaviour
 
     public void ToggleDialoge(bool _isOn)
     {
+        if(player == null )
+        {
+            Debug.LogWarning("Player ref is null");
+            return;
+        }
+
         // turns off player movement
         player.ToggleMovement(!_isOn);
 
@@ -97,5 +124,10 @@ public class sGameManager : MonoBehaviour
 
         // turns dialogue canvas on when toggled on
         canvasDialogue.SetActive(_isOn);
+    }
+
+    public void SetEventSystem(GameObject _objectToSet)
+    {
+        eventSystem.SetSelectedGameObject(_objectToSet);
     }
 }

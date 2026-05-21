@@ -1,8 +1,9 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class sCharacterControllerTopDown : MonoBehaviour
+public class sCharacterControllerTopDown : sCharacterControllerBASE
 {
-    Rigidbody2D rb;
+    //Rigidbody2D rb;
 
     [Header("Movemement")]
     public float characterSpeed;
@@ -10,15 +11,22 @@ public class sCharacterControllerTopDown : MonoBehaviour
     private Vector2 inputVelocity;
     private Vector3 startingPosition;
 
-    SpriteRenderer spriteRenderer;
+    //SpriteRenderer spriteRenderer;
     public Sprite[] spriteMovementArray;
 
     static bool isPaused = false;
 
+    public bool isInOverworld = false;
+
+    public string lowerworldScene;
+    public string middleworldScene;
+    public string overworldScene;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Start();
+
         characterStartingSpeed = characterSpeed;
         startingPosition = rb.position;
         inputVelocity = new Vector2();
@@ -27,11 +35,13 @@ public class sCharacterControllerTopDown : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         if(isPaused) return;
 
         MovementInputs();
+
+        ChangeLevelInputs();
     }
 
     private void FixedUpdate()
@@ -44,9 +54,29 @@ public class sCharacterControllerTopDown : MonoBehaviour
         // Takes input from vertical and horizontal axis
         inputVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        inputVelocity.Normalize();
+        //inputVelocity.Normalize();
 
         //SpriteController(inputVelocity);
+    }
+
+    void ChangeLevelInputs()
+    {
+        /*if(Input.GetKey(KeyCode.Space))
+        {
+            if(isInOverworld)
+            {
+                sSceneManger.sceneManagerGlobal.LoadScene(middleworldScene, eDirection.north, Vector3.zero);
+            }
+
+            else
+            {
+                sGameManager.gm.ToggleCanvasMain(true);
+
+                sSceneManger.sceneManagerGlobal.LoadScene(lowerworldScene, eDirection.north, Vector3.zero);
+
+                // TO DO : each middleworld has a chunk that you can land in
+            }
+        }*/
     }
 
     void SpriteController(Vector2 _input)
@@ -82,7 +112,7 @@ public class sCharacterControllerTopDown : MonoBehaviour
             float totalSpeed = characterSpeed;
 
             // converts direction to work with top down z-movement
-            Vector2 movementDirection = new Vector3(inputVelocity.x, inputVelocity.y);
+            Vector2 movementDirection = new Vector3(inputVelocity.x, inputVelocity.y).normalized;
 
             // handles the side to side physics movement
             rb.linearVelocity = movementDirection * characterSpeed;

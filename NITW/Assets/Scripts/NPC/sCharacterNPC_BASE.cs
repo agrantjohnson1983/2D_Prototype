@@ -1,14 +1,7 @@
 using UnityEngine;
 
-public class sCharacterGigMaster : MonoBehaviour
+public class sCharacterNPC_BASE : MonoBehaviour
 {
-
-    public GameObject canvasDialogueOffer, canvasDialogueFinish;
-
-    public SO_Gig gig;
-
-    //bool gigComplete = false;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

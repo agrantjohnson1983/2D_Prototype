@@ -47,7 +47,6 @@ public class sSceneManger : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Scene Loaded: " + scene.name);
-        //Debug.Log("Mode: " + mode);
 
         Debug.Log("Scene Loaded - load pos is: " + loadPos);
 
@@ -62,27 +61,37 @@ public class sSceneManger : MonoBehaviour
         {
             //Debug.Log("Player was on bus from scene loaded - triggering exit");
 
-            // triggering bus stop exit if player was on bus
+            // triggering bus stop exit if player was on busdd
             sBusStop.busStopGlobal.ExitBusStop();
         }
 
         // turns off dialogue box
         sGameManager.gm.ToggleDialoge(false);
 
-        // Toggles canvas off if in Front End
-        if(sGameManager.gm.sceneMode == eMode.frontend)
+        switch(sGameManager.gm.gameMode)
         {
-            sGameManager.gm.ToggleCanvasMain(false);
-        }
+            case eMode.topdown:
 
-        else
-        {
-            sGameManager.gm.ToggleCanvasMain(true);
-        }
+                sGameManager.gm.ToggleOverworld(true);
 
-        if(sGameManager.gm.sceneMode == eMode.topdown)
-        {
-            
+                goto case eMode.frontend;
+                
+
+            case eMode.frontend:
+
+                sGameManager.gm.ToggleCanvasMain(false);
+
+                break;
+
+            case eMode.sidescroll:
+
+                sGameManager.gm.ToggleCanvasMain(true);
+
+                break;
+
+            case eMode.dungeon:
+
+                break;
         }
     }
 }

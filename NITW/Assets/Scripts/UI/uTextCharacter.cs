@@ -14,6 +14,8 @@ public class uTextCharacter : MonoBehaviour
 
     bool isTyping = false;
 
+    public Vector3 popupoffset = new Vector3(0f, 1f, 0f);
+
     private void Awake()
     {
         //if (textCharacterGlobal == null)
@@ -30,7 +32,7 @@ public class uTextCharacter : MonoBehaviour
     }
 
     // optional parameter for typewriter speed
-    public void SetText(string _text, float _duration, float _typewriterSpeed = 0.1f)
+    public void SetText(string _text, float _duration, float _typewriterSpeed = 0.1f, bool _staysAttached = true)
     {
         // sets transform to character pos + offset
         this.transform.position =
@@ -40,13 +42,13 @@ public class uTextCharacter : MonoBehaviour
         characterText.text = _text;
 
         // typewriter effect
-        StartCoroutine(TypewriterEffect(characterText, _typewriterSpeed, _duration));
+        StartCoroutine(TypewriterEffect(characterText, _typewriterSpeed, _duration, _staysAttached));
 
         // turns text back off after duration
         //Invoke("TurnOffText", _duration);
     }
 
-    IEnumerator TypewriterEffect(TextMeshProUGUI _textMesh, float _rate, float _duration)
+    IEnumerator TypewriterEffect(TextMeshProUGUI _textMesh, float _rate, float _duration, bool _staysAttached)
     {
         string textToDisplay = _textMesh.text;
 
@@ -62,6 +64,11 @@ public class uTextCharacter : MonoBehaviour
 
             // adds letter 
             _textMesh.text += _c;
+
+            if(_staysAttached)
+            {
+                characterText.transform.position = sPlayer.playerGlobal.GetActiveMovementObject().transform.position + popupoffset;
+            }
 
             // waits for the letters per sec value from the SO
             yield return new WaitForSeconds(_rate);

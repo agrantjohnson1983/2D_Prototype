@@ -2033,6 +2033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1622948873}
+  startOnEnable: 0
   typingLettersPerSec: 0.1
 --- !u!1 &285971767
 GameObject:
@@ -7346,7 +7347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0011946841, y: -0.00000014576989, z: 1.7414908e-10, w: 0.9999993}
+  m_LocalRotation: {x: 0.001106191, y: 2.3283055e-10, z: -2.5755518e-13, w: 0.99999946}
   m_LocalPosition: {x: 26.42, y: 4.3315187, z: -9.994866}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7656,11 +7657,6 @@ PrefabInstance:
 --- !u!224 &1014628332 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4615556912186080258, guid: 530aa8c3d88c40543af7329c5d52bafb, type: 3}
-  m_PrefabInstance: {fileID: 1014628331}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1014628333 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8216936158173342269, guid: 530aa8c3d88c40543af7329c5d52bafb, type: 3}
   m_PrefabInstance: {fileID: 1014628331}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1015495024
@@ -8045,9 +8041,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273f8d190003c9449b3c1843cb459d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasDialogueOffer: {fileID: 282355642}
-  canvasDialogueFinish: {fileID: 27985561}
-  gig: {fileID: 11400000, guid: 65327fe0cdaa41a479bab22fda051c7f, type: 2}
+  interactKeyCode: 0
+  canInteractOutsideOnly: 1
+  canInteractWhenFlying: 0
+  interactionPopupText: 
+  buttonHoldDuration: 0
+  popupOffset: {x: 0, y: 0.5, z: 0}
+  gigData: {fileID: 0}
+  canvasDialogue: {fileID: 0}
+  characterDialogueTextMesh: {fileID: 0}
+  textButtonYes: {fileID: 0}
+  textButtonNo: {fileID: 0}
+  buttonYes: {fileID: 0}
+  buttonNo: {fileID: 0}
+  typewriter: {fileID: 0}
   isRecipient: 1
   itemToDeliver: {fileID: 11400000, guid: d30340c7042cd8c419af272a4ef04ff3, type: 2}
   textResponses:
@@ -8524,6 +8531,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6803262296234542354, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864199572016040985, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003314069411947831, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15820,7 +15835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2622014036098988209
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16354,6 +16369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
+  startOnEnable: 0
   typingLettersPerSec: 0.1
 --- !u!61 &7047444782913512236
 BoxCollider2D:
@@ -16486,7 +16502,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c10f3d38298b47bcded173ac23d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui_Display: {fileID: 7283802659490848055}
+  interactKeyCode: 119
+  canInteractOutsideOnly: 1
+  canInteractWhenFlying: 0
+  interactionPopupText: Hold W to Enter
+  buttonHoldDuration: 1
+  popupOffset: {x: 0, y: 0.5, z: 0}
   sceneToTransitionTo: SideScroll_Neighborhood1_Burbs_01_Homeblock
   directionToTurn: 2
   loadingOffset: {x: 26, y: 0, z: 0}
@@ -16619,9 +16640,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273f8d190003c9449b3c1843cb459d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasDialogueOffer: {fileID: 6893880977179614967}
-  canvasDialogueFinish: {fileID: 1014628333}
-  gig: {fileID: 11400000, guid: 65327fe0cdaa41a479bab22fda051c7f, type: 2}
+  interactKeyCode: 0
+  canInteractOutsideOnly: 1
+  canInteractWhenFlying: 0
+  interactionPopupText: 
+  buttonHoldDuration: 0
+  popupOffset: {x: 0, y: 0.5, z: 0}
+  gigData: {fileID: 0}
+  canvasDialogue: {fileID: 0}
+  characterDialogueTextMesh: {fileID: 0}
+  textButtonYes: {fileID: 0}
+  textButtonNo: {fileID: 0}
+  buttonYes: {fileID: 0}
+  buttonNo: {fileID: 0}
+  typewriter: {fileID: 0}
   isRecipient: 0
   itemToDeliver: {fileID: 11400000, guid: d30340c7042cd8c419af272a4ef04ff3, type: 2}
   textResponses: []

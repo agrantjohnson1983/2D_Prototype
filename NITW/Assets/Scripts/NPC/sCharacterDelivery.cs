@@ -43,13 +43,13 @@ public class sCharacterDelivery : sCharacterGigMaster
                 // if you have the item then it displays the finish canvas
                 if (hasItem)
                 {
-                    canvasDialogueFinish.SetActive(true);
+                    //canvasDialogueGigFinish.SetActive(true);
                 }
 
                 // Displays other canvas
                 else
                 {
-                    canvasDialogueOffer.SetActive(true);
+                    canvasDialogue.SetActive(true);
                 }
             }
 
@@ -58,12 +58,12 @@ public class sCharacterDelivery : sCharacterGigMaster
             {
                 if(!isDelivering)
                 {
-                    canvasDialogueOffer.SetActive(true);
+                    canvasDialogue.SetActive(true);
                 }
 
                 else
                 {
-                    canvasDialogueFinish.SetActive(true);
+                    //canvasDialogueGigFinish.SetActive(true);
                 }
             }
         }
@@ -76,7 +76,7 @@ public class sCharacterDelivery : sCharacterGigMaster
         isDelivering = true;
 
         // fires event trigger
-        gig.TriggerOnGetGig();
+        gigData.TriggerOnGetGig();
 
         // adds item to inventory
         cInventory.inventoryGlobal.AddItem(itemToDeliver);
@@ -91,7 +91,7 @@ public class sCharacterDelivery : sCharacterGigMaster
         cInventory.inventoryGlobal.RemoveItem(itemToDeliver);
 
         // triggers SO
-        gig.TriggerOnGigComplete();
+        gigData.TriggerOnGigComplete();
 
         // clears canvas in 5 seconds
         Invoke("ClearCanvas", 5f);
@@ -106,8 +106,8 @@ public class sCharacterDelivery : sCharacterGigMaster
     void ResetCanvas()
     {
         // turns off canvases
-        canvasDialogueFinish.SetActive(false);
-        canvasDialogueOffer.SetActive(false);
+        //canvasDialogueGigFinish.SetActive(false);
+        canvasDialogue.SetActive(false);
 
         // resets all text responses
         foreach(GameObject go in textResponses)

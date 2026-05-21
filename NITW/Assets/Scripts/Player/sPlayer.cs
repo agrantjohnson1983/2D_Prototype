@@ -206,7 +206,10 @@ public class sPlayer : MonoBehaviour
 
         else
         {
-            Debug.LogError("No text popup found!");
+            textPopup = GetComponentInChildren<uTextCharacter>();
+
+            if(textPopup == null)
+                Debug.LogError("No text popup found!");
         }
     }
 
@@ -386,6 +389,9 @@ public class sPlayer : MonoBehaviour
 
         else
         {
+            textPopup = GetComponentInChildren<uTextCharacter>();
+
+            if(textPopup == null)
             Debug.LogError("No text popup found!");
         }
     }

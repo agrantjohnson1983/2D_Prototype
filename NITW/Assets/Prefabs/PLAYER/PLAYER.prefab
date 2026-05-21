@@ -2154,6 +2154,7 @@ Transform:
   - {fileID: 5192247964634362055}
   - {fileID: 8789281581714978044}
   - {fileID: 2167826584050615310}
+  - {fileID: 5840111726668895344}
   - {fileID: 8134256011115580660}
   - {fileID: 1181695786407509504}
   m_Father: {fileID: 0}
@@ -2178,6 +2179,8 @@ MonoBehaviour:
   pong: {fileID: 724413644332111535}
   level: {fileID: 0}
   cameraMain: {fileID: 0}
+  startOutside: 1
+  stateSwitchCooldownTime: 2.5
 --- !u!1 &7297123563560084506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2962,7 +2965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8053167325886438621, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8942699712966374189, guid: c4774f7af4f29594494280346a7e68ae, type: 3}
       propertyPath: m_Layer
@@ -3229,6 +3232,68 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5469522647448832124, guid: 142034e4f4cdfb241b8ab629f1b288d9, type: 3}
   m_PrefabInstance: {fileID: 1890391254851860883}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1983633137508258382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6803262296234542354}
+    m_Modifications:
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454994113491695481, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+      propertyPath: m_Name
+      value: CharacterTopDown_Overworld
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+--- !u!4 &5840111726668895344 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5371520538909787710, guid: c271a387c09ecde44b568563cec0dfea, type: 3}
+  m_PrefabInstance: {fileID: 1983633137508258382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5354295705014861856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3443,7 +3508,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3234033581143100124}
-  stateSwitchCooldownTime: 2.5
   reverseSequenceTime: 2.5
   audioData: {fileID: 0}
   audioSource: {fileID: 0}

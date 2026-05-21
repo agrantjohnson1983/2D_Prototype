@@ -9,6 +9,8 @@ public class uTypewriter : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
+    public bool startOnEnable = false;
+
     public float typingLettersPerSec = 0.1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +22,7 @@ public class uTypewriter : MonoBehaviour
 
     private void OnEnable()
     {
-        if (text != null)
+        if (text != null && startOnEnable)
             StartCoroutine(TypewriterEffect(text, typingLettersPerSec));
     }
 

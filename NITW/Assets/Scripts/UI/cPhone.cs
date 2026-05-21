@@ -1,8 +1,10 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class cPhone : MonoBehaviour
 {
@@ -18,7 +20,6 @@ public class cPhone : MonoBehaviour
     List<GameObject> gigButtons;
 
     // CALENDAR
-
     public GameObject calendar;
 
     // NOTIFICATIONS
@@ -29,6 +30,15 @@ public class cPhone : MonoBehaviour
     public TextMeshProUGUI notificationText;
 
     int currentNumberOfNotifications = 0;
+
+    bool isOpen = false;
+    bool canToggleOpen = true;
+
+    public GameObject phoneOpen, HUD_Button, // main HUD button and phone Open
+        screenMain, screenApp, screenGigs, // screens
+        exitButtonMain, exitButtonApp; // exit buttons
+
+    public GameObject buttonSelectedOnOpenMain;
 
     private void Awake()
     {
@@ -54,9 +64,81 @@ public class cPhone : MonoBehaviour
         hudPhoneNotificationObject.transform.localScale = Vector3.zero;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.P) && canToggleOpen)
+        {
+            TogglePhone();
+        }
+    }
+
+    public void TogglePhone()
+    {
+        // toggles can open - keeps from spamability
+        canToggleOpen = false;
+
+        // toggles UI
+        phoneOpen.SetActive(!isOpen);
+        HUD_Button.SetActive(isOpen);
+
+        // toggles isOpen
+        isOpen = !isOpen;
+
+        // toggles player movement
+        sPlayer.playerGlobal.ToggleMovement(!isOpen);
+
+        // sets button
+        if (isOpen)
+        {
+            sGameManager.gm.SetEventSystem(buttonSelectedOnOpenMain);
+        }
+
+        else
+        {
+            ResetPhone();
+        }
+
+        StartCoroutine(ToggleCooldown());
+    }
+
+    // Cooldown so you don't spam it accidently
+    IEnumerator ToggleCooldown()
+    {
+        yield return new WaitForSeconds(0.25f);
+        canToggleOpen = true;
+    }
+
+    void ResetPhone()
+    {
+        // closes gigs
+        CloseGigs();
+
+        // turns off app BG
+        screenApp.SetActive(false);
+
+        screenMain.SetActive(true);
+
+        // turns main exit button back on
+        exitButtonMain.SetActive(true);
+
+        screenApp.SetActive(false);
+        screenGigs.SetActive(false);
+    }
+
+    public void ToggleCalendar(bool _isOpen)
+    {
+        calendar.SetActive(_isOpen);
+        screenApp.SetActive(_isOpen);
+    }
+
     // When the gigs button is pressed - spawns buttons
     public void OpenGigs()
     {
+        exitButtonMain.SetActive(false);
+        screenMain.SetActive(false);
+        screenApp.SetActive(true);
+        screenGigs.SetActive(true);
+
         gigButtons = new List<GameObject>();
 
         // this will spawn the gig buttons based on current gigs in the gig list
@@ -74,9 +156,10 @@ public class cPhone : MonoBehaviour
             gigButtons.Add(tempObj);
         }
 
+        // Sets first button as selected
+        sGameManager.gm.SetEventSystem(gigButtons[0]);
 
         // Resets notifications
-
         currentNumberOfNotifications = 0;
 
         //notificationObject.SetActive(false);
@@ -123,7 +206,7 @@ public class cPhone : MonoBehaviour
 
     public void EndGig(SO_Gig _gig)
     {
-        
+        Debug.Log("Phone ended gig: " + _gig);
     }
 
     // This sets notification when you get a new gig

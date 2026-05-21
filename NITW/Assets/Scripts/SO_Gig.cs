@@ -19,8 +19,12 @@ public class SO_Gig : ScriptableObject
 
     public GameObject worldObject;
 
+    bool isDoingGig = false;
+    bool isGigComplete = false;
+
     public string 
-        gigOfferText, 
+        gigOfferText, gigAcceptedText,
+        gigInProgressText, gigPropositionText, gigRejectionText,
         gigCompleteText;
 
     public UnityEvent 
@@ -40,10 +44,26 @@ public class SO_Gig : ScriptableObject
         if(onGigFail != null) onGigFail = new UnityEvent();
 
         currentPayAmount = payAmount;
+
+        isDoingGig = false;
+        isGigComplete = false;
+    }
+
+    public bool CheckIfDoingGig()
+    {
+        return isDoingGig;
+    }
+
+    public bool CheckIfGigComplete()
+    {
+        return isGigComplete; 
     }
 
     public void TriggerOnGetGig()
     {
+        // toggles isDoingGig
+        isDoingGig = true;
+
         // triggers event
         onGetGig.Invoke();
 
@@ -73,6 +93,9 @@ public class SO_Gig : ScriptableObject
 
     public void TriggerOnGigComplete()
     {
+        // toggles complete
+        isGigComplete = true;
+
         // Triggers event
         onGigComplete.Invoke();
 

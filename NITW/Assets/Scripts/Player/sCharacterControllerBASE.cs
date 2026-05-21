@@ -26,6 +26,11 @@ public class sCharacterControllerBASE : MonoBehaviour
     public SO_AudioData audioData;
     public AudioSource audioSource;
 
+    protected bool _playerInside = false;
+    protected bool _holdCompleted = false;   // prevent re-firing while still inside
+    protected float _holdTimer = 0f;
+    public float holdDuration = 2f;
+
     private void OnEnable()
     {
         // gets player reference

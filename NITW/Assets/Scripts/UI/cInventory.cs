@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class cInventory : MonoBehaviour
 
     public static cInventory inventoryGlobal;
 
+    bool isOpen = false;
+    bool canToggleOpen = true;
+
     private void Awake()
     {
         if (inventoryGlobal == null)
@@ -36,8 +40,39 @@ public class cInventory : MonoBehaviour
         inventoryOpen.SetActive(false);
     }
 
+    // Inventory open/close controls
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.I) && canToggleOpen)
+        {
+            canToggleOpen = false;
+
+            // closes if open
+            if(isOpen)
+            {
+                OnInventoryCloseButtonClick();
+            }
+
+            // opens inventory
+            else
+            {
+                OnHUD_InventoryButtonClick();
+            }
+
+            StartCoroutine(ToggleCooldown());
+        }
+    }
+
+    IEnumerator ToggleCooldown()
+    {
+        yield return new WaitForSeconds(0.25f);
+        canToggleOpen = true;
+    }
+
     public void OnHUD_InventoryButtonClick()
     {
+        isOpen = true;
+
         // turns off hud button
         hud_ButtonInventory.SetActive(false);
 
@@ -64,6 +99,8 @@ public class cInventory : MonoBehaviour
     // Closes inventory
     public void OnInventoryCloseButtonClick()
     {
+        isOpen = false;
+
         // turns on hud button
         hud_ButtonInventory.SetActive(true);
 
