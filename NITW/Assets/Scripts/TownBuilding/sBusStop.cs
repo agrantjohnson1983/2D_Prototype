@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class sBusStop : MonoBehaviour
+public class sBusStop : sInteractable
 {
     public static sBusStop busStopGlobal;
+
+    [Space][Header("Bus Stop Info")]
 
     public GameObject busCanvas;
 
@@ -20,19 +22,19 @@ public class sBusStop : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         busCanvas.SetActive(false);
         //busCanvas.transform.localScale = Vector3.zero;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void TriggerInteraction()
     {
-        // checks for player collision
-        if (collision.CompareTag("Player"))
-        {
-            EnterBusStop();
-        }
+        base.TriggerInteraction();
+
+        EnterBusStop();
     }
 
     // gets called when player enters trigger zone
@@ -57,13 +59,4 @@ public class sBusStop : MonoBehaviour
 
         isOnBus = false;
     }
-
-    //void SetCharacterPos(Vector3 _pos)
-    //{
-    //    // Should this be done with the sPlayer script?
-
-    //    //sCharacterController.characterControllerGlobal.transform.position = _pos;
-
-    //    sPlayer.playerGlobal.transform.position = _pos;
-    //}
 }

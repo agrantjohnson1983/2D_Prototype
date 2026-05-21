@@ -103,9 +103,6 @@ public class sCharacterControllerBASE : MonoBehaviour
         // turns off movment
         SetCanMove(false);
 
-        // sets velocity to zero
-        //rb.linearVelocity = Vector2.zero;
-
         // flips x offset to negative the reverse should go to left
 
         // checks if offset is greater than 0
@@ -126,7 +123,7 @@ public class sCharacterControllerBASE : MonoBehaviour
         while (counter < reverseSequenceTime)
         {
             // lerps postion to x offset
-            this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, this.transform.localPosition + new Vector3(_offsetAmount, 0, 0), counter / reverseSequenceTime);
+            this.transform.position = Vector3.Lerp(this.transform.position, this.transform.position + new Vector3(_offsetAmount, 0, 0), counter / reverseSequenceTime);
 
             // increments counter by time amount
             counter += Time.deltaTime;
