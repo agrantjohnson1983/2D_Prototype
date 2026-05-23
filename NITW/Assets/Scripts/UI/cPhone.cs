@@ -182,9 +182,6 @@ public class cPhone : MonoBehaviour
     {
         Debug.Log("Got gig - " + _gig.gigName);
         
-        // triggers SO event 
-        _gig.TriggerOnGetGig();
-
         // adds gig to gig list
         gigList.Add(_gig);
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class sCharacterTalkable : sInteractable
+public class sCharacterTalkable : sCharacterNPC_BASE
 {
 
 }

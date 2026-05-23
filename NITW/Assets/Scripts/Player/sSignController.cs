@@ -439,8 +439,18 @@ public class sSignController : MonoBehaviour
         // sets final pay
         signSpinSO.PayUp(signSpinSO.payAmount * successPercentage);
 
+
         // triggers gig complete method
         signSpinSO.TriggerOnGigComplete();
+
+        // lets player move again
+        sPlayer.playerGlobal.ToggleMovement(true);
+
+        // turns on side scroll character
+        sPlayer.playerGlobal.characterSideScroll.SetActive(true);
+
+        // turns off sign controller
+        this.gameObject.SetActive(false);
     }
 
     // -------------------------------------------------------------------------

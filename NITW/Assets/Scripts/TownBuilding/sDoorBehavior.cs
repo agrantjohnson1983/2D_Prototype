@@ -9,6 +9,8 @@ public class sDoorBehavior : sInteractable
 
     public Transform enterTransform;
 
+    public Vector2 entranceOffset;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
     {
@@ -40,7 +42,14 @@ public class sDoorBehavior : sInteractable
         // tells player script you are inside
         player.ToggleOutside(false);
 
-        player.SetPosition(enterTransform.position);
+        // calculates pos as Vector 2
+        Vector2 _pos = new Vector2(enterTransform.position.x, enterTransform.position.y);
+
+        // adds offset
+        _pos += entranceOffset;
+
+        // sets player pos
+        player.SetPosition(_pos);
 
         // turns on objects on enter
         for (int i = 0; i < turnOnOnEnter.Length; i++)

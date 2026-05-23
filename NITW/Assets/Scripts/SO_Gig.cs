@@ -71,7 +71,7 @@ public class SO_Gig : ScriptableObject
         sGigManager.gigManagerGlobal.GetGig(this);
 
         // character text
-        sPlayer.playerGlobal.DisplayText("New gig-er-ino!", 2f);
+        sPlayer.playerGlobal.DisplayText("New gig-er-ino!", 1f);
     }
 
     public void TriggerOnGigStart()

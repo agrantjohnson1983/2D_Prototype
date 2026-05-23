@@ -7,6 +7,8 @@ public class sGameManager : MonoBehaviour
 {
     public static sGameManager gm;
 
+    sSceneManger sceneManager;
+
     public eMode gameMode;
 
     public GameObject canvasMain, canvasDialogue,

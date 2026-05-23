@@ -218,7 +218,7 @@ public class sPlayer : MonoBehaviour
     }
 
     // Sets player pos and resets all controller objects pos to zero
-    public void SetPosition(Vector3 pos)
+    public void SetPosition(Vector2 pos)
     {
         Debug.Log("Setting pos to: " + pos);
 

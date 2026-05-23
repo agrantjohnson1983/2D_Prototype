@@ -50,6 +50,8 @@ public class uTextCharacter : MonoBehaviour
 
     IEnumerator TypewriterEffect(TextMeshProUGUI _textMesh, float _rate, float _duration, bool _staysAttached)
     {
+        if (isTyping) yield return null;
+
         string textToDisplay = _textMesh.text;
 
         // sets speaker name
