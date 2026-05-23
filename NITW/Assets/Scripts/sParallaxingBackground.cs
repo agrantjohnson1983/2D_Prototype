@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class sParallaxingBackground : MonoBehaviour
@@ -19,7 +20,9 @@ public class sParallaxingBackground : MonoBehaviour
     float textureUnitSizeX;
     float textureUnitySizeY;
 
-    Vector2 startingOffset;
+    Vector3 startingOffset;
+
+    public static bool canParralax = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +30,7 @@ public class sParallaxingBackground : MonoBehaviour
         /*startPos = transform.localPosition.x;
 
         length = GetComponent<SpriteRenderer>().bounds.size.x;*/
+
 
         startingOffset = new Vector2(transform.localPosition.x, transform.localPosition.y);
 
@@ -50,6 +54,8 @@ public class sParallaxingBackground : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!canParralax) return;
+
         Vector3 deltaMovement = camTransform.position - lastCamPos;
 
         transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y, 0f);

@@ -42,6 +42,9 @@ public class sDoorBehavior : sInteractable
         // tells player script you are inside
         player.ToggleOutside(false);
 
+        // turns off parallaxing backgrounds
+        sParallaxingBackground.canParralax = false;
+
         // calculates pos as Vector 2
         Vector2 _pos = new Vector2(enterTransform.position.x, enterTransform.position.y);
 

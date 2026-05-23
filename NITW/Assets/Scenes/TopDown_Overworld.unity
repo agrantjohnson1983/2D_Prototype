@@ -1894,6 +1894,10 @@ PrefabInstance:
       propertyPath: Lens.FieldOfView
       value: 22.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1865644798050340391, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1956452993176449702, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
       propertyPath: BoundingVolume
       value: 
@@ -1957,6 +1961,14 @@ PrefabInstance:
     - target: {fileID: 6803262296234542354, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864199572016040985, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003314069411947831, guid: e86f15a815ee187469a0b75cc8b317f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2268,6 +2280,10 @@ PrefabInstance:
     - target: {fileID: 3118921545576722585, guid: 3319937720730234587afd5943ddb4bb, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270462842162484461, guid: 3319937720730234587afd5943ddb4bb, type: 3}
+      propertyPath: gameMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3270462842162484461, guid: 3319937720730234587afd5943ddb4bb, type: 3}
       propertyPath: sceneMode

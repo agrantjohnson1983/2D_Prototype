@@ -24,6 +24,9 @@ public class sExitBehavior : MonoBehaviour
         // Sets exit position
         player.SetPosition(exitTransform.position);
 
+        // turns parallax back on
+        sParallaxingBackground.canParralax = true;
+
         // Turns on stuff - Do this first so you don't accidently turn this off before turning stuff on
         for (int i = 0; i < turnOnOnTrigger.Length; i++)
         {

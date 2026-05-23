@@ -952,7 +952,7 @@ PrefabInstance:
       objectReference: {fileID: 155603888}
     - target: {fileID: 3270462842162484461, guid: 3319937720730234587afd5943ddb4bb, type: 3}
       propertyPath: gameMode
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3270462842162484461, guid: 3319937720730234587afd5943ddb4bb, type: 3}
       propertyPath: sceneMode
