@@ -32,6 +32,9 @@ public class sCharacterControllerTopDown : sCharacterControllerBASE
         inputVelocity = new Vector2();
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        // turns off energy drain
+        cEnergy.energyGlobal.ToggleDrain(false);
     }
 
     // Update is called once per frame

@@ -7,6 +7,8 @@ public class sDoorBehavior : sInteractable
 
     public GameObject[] turnOffOnEnter, turnOnOnEnter;
 
+    public Transform enterTransform;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
     {
@@ -37,6 +39,8 @@ public class sDoorBehavior : sInteractable
 
         // tells player script you are inside
         player.ToggleOutside(false);
+
+        player.SetPosition(enterTransform.position);
 
         // turns on objects on enter
         for (int i = 0; i < turnOnOnEnter.Length; i++)

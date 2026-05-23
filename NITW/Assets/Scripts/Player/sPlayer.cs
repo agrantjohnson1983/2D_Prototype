@@ -9,6 +9,10 @@ public class sPlayer : MonoBehaviour
     public GameObject characterFlying;
     sCharacterControllerFlyingSideToSide characterControllerFlyingSideToSide;
 
+    public GameObject characterOverworldLow;
+
+    public GameObject characterOverworldHigh;
+
     public GameObject characterSignSpin;
     sSignController signController;
 
@@ -251,6 +255,9 @@ public class sPlayer : MonoBehaviour
 
     void CheckFlyingToggleInput()
     {
+        // returns if you are inside and not flying 
+        if (!isFlying && !isOutside) return;
+
         if (Input.GetKeyDown(KeyCode.F) && canSwitchState)
         {
             Debug.Log("Input detected and can switch state");
@@ -339,6 +346,22 @@ public class sPlayer : MonoBehaviour
             Debug.LogError("No text popup found!");
         }
     }*/
+
+    // This gets called for transitions between the side to side and overworld
+    public void ToggleOverworldLow(bool _isInOverworld)
+    {
+        Debug.Log("Overworld toggled to: " + _isInOverworld);
+
+        characterFlying.SetActive(!_isInOverworld);
+        characterOverworldLow.SetActive(_isInOverworld);
+    }
+
+    // This gets called bewteen the overworld and higher overworld
+    public void ToggleOverworldHigh(bool _isInOverworld)
+    {
+        characterOverworldLow.SetActive(!_isInOverworld);
+        characterOverworldHigh.SetActive(_isInOverworld);
+    }
 
     public void TriggerSleep()
     {

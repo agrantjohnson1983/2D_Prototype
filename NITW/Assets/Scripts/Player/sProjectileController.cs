@@ -91,7 +91,7 @@ public class sProjectileController : MonoBehaviour
 
         switch (gameMode)
         {
-            case eMode.topdown:
+            case eMode.topdownLow:
 
                 // converts to z direction motion
                 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;

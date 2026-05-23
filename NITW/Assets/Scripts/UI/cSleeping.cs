@@ -2,9 +2,18 @@ using UnityEngine;
 
 public class cSleeping : MonoBehaviour
 {
+    public GameObject yesButton;
+
+    public void OnEnable()
+    {
+        sPlayer.playerGlobal.ToggleMovement(false);
+
+        sGameManager.gm.SetEventSystem(yesButton);
+    }
+
     public void OnClickYes()
     {
-        Debug.Log("Yes to sleeep clicked");
+        //Debug.Log("Yes to sleeep clicked");
 
         // triggers sleep
         sPlayer.playerGlobal.TriggerSleep();
@@ -15,6 +24,10 @@ public class cSleeping : MonoBehaviour
 
     public void OnClickNo()
     {
+        // turns player back on
+        sPlayer.playerGlobal.ToggleMovement(true);
+
+        // turns this off
         this.gameObject.SetActive(false);
     }
 }

@@ -11,15 +11,10 @@ public class sOverworldTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             // sets game mode
-            sGameManager.gm.SetGameMode(eMode.topdown);
+            sGameManager.gm.SetGameMode(eMode.topdownLow);
 
             // loads scene
             sSceneManger.sceneManagerGlobal.LoadScene(sceneToChange, eDirection.north, loadingOffset);
         }
     }
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-        
-    //}
 }

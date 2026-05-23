@@ -9,131 +9,100 @@ public class sCharacterDelivery : sCharacterGigMaster
 
     bool isDelivering = false;
 
-    //bool hasItem = false;
-
-    bool gigComplete = false;
-
-    public GameObject[] textResponses;
-
-    public GameObject[] buttons;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("Character trigger hit by " + other.gameObject.name);
+        base.OnTriggerEnter2D(other);
 
-        // Doesn't trigger after gig complete
-        if (other.gameObject.CompareTag("Player") && !gigComplete)
-        {
-            //Debug.Log("Player detected - turning on dialogue canvas");
-
-            if(isRecipient)
-            {
-                bool hasItem = false;
-
-                // iterates through entire inventory list
-                foreach (SO_Item item in cInventory.inventoryGlobal.ReturnItemList())
-                {
-                    // checks if item to deliver is in inventory
-                    if (item == itemToDeliver && !hasItem)
-                    {
-                        hasItem = true;
-                    }
-                }
-
-                // if you have the item then it displays the finish canvas
-                if (hasItem)
-                {
-                    //canvasDialogueGigFinish.SetActive(true);
-                }
-
-                // Displays other canvas
-                else
-                {
-                    canvasDialogue.SetActive(true);
-                }
-            }
-
-            // If not recipient - shows the OFFER canvas 
-            else
-            {
-                if(!isDelivering)
-                {
-                    canvasDialogue.SetActive(true);
-                }
-
-                else
-                {
-                    //canvasDialogueGigFinish.SetActive(true);
-                }
-            }
-        }
-
+        Debug.Log("Delivery character is being triggered after base trigger");
     }
 
-    public void OnGigAccept()
+    public override void TriggerInteraction()
     {
+        base.TriggerInteraction();
+
+        // checks if is delivery receipient
+        if (isRecipient)
+        {
+            // temp has item bool check
+            bool _hasItem = false;
+
+            // iterates through entire inventory list
+            foreach (SO_Item item in cInventory.inventoryGlobal.ReturnItemList())
+            {
+                // checks if item to deliver is in inventory
+                if (item == itemToDeliver && !_hasItem)
+                {
+                    _hasItem = true;
+                }
+            }
+
+            // if you have the item then it displays the finish canvas
+            if (_hasItem)
+            {
+                characterDialogueTextMesh.text = gigData.gigPropositionText;
+            }
+
+            // Displays other canvas
+            else
+            {
+                // leave blank and just add the text in the canvas since it won't change
+            }
+
+            // Sets yes button to On Gig Accept
+            //SetYesButton(OnGigAccept);
+
+            // turns on canvas
+            canvasDialogue.SetActive(true);
+
+            // turns off player movement
+            sPlayer.playerGlobal.ToggleMovement(false);
+
+            // sets interactable button
+            sGameManager.gm.SetEventSystem(buttonYes);
+        }
+
+        // If not recipient - shows the OFFER canvas 
+        else
+        {
+            // is not delivering
+            if (!isDelivering)
+            {
+                characterDialogueTextMesh.text = gigData.gigOfferText;
+            }
+
+            // delivery is in progress 
+            else
+            {
+                characterDialogueTextMesh.text = gigData.gigInProgressText;
+            }
+        }
+    }
+
+    public override void OnGigAccept()
+    {
+        // runs base gig accept
+        base.OnGigAccept();
+
         // toggles bool so canvas will trigger differently
         isDelivering = true;
-
-        // fires event trigger
-        gigData.TriggerOnGetGig();
 
         // adds item to inventory
         cInventory.inventoryGlobal.AddItem(itemToDeliver);
     }
 
-    public void OnDeliveryComplete()
+    public override void OnGigComplete()
     {
-        // sets gig complete to true
-        gigComplete = true;
+        base.OnGigComplete();
+
+        // not delivering
+        isDelivering = false;
 
         // removes item from inventory
         cInventory.inventoryGlobal.RemoveItem(itemToDeliver);
-
-        // triggers SO
-        gigData.TriggerOnGigComplete();
-
-        // clears canvas in 5 seconds
-        Invoke("ClearCanvas", 5f);
     }
 
-    public void OnDeliveryReject()
+    public override void OnGigReject()
     {
-        // clears canvas in 5 seconds
-        Invoke("ResetCanvas", 2.5f);
-    }
-
-    void ResetCanvas()
-    {
-        // turns off canvases
-        //canvasDialogueGigFinish.SetActive(false);
-        canvasDialogue.SetActive(false);
-
-        // resets all text responses
-        foreach(GameObject go in textResponses)
-        {
-            go.SetActive(false); 
-        }
-
-        // turns buttons back on
-        foreach (GameObject go in buttons)
-        {
-            go.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            ResetCanvas();
-
-            //Debug.Log("Player leaving trigger - turning off dialogue canvas and resetting dialogue tree");
-
-            //canvasDialogue.SetActive(false);
-
-            // resets dialogue
-            //dialogueController.ResetDialogue();
-        }
+        base.OnGigReject();
     }
 }

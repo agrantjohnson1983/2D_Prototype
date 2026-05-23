@@ -55,7 +55,7 @@ public class sInteractable : MonoBehaviour
     {
         if (collision.TryGetComponent<sCharacterInteraction>(out interactionCharacterController))
         {
-            //Debug.Log("Character interaction detected");
+            Debug.Log("Character interaction detected");
 
             canInteract = true;
 

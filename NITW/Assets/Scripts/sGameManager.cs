@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public enum eMode { sidescroll, topdown, frontend, dungeon }
+public enum eMode { sidescroll, topdownLow, topdownHigh, frontend, dungeon }
 
 public class sGameManager : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class sGameManager : MonoBehaviour
     public eMode gameMode;
 
     public GameObject canvasMain, canvasDialogue,
-        inventoryUI, moneyUI, energyUI, timeOfDayUI, locationUI, compassUI, phoneUI;
+        inventoryUI, moneyUI, energyUI, timeOfDayUI, locationUI, compassUI, phoneUI, HUD_Main;
 
     public cInventory inventory;
 
@@ -26,7 +26,20 @@ public class sGameManager : MonoBehaviour
 
     public cPhone phone;
 
-    public sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { player = value; } }
+    //public sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { player = value; } }
+
+    sPlayer _player;
+
+    sPlayer player
+    {
+        get
+        {
+            if (_player == null)
+            { _player = sPlayer.playerGlobal; }
+            return _player;
+        }
+        set { _player = value; }
+    }
 
     public EventSystem eventSystem;
 
@@ -49,12 +62,15 @@ public class sGameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //player = sPlayer.playerGlobal;
+        player = sPlayer.playerGlobal;
 
         if(gameMode == eMode.frontend)
         {
             player.gameObject.SetActive(false);
         }
+
+        // hides cursor
+        Cursor.visible = false;
     }
 
     public void StartGame()
@@ -75,9 +91,11 @@ public class sGameManager : MonoBehaviour
     }
 
     // This gets called to change game mode
-    public void SetGameMode(eMode _sceneMode)
+    public void SetGameMode(eMode _mode)
     {
-        gameMode = _sceneMode;
+        Debug.Log("GameManager setting mode to: " + _mode);
+
+        gameMode = _mode;
     }
 
     public void ToggleOverworld(bool _isInOverworld)
@@ -129,5 +147,53 @@ public class sGameManager : MonoBehaviour
     public void SetEventSystem(GameObject _objectToSet)
     {
         eventSystem.SetSelectedGameObject(_objectToSet);
+    }
+
+    public void OnSceneLoad()
+    {
+        Debug.Log("GameManager called on scene load with mode of: " + gameMode);
+
+        // turns off dialogue box
+        ToggleDialoge(false);
+
+        // runs game mode to toggle canvas
+        switch (gameMode)
+        {
+            case eMode.topdownLow:
+
+                // toggles overworld
+                ToggleOverworld(true);
+
+                // set player
+                player.ToggleOverworldLow(true);
+
+                //player.ToggleOverworldHigh(false);
+
+                break;
+
+            case eMode.topdownHigh:
+
+                player.ToggleOverworldHigh(true);
+
+                break;
+
+            case eMode.frontend:
+
+                ToggleCanvasMain(false);
+
+                break;
+
+            case eMode.sidescroll:
+
+                ToggleCanvasMain(true);
+
+                break;
+
+            case eMode.dungeon:
+
+                ToggleDungeonCanvas(true);
+
+                break;
+        }
     }
 }

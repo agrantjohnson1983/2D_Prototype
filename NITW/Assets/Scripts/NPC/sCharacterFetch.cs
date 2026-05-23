@@ -65,7 +65,7 @@ public class sCharacterFetch : sCharacterGigMaster
         else
         {
             characterDialogueTextMesh.text = gigData.gigInProgressText;
-            Invoke("ResetCanvas", 1f);
+            Invoke("ResetCanvas", 3f);
         }
     }
 

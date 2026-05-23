@@ -5,7 +5,16 @@ public class sSceneManger : MonoBehaviour
 {
     public static sSceneManger sceneManagerGlobal;
 
-    public static Vector3 loadPos;
+    sGameManager gm;
+
+    sPlayer _player;
+
+    sPlayer player { get { if (_player == null)
+                        { _player = sPlayer.playerGlobal; } 
+                         return _player; } 
+                    set { _player = value; } }
+
+    public static Vector2 loadPos;
 
     private void Awake()
     {
@@ -14,7 +23,14 @@ public class sSceneManger : MonoBehaviour
         else
             Destroy(sceneManagerGlobal.gameObject);
 
+        gm = GetComponentInParent<sGameManager>();
+
         //loadPos = new Vector3();
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void OnEnable()
@@ -29,15 +45,11 @@ public class sSceneManger : MonoBehaviour
 
     public void LoadScene(string _sceneToTransitionTo, eDirection _directionFacing, Vector3 _loadPosOffset)
     {
-        //Debug.Log("Load pos offset is " + _loadPosOffset);
-
         // Sets new direction
         //cCompass.compassGlobal.SetDirection(_directionFacing);
 
         // sets load position
         loadPos = _loadPosOffset;
-
-        //Debug.Log("Load pos is set to:" + loadPos);
 
         // Loads scene
         SceneManager.LoadScene(_sceneToTransitionTo);
@@ -46,15 +58,20 @@ public class sSceneManger : MonoBehaviour
     // This method is called whenever a new scene is loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Scene Loaded: " + scene.name);
+        Debug.Log("Scene Loaded: " + scene.name + " with load pos of: " + loadPos);
 
-        Debug.Log("Scene Loaded - load pos is: " + loadPos);
+        // Tells GM scene has loaded
+        gm.OnSceneLoad();
 
-        if(loadPos != null)
-            sPlayer.playerGlobal.SetPosition(loadPos);
+        // sets player pos
+        if (loadPos != Vector2.zero)
+            player.SetPosition(loadPos);
+
+        // resets load pos
+        loadPos = Vector2.zero;
 
         // clears text
-        sPlayer.playerGlobal.DisplayText("", 0f);
+        player.DisplayText("", 0f);
 
         // Checks if player was on bus during scene change
         if (sBusStop.isOnBus)
@@ -63,35 +80,6 @@ public class sSceneManger : MonoBehaviour
 
             // triggering bus stop exit if player was on busdd
             sBusStop.busStopGlobal.ExitBusStop();
-        }
-
-        // turns off dialogue box
-        sGameManager.gm.ToggleDialoge(false);
-
-        switch(sGameManager.gm.gameMode)
-        {
-            case eMode.topdown:
-
-                sGameManager.gm.ToggleOverworld(true);
-
-                goto case eMode.frontend;
-                
-
-            case eMode.frontend:
-
-                sGameManager.gm.ToggleCanvasMain(false);
-
-                break;
-
-            case eMode.sidescroll:
-
-                sGameManager.gm.ToggleCanvasMain(true);
-
-                break;
-
-            case eMode.dungeon:
-
-                break;
         }
     }
 }

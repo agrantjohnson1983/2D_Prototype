@@ -1,22 +1,15 @@
 using UnityEngine;
 
-public class sBedTrigger : MonoBehaviour
+public class sBedTrigger : sInteractable
 {
     public GameObject bedCanvas;
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Player"))
-        {
-            bedCanvas.SetActive(true);
-        }
-    }
+    //public GameObject firstButton;
 
-    public void OnTriggerExit2D(Collider2D collision)
+    public override void TriggerInteraction()
     {
-        if (collision.CompareTag("Player"))
-        {
-            bedCanvas.SetActive(false);
-        }
+        base.TriggerInteraction();
+
+        bedCanvas.SetActive(true);
     }
 }

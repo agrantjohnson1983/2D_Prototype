@@ -628,7 +628,7 @@ RectTransform:
   m_Children:
   - {fileID: 7032247467269074566}
   - {fileID: 4200651743685857858}
-  m_Father: {fileID: 3169353685525574924}
+  m_Father: {fileID: 1331887963902993345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2055,7 +2055,7 @@ RectTransform:
   m_Children:
   - {fileID: 6745801246496987640}
   - {fileID: 7724627169011174957}
-  m_Father: {fileID: 3169353685525574924}
+  m_Father: {fileID: 1331887963902993345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2944,7 +2944,7 @@ RectTransform:
   m_Children:
   - {fileID: 1683247244194653360}
   - {fileID: 7728189128539498704}
-  m_Father: {fileID: 3169353685525574924}
+  m_Father: {fileID: 1331887963902993345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2985,7 +2985,7 @@ RectTransform:
   - {fileID: 8583459010222339947}
   - {fileID: 6165196205153315668}
   - {fileID: 6689404048259646164}
-  m_Father: {fileID: 3169353685525574924}
+  m_Father: {fileID: 1331887963902993345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3896,14 +3896,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2626159080136815615}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 980709056488461432}
   - {fileID: 3331000973739956392}
-  m_Father: {fileID: 3169353685525574924}
+  m_Father: {fileID: 1331887963902993345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -4580,6 +4580,7 @@ MonoBehaviour:
   locationUI: {fileID: 4603412082614559499}
   compassUI: {fileID: 5942168534083882988}
   phoneUI: {fileID: 2580652741804848393}
+  HUD_Main: {fileID: 3653258802572138088}
   inventory: {fileID: 571045126261382992}
   money: {fileID: 4627832560411872760}
   energy: {fileID: 1227709441566170172}
@@ -4587,8 +4588,7 @@ MonoBehaviour:
   location: {fileID: 6597202996233571369}
   compass: {fileID: 8998174565026040481}
   phone: {fileID: 4982424821466582408}
-  player: {fileID: 0}
-  eventSystem: {fileID: 0}
+  eventSystem: {fileID: 134078005655777391}
 --- !u!1 &3257030485003631585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,6 +5180,48 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3653258802572138088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331887963902993345}
+  m_Layer: 0
+  m_Name: HUD_Main
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1331887963902993345
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653258802572138088}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8351230536407127569}
+  - {fileID: 7343127352325953062}
+  - {fileID: 8280968334230588986}
+  - {fileID: 3413810423317542821}
+  - {fileID: 7420199773050477540}
+  - {fileID: 5880983697366066874}
+  - {fileID: 8088377261467070198}
+  m_Father: {fileID: 3169353685525574924}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3726480275811428621
 GameObject:
   m_ObjectHideFlags: 0
@@ -6568,7 +6610,7 @@ RectTransform:
   m_Children:
   - {fileID: 4608437134623709651}
   - {fileID: 5193039946422177683}
-  m_Father: {fileID: 3169353685525574924}
+  m_Father: {fileID: 1331887963902993345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -6594,8 +6636,14 @@ MonoBehaviour:
   hudPhoneNotificationObject: {fileID: 2954834673101163703}
   notificationImage: {fileID: 3520349977708766772}
   notificationText: {fileID: 5853991044437535819}
-  phoneBody: {fileID: 0}
-  uiButton: {fileID: 0}
+  phoneOpen: {fileID: 0}
+  HUD_Button: {fileID: 0}
+  screenMain: {fileID: 0}
+  screenApp: {fileID: 0}
+  screenGigs: {fileID: 0}
+  exitButtonMain: {fileID: 0}
+  exitButtonApp: {fileID: 0}
+  buttonSelectedOnOpenMain: {fileID: 0}
 --- !u!1 &5494135700056341983
 GameObject:
   m_ObjectHideFlags: 0
@@ -6825,7 +6873,7 @@ RectTransform:
   - {fileID: 1444382709695645621}
   - {fileID: 8922100304750599227}
   - {fileID: 6771291042768448591}
-  m_Father: {fileID: 3169353685525574924}
+  m_Father: {fileID: 1331887963902993345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -7019,13 +7067,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8351230536407127569}
-  - {fileID: 7343127352325953062}
-  - {fileID: 8280968334230588986}
-  - {fileID: 3413810423317542821}
-  - {fileID: 7420199773050477540}
-  - {fileID: 5880983697366066874}
-  - {fileID: 8088377261467070198}
+  - {fileID: 1331887963902993345}
   m_Father: {fileID: 7518042955141153286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

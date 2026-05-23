@@ -7,8 +7,7 @@ public class sStreetBoundary : MonoBehaviour
 
     public float offsetMovementAmount = 3f;
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnterd2D(Collider2D collision)
     {
         // checks for character controller on trigger
         if(collision.TryGetComponent<sCharacterControllerSideScroll>(out sCharacterControllerSideScroll _controller))
