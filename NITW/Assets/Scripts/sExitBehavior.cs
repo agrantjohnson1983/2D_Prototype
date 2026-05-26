@@ -6,6 +6,8 @@ public class sExitBehavior : MonoBehaviour
 
     public bool goesOutside;
 
+    public Vector2 exitOffset;
+
     public GameObject[] turnOffOnTrigger;
     public GameObject[] turnOnOnTrigger;
 
@@ -21,8 +23,11 @@ public class sExitBehavior : MonoBehaviour
         // Toggles if outside
         player.ToggleOutside(goesOutside);
 
+        // calculates offset - needs to convert to vector3 but with no z movement
+        Vector3 _offset = new Vector3(exitOffset.x, exitOffset.y, 0);
+
         // Sets exit position
-        player.SetPosition(exitTransform.position);
+        player.SetPosition(exitTransform.position + _offset);
 
         // turns parallax back on
         sParallaxingBackground.canParralax = true;
