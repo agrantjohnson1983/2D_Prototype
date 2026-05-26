@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -262,6 +260,9 @@ public class sDialogueManager : MonoBehaviour
                         
                 });
             }
+
+            // sets active button to first index in the array
+            sGameManager.gm.SetEventSystem(activeButtons[0]);
         }
     }
 
@@ -269,6 +270,13 @@ public class sDialogueManager : MonoBehaviour
     {
         GameObject go = Instantiate(pButtonChoice, transformButtonsChoice);
         go.GetComponentInChildren<TextMeshProUGUI>().text = label;
+
+        // sets selected color to green
+        ColorBlock cb = go.GetComponent<Button>().colors;
+        cb.selectedColor = Color.green;
+        go.GetComponent<Button>().colors = cb;
+
+
         go.GetComponent<Button>().onClick.AddListener(onClick);
         activeButtons.Add(go);
     }

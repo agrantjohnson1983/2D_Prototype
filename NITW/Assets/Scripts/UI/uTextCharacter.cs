@@ -32,7 +32,7 @@ public class uTextCharacter : MonoBehaviour
     }
 
     // optional parameter for typewriter speed
-    public void SetText(string _text, float _duration, float _typewriterSpeed = 0.1f, bool _staysAttached = true)
+    public void SetText(string _text, float _duration, float _typewriterSpeed = 0.05f, bool _staysAttached = true)
     {
         // sets transform to character pos + offset
         this.transform.position =

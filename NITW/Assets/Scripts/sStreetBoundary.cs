@@ -3,16 +3,18 @@ using UnityEngine;
 public class sStreetBoundary : MonoBehaviour
 {
     // set this to true if the character should reverse and move to right when hitting collider
-    public bool reversesToRight = true;
+    public bool reversesToRight;
 
     public float offsetMovementAmount = 3f;
 
-    private void OnTriggerEnterd2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // checks for character controller on trigger
         if(collision.TryGetComponent<sCharacterControllerSideScroll>(out sCharacterControllerSideScroll _controller))
         {
             //Debug.Log("Triggering street boundary reversal");
+
+
             if (!reversesToRight)
             {
                 offsetMovementAmount *= -1f;
@@ -21,8 +23,14 @@ public class sStreetBoundary : MonoBehaviour
             // triggers reversal - might need a toggle but should only need a single collision and the reverse pushes it outside collider
             _controller.BoundaryTrigger(offsetMovementAmount);
 
+            // resets offset amount
+            if (!reversesToRight)
+            {
+                offsetMovementAmount *= -1f;
+            }
+
             // displays text
-            sPlayer.playerGlobal.DisplayText("I can't cross this sreet", 3.5f);
+            sPlayer.playerGlobal.DisplayText("I can't cross this street", 3.5f);
         }
     }
 }

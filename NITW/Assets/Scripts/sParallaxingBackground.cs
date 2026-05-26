@@ -22,6 +22,7 @@ public class sParallaxingBackground : MonoBehaviour
 
     Vector3 startingOffset;
 
+    // toggle this statically to turn off parallaxing for all instances
     public static bool canParralax = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,7 +53,7 @@ public class sParallaxingBackground : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (!canParralax) return;
 
@@ -78,24 +79,5 @@ public class sParallaxingBackground : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, camTransform.position.y - offsetPosY + startingOffset.y);
             }
         }
-    }
-
-    private void LateUpdate()
-    {
-        /*float temp = (cam.transform.position.x * (1 - parallaxEffect));
-
-        float dist = (cam.transform.position.x * parallaxEffect);
-
-        transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
-
-        if(temp > startPos + length)
-        {
-            startPos += length;
-        }
-
-        else if(temp < startPos - length)
-        {
-            startPos -= length;
-        }*/
     }
 }

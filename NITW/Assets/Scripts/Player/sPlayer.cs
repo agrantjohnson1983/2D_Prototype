@@ -229,9 +229,6 @@ public class sPlayer : MonoBehaviour
             GameObject childGO = child.gameObject;
             childGO.transform.localPosition = Vector3.zero;
         }
-
-        // Resets backgrounds
-        sBackgroundManager.backgroundManagerGlobal.ResetBackgrounds();
     }
 
     IEnumerator StateSwitchCooldown(float _time)
@@ -420,6 +417,11 @@ public class sPlayer : MonoBehaviour
             if(textPopup == null)
             Debug.LogError("No text popup found!");
         }
+    }
+
+    public void StopText()
+    {
+        textPopup.StopAllCoroutines();
     }
 }
 
