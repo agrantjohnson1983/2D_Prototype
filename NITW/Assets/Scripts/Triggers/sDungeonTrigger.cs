@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class sDungeonTrigger : MonoBehaviour
 {
-    public string dungeonSceneName;
     public eDirection directionToLoad;
 
     public bool isDungeonExit = false;
 
     public Vector3 loadingOffset;
+
+    public SO_Level levelData;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,7 +21,7 @@ public class sDungeonTrigger : MonoBehaviour
             sPlayer.playerGlobal.ToggleDungeon(!isDungeonExit);
 
             // Loads scene
-            sSceneManger.sceneManagerGlobal.LoadScene(dungeonSceneName, directionToLoad, loadingOffset);
+            sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData);
         }
     }
 }

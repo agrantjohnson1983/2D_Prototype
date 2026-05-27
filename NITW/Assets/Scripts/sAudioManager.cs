@@ -25,6 +25,12 @@ public class sAudioManager : MonoBehaviour
         activeAudioSources = new List<AudioSource>();
     }
 
+    public void SceneChange()
+    {
+        activeAudioSources.Clear();
+        activeAudioSources = new List<AudioSource>();
+    }
+
     public void AddAudioSource(AudioSource _audioSource)
     {
         CheckActiveAudio();

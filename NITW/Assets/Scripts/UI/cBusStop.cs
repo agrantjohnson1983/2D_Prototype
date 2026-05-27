@@ -38,6 +38,13 @@ public class cBusStop : MonoBehaviour
 
     public static int numberOfBusPasses = 1;
 
+    public SO_Level
+        levelDataBasin,
+        levelDataBurbs,
+        levelDataDowntown,
+        levelDataOutskirts,
+        levelDataCenterSquare;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -95,41 +102,41 @@ public class cBusStop : MonoBehaviour
             // unpauses character movement
             sCharacterControllerBASE.canMove = false;
 
-            // switches the neighborhoods and then does a scene change to the new one
+            // switches the location UI and then does a scene change to the new one
             switch (_neighborhoodToGoTo)
             {
                 case eNeighborhood.basin:
 
                     cLocation.locationGlobal.SetTextLocation("The Basin");
-                    sSceneManger.sceneManagerGlobal.LoadScene(basinSceneName, basinDirection, basinLoadOffset);
+                    sSceneManger.sceneManagerGlobal.LoadScene(basinLoadOffset, levelDataBasin);
 
                     break;
 
                 case eNeighborhood.burbs:
 
                     cLocation.locationGlobal.SetTextLocation("The Burbs");
-                    sSceneManger.sceneManagerGlobal.LoadScene(burbsSceneName, burbsDirection, burbsLoadOffset);
+                    sSceneManger.sceneManagerGlobal.LoadScene(burbsLoadOffset, levelDataBurbs);
 
                     break;
 
                    case eNeighborhood.downtown:
 
                     cLocation.locationGlobal.SetTextLocation("Downtown");
-                    sSceneManger.sceneManagerGlobal.LoadScene(downtownScenName, downtownDirection, downtownLoadOffset);
+                    sSceneManger.sceneManagerGlobal.LoadScene(downtownLoadOffset, levelDataDowntown);
 
                     break;
 
                 case eNeighborhood.outskirts:
 
                     cLocation.locationGlobal.SetTextLocation("The Outskirts");
-                    sSceneManger.sceneManagerGlobal.LoadScene(outskirtsSceneName, outskirtsDirection, outskirtsLoadOffset);
+                    sSceneManger.sceneManagerGlobal.LoadScene(outskirtsLoadOffset, levelDataOutskirts);
 
                     break;
 
                 case eNeighborhood.centerSquare:
 
                     cLocation.locationGlobal.SetTextLocation("Center Square");
-                    sSceneManger.sceneManagerGlobal.LoadScene(centerSquareSceneName, centerSquareDirection, centerSquareLoadOffset);
+                    sSceneManger.sceneManagerGlobal.LoadScene(centerSquareLoadOffset, levelDataCenterSquare);
 
                     break;
             }

@@ -16,17 +16,10 @@ public class sAudioPlayer : MonoBehaviour
 
     private void Awake()
     {
-        audioPlayerGlobal = this;
-
-        if(audioPlayerGlobal != null)
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-
-        if(audioPlayerGlobal != this)
-        {
+        if(audioPlayerGlobal == null) 
+            audioPlayerGlobal = this;
+        else
             Destroy(this.gameObject);
-        }
     }
 
     // Start is called before the first frame update

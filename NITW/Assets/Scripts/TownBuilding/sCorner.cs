@@ -11,10 +11,12 @@ public class sCorner : sInteractable
 
     public Vector3 loadingOffset;
 
+    public SO_Level levelData;
+
     public override void TriggerInteraction()
     {
         base.TriggerInteraction();
 
-        sSceneManger.sceneManagerGlobal.LoadScene(sceneToTransitionTo, directionToTurn, loadingOffset);
+        sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData);
     }
 }

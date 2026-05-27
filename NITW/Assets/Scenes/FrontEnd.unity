@@ -1381,6 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingSelectedButton: {fileID: 1054549288}
   startingSceneToLoad: SideScroll_Neighborhood1_Burbs_01_Homeblock
+  levelData: {fileID: 11400000, guid: 11fdef0fc353288448aed93659a46a29, type: 2}
 --- !u!1 &1732069820
 GameObject:
   m_ObjectHideFlags: 0

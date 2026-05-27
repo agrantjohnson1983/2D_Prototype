@@ -6,6 +6,8 @@ public class sOverworldTrigger : MonoBehaviour
 
     public Vector3 loadingOffset;
 
+    public SO_Level levelData;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -14,7 +16,7 @@ public class sOverworldTrigger : MonoBehaviour
             sGameManager.gm.SetGameMode(eMode.topdownLow);
 
             // loads scene
-            sSceneManger.sceneManagerGlobal.LoadScene(sceneToChange, eDirection.north, loadingOffset);
+            sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData);
         }
     }
 }

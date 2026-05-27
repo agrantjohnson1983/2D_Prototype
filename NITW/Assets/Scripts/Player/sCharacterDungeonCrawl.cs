@@ -33,6 +33,8 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
     string exitDungeonScene;
     public Vector3 dungeonExitOffset;
 
+    public SO_Level exitLevelData;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
     {
@@ -154,7 +156,7 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
         // ends dungeon crawl
         if(exitDungeonScene != null)
         {
-            sSceneManger.sceneManagerGlobal.LoadScene(exitDungeonScene, eDirection.north, dungeonExitOffset);
+            sSceneManger.sceneManagerGlobal.LoadScene(dungeonExitOffset, exitLevelData);
         }
     }
 

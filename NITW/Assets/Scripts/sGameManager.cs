@@ -51,7 +51,7 @@ public class sGameManager : MonoBehaviour
         // Persistant Singleton setup
         if (gm != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
         else
