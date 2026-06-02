@@ -103,7 +103,7 @@ public class sLevelManager : MonoBehaviour
         // sets new current level
         currentLevel = _levelToChangeTo;
 
-        sAudioManager.audioManagerGlobal.SceneChange();
+        
 
         Debug.Log("Level swapped");
 

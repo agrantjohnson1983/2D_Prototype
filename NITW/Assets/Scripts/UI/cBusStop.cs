@@ -4,19 +4,19 @@ using TMPro;
 
 public enum eNeighborhood { basin, burbs, downtown, outskirts, centerSquare}
 
-public class cBusStop : MonoBehaviour
+public class cBusStop : sButtonControllerBASE
 {
     public GameObject cityMap, busStopUI;
 
     public eNeighborhood currentNeighborhood;
 
     // scene names
-    public string 
-        basinSceneName, 
-        burbsSceneName, 
-        downtownScenName, 
-        outskirtsSceneName, 
-        centerSquareSceneName;
+    //public string 
+    //    basinSceneName, 
+    //    burbsSceneName, 
+    //    downtownScenName, 
+    //    outskirtsSceneName, 
+    //    centerSquareSceneName;
 
     public eDirection
         basinDirection,
@@ -44,6 +44,8 @@ public class cBusStop : MonoBehaviour
         levelDataDowntown,
         levelDataOutskirts,
         levelDataCenterSquare;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -99,9 +101,6 @@ public class cBusStop : MonoBehaviour
             // turns on bus UI to reset
             busStopUI.SetActive(true);
 
-            // unpauses character movement
-            sCharacterControllerBASE.canMove = false;
-
             // switches the location UI and then does a scene change to the new one
             switch (_neighborhoodToGoTo)
             {
@@ -140,6 +139,9 @@ public class cBusStop : MonoBehaviour
 
                     break;
             }
+
+            // turns movement back on
+            sPlayer.playerGlobal.ToggleMovement(true);
 
             // turns off canvas object
             this.gameObject.SetActive(false);

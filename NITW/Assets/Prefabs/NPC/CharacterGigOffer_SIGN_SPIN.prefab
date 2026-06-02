@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -333,9 +333,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: cGigOffer, Assembly-CSharp
-        m_MethodName: OnNah
+      - m_Target: {fileID: 1517137661257286922}
+        m_TargetAssemblyTypeName: sCharacterSignSpinGig, Assembly-CSharp
+        m_MethodName: OnGigReject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -587,9 +587,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: cGigOffer, Assembly-CSharp
-        m_MethodName: OnYeah
+      - m_Target: {fileID: 1517137661257286922}
+        m_TargetAssemblyTypeName: sCharacterSignSpinGig, Assembly-CSharp
+        m_MethodName: OnGigAccept
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: d2260ea1e762fdc468aeb495a7e7f824, type: 2}
+  grabSuccessText: yeahhh weeed!
+  audioGrabSuccessCue: grabSuccess
 --- !u!50 &6265849986936948619
 Rigidbody2D:
   serializedVersion: 5

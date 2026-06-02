@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class uCityMap : MonoBehaviour
+public class uCityMap : sButtonControllerBASE
 {
     eNeighborhood currentNeighborhood;
     //string str_currentNeighborhood;
@@ -28,6 +28,8 @@ public class uCityMap : MonoBehaviour
         {
             case eNeighborhood.basin:
 
+                startingSelectedButton = bBasin.gameObject;
+
                 break;
 
             case eNeighborhood.burbs:
@@ -35,7 +37,9 @@ public class uCityMap : MonoBehaviour
                 //str_currentNeighborhood = "TheBurbs";
 
                 // Sets button color to green of current neighborhood
-                bBurbs.GetComponent<Image>().color = Color.green;
+                //bBurbs.GetComponent<Image>().color = Color.green;
+
+                startingSelectedButton = bBurbs.gameObject;
 
                 // Changes text
                 bBurbs.GetComponentInChildren<TextMeshProUGUI>().text = "You are here! \n The Burbs";
@@ -49,8 +53,10 @@ public class uCityMap : MonoBehaviour
 
                 //str_currentNeighborhood = "Downtown";
 
+                startingSelectedButton = bDowntown.gameObject;
+
                 // Sets button color to green of current neighborhood
-                bDowntown.GetComponent<Image>().color = Color.green;
+                //bDowntown.GetComponent<Image>().color = Color.green;
 
                 // Changes text
                 bDowntown.GetComponentInChildren<TextMeshProUGUI>().text = "You are here! \n Downtown";
@@ -63,12 +69,25 @@ public class uCityMap : MonoBehaviour
 
             case eNeighborhood.outskirts:
 
+                startingSelectedButton = bOutskirts.gameObject;
+
                 break;
 
             case eNeighborhood.centerSquare:
 
+                startingSelectedButton = bCenterSquare.gameObject;
+
+                // Changes text
+                bDowntown.GetComponentInChildren<TextMeshProUGUI>().text = "You are here! \n Center Square";
+
+                //bBurbs.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
+                bDowntown.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
+
                 break;
         }
+
+        // sets the starting selected button as the neighborhood you're in
+        sGameManager.gm.SetEventSystem(startingSelectedButton);
     }
 
     public void OnButtonClick(string _neighborHood)

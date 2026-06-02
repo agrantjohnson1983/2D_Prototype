@@ -40,6 +40,7 @@ public class sCharacterDelivery : sCharacterGigMaster
             if (_hasItem)
             {
                 characterDialogueTextMesh.text = gigData.gigPropositionText;
+                ToggleButtons(true);
             }
 
             // Displays other canvas

@@ -23,7 +23,13 @@ public class sParallaxingBackground : MonoBehaviour
     Vector3 startingOffset;
 
     // toggle this statically to turn off parallaxing for all instances
-    public static bool canParralax = true;
+    public static bool canParralax = false;
+
+    private void OnEnable()
+    {
+        startingOffset = new Vector2(transform.position.x, transform.position.y);
+        //ResetBGX();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +39,7 @@ public class sParallaxingBackground : MonoBehaviour
         length = GetComponent<SpriteRenderer>().bounds.size.x;*/
 
 
-        startingOffset = new Vector2(transform.localPosition.x, transform.localPosition.y);
+        //startingOffset = new Vector2(transform.localPosition.x, transform.localPosition.y);
 
         if (camTransform == null)
         {
@@ -51,6 +57,16 @@ public class sParallaxingBackground : MonoBehaviour
             textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
             textureUnitySizeY = texture.height / sprite.pixelsPerUnit;
         }
+    }
+
+    public void ResetX()
+    {
+        transform.position = new Vector2(transform.position.x + startingOffset.x, 0f);
+    }
+
+    public void ResetY()
+    {
+        transform.position = new Vector3(transform.position.x, startingOffset.y, 0f);
     }
 
     private void LateUpdate()

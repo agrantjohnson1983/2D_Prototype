@@ -57,6 +57,12 @@ public class sSceneManger : MonoBehaviour
         // sets load position
         loadPos = _loadPosOffset;
 
+        // turns off parallaxing
+        sParallaxingBackground.canParralax = false;
+
+        // audio scene change - clears out active audioSources for sfx
+        sAudioManager.audioManagerGlobal.SceneChange();
+
         // does level swap
         sLevelManager.levelManagerGlobal.ChangeLevel(_levelData);
 
@@ -65,6 +71,8 @@ public class sSceneManger : MonoBehaviour
         {
             Debug.Log("Scene was found in list - changing level without scene change ");
 
+            // sets player
+            SetPlayer();
         }
 
         // if scene is not on list then it loads
@@ -85,12 +93,8 @@ public class sSceneManger : MonoBehaviour
         // Tells GM scene has loaded
         gm.OnSceneLoad();
 
-        // sets player pos
-        if (loadPos != Vector2.zero)
-            player.SetPosition(loadPos);
-
-        // resets load pos
-        loadPos = Vector2.zero;
+        // sets player for scene
+        SetPlayer();
 
         // clears text
         player.DisplayText("", 0f);
@@ -106,6 +110,22 @@ public class sSceneManger : MonoBehaviour
 
         // Adds scene to list
         AddSceneToList(scene.name);
+    }
+
+    void SetPlayer()
+    {
+        // sets player pos
+        if (loadPos != Vector2.zero)
+            player.SetPosition(loadPos);
+
+        // sets camera to load pos
+        Camera.main.transform.localPosition = loadPos;
+
+        // turns on parralaxing AFTER player and camera has moved
+        sParallaxingBackground.canParralax = true;
+
+        // resets load pos
+        loadPos = Vector2.zero;
     }
 
     // This returns a bool whether a scene is in scene list
