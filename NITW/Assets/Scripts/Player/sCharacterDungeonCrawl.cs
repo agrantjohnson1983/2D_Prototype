@@ -8,6 +8,10 @@ public enum eDungeon { none, cactusForest, }
 
 public class sCharacterDungeonCrawl : sCharacterControllerBASE
 {
+    public GameObject broom;
+
+    public sProjectileController projectileController;
+
     // HEALTH
 
     public int maxHealth;
@@ -34,6 +38,22 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
     public Vector3 dungeonExitOffset;
 
     public SO_Level exitLevelData;
+
+    public SO_Item broomItem;
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+
+        broomItem.onGrabEvent.AddListener(OnGrabBroom);
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+
+        broomItem.onGrabEvent.RemoveListener(OnGrabBroom);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
@@ -120,6 +140,15 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
     public float ReturnMagicAmount()
     {
         return currentMagic;
+    }
+
+    void OnGrabBroom()
+    {
+        // turns on broom object
+        broom.SetActive(true);
+
+        // enables projectle controller
+        projectileController.enabled = true;
     }
 
     void TakeDamage()

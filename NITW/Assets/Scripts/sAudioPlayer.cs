@@ -28,7 +28,7 @@ public class sAudioPlayer : MonoBehaviour
         //if(audioDataCollection.Length > 0)
         foreach(SO_AudioData _audioData in audioDataCollection)
         {
-            Debug.Log("Setting up audio collection");
+            //Debug.Log("Setting up audio collection");
 
             // this will setup the Dictionarys so the audio cues work
             //_audioData.SetupAudio();
@@ -37,7 +37,7 @@ public class sAudioPlayer : MonoBehaviour
 
     public void TriggerSFX(string _cueName, eSFXTriggerType _triggerType, eAudioMixerType _mixType)
     {
-        Debug.Log("Audio Player Triggering SFX cue: " + _cueName);
+        //Debug.Log("Audio Player Triggering SFX cue: " + _cueName);
 
         // temp trigger source set to null to start
         AudioSource triggerSource = null;

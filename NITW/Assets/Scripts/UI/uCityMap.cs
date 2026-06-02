@@ -14,8 +14,10 @@ public class uCityMap : sButtonControllerBASE
     cBusStop busStopCanvas;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         // gets  reference to the bus stop canvas
         busStopCanvas = GetComponentInParent<cBusStop>();
     }

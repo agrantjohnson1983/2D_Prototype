@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cPotionBrewing : MonoBehaviour
+public class cPotionBrewing : sButtonControllerBASE
 {
     //public GameObject inventoryOpen;
 
@@ -15,8 +15,10 @@ public class cPotionBrewing : MonoBehaviour
     public GameObject potionInventoryButtonPrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         inventory = cInventory.inventoryGlobal;
 
         //itemList = new List<SO_Item>();
@@ -73,9 +75,6 @@ public class cPotionBrewing : MonoBehaviour
 
     public void StopBrewing()
     {
-        // resets trigger - there's only one so that's why this is static
-        sPotionBrewTrigger.isBrewing = false;
-
         // sets player back to side scroll
         sPlayer.playerGlobal.StopPotionBrew();
     }

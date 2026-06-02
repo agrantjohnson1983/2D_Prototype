@@ -54,13 +54,24 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
     private PhysicsMaterial2D noFrictionMaterial;
     public BoxCollider2D boxCollider;
 
-
     private void Awake()
     {
         //if (characterControllerSideScrollGlobal == null)
         //    characterControllerSideScrollGlobal = this;
         //else
         //    Destroy(this.gameObject);
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+
     }
 
     public override void Start()
@@ -91,6 +102,8 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
 
         //projectileController = GetComponent<sProjectileController>();
         //projectileController.enabled = isFlying;
+
+        
     }
 
     public override void Update()

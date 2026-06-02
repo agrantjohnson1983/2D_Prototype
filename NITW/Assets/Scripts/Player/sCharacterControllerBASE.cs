@@ -10,6 +10,8 @@ public class sCharacterControllerBASE : MonoBehaviour
 
     public static bool canMove = true;
 
+    public static bool canUseBroom = false;
+
     //public static bool isOutside = true;
 
     //public static bool isFlying = false;
@@ -31,7 +33,7 @@ public class sCharacterControllerBASE : MonoBehaviour
     protected float _holdTimer = 0f;
     public float holdDuration = 2f;
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
         // gets player reference
         player = GetComponentInParent<sPlayer>();
@@ -46,6 +48,11 @@ public class sCharacterControllerBASE : MonoBehaviour
             Debug.LogWarning("Player is null for " + this.gameObject + " enable");
 
         //StartCoroutine(StateSwitchCooldown(stateSwitchCooldownTime));
+    }
+
+    public virtual void OnDisable()
+    {
+
     }
 
     // Use this for state checking

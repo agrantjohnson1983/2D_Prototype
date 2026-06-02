@@ -69,7 +69,7 @@ public class sSceneManger : MonoBehaviour
         // Checks if scene is already on the list
         if (CheckIfSceneIsInList(_levelData.sceneName))
         {
-            Debug.Log("Scene was found in list - changing level without scene change ");
+            //Debug.Log("Scene was found in list - changing level without scene change ");
 
             // sets player
             SetPlayer();
@@ -78,7 +78,7 @@ public class sSceneManger : MonoBehaviour
         // if scene is not on list then it loads
         else
         {
-            Debug.Log("No scene found in dictionary so loading level");
+            //Debug.Log("No scene found in dictionary so loading level");
 
             // Loads scene async
             SceneManager.LoadSceneAsync(_levelData.sceneName, LoadSceneMode.Additive);
@@ -88,7 +88,7 @@ public class sSceneManger : MonoBehaviour
     // This method is called whenever a new scene is loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Scene Loaded: " + scene.name + " with load pos of: " + loadPos);
+        //Debug.Log("Scene Loaded: " + scene.name + " with load pos of: " + loadPos);
 
         // Tells GM scene has loaded
         gm.OnSceneLoad();

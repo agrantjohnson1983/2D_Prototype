@@ -153,7 +153,7 @@ public class sGameManager : MonoBehaviour
 
     public void OnSceneLoad()
     {
-        Debug.Log("GameManager called on scene load with mode of: " + gameMode);
+        //Debug.Log("GameManager called on scene load with mode of: " + gameMode);
 
         // turns off dialogue box
         ToggleDialoge(false);

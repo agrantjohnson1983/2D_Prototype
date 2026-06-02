@@ -83,7 +83,7 @@ public class uInteractionPopup : MonoBehaviour
 
     public void SetText(string _text)
     {
-        Debug.Log("setting poup text to: " + _text);
+        //Debug.Log("setting poup text to: " + _text);
         promptLabel.text = _text;
     }
 

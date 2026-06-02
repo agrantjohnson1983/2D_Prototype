@@ -49,6 +49,10 @@ public class sPlayer : MonoBehaviour
 
     bool isFlying;
 
+    public static bool canFly = false;
+
+    public SO_Item broomItem;
+
     public float stateSwitchCooldownTime = 2.5f;
 
     private void Awake()
@@ -72,6 +76,16 @@ public class sPlayer : MonoBehaviour
         StartCoroutine(StateSwitchCooldown(0.5f));
     }
 
+    private void OnEnable()
+    {
+        broomItem.onGrabEvent.AddListener(OnBroomGrab);
+    }
+
+    private void OnDisable()
+    {
+        broomItem.onGrabEvent.RemoveListener(OnBroomGrab);
+    }
+
     private void Start()
     {
         textPopup = GetComponentInChildren<uTextCharacter>();
@@ -79,7 +93,8 @@ public class sPlayer : MonoBehaviour
 
     private void Update()
     {
-        CheckFlyingToggleInput();
+        if(canFly)
+            CheckFlyingToggleInput();
     }
 
     // TO - DO - Convert scripts to have methods for stopping and initing without turning on/off game objects
@@ -199,7 +214,7 @@ public class sPlayer : MonoBehaviour
     // Use this to set a reference to the active movement object
     public void SetActiveMovementObject(GameObject _go)
     {
-        Debug.Log("Active movement object set to " + _go);
+        //Debug.Log("Active movement object set to " + _go);
 
         activeMovementObject = _go;
 
@@ -220,7 +235,7 @@ public class sPlayer : MonoBehaviour
     // Sets player pos and resets all controller objects pos to zero
     public void SetPosition(Vector2 pos)
     {
-        Debug.Log("Setting pos to: " + pos);
+        //Debug.Log("Setting pos to: " + pos);
 
         this.transform.position = pos;
 
@@ -401,6 +416,11 @@ public class sPlayer : MonoBehaviour
 
         // turns movement back on 
         ToggleMovement(true);
+    }
+
+    void OnBroomGrab()
+    {
+        canFly = true;
     }
 
     public void DisplayText(string _text, float _duration)

@@ -105,7 +105,7 @@ public class sLevelManager : MonoBehaviour
 
         
 
-        Debug.Log("Level swapped");
+        //Debug.Log("Level swapped");
 
         // otherwise the level object will be on by default and will trigger AddLevel
     }

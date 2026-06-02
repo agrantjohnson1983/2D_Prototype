@@ -2,42 +2,45 @@ using UnityEngine;
 
 public enum eVideoGames { none, pong }
 
-public class sVideoGameConsoleTrigger : MonoBehaviour
+public class sVideoGameConsoleTrigger : sInteractable
 {
     public Transform gameListTransform;
 
-    public GameObject gameList;
+    public GameObject gamesCanvas;
 
-    public GameObject cGameCanvas;
+    public GameObject buttonFirstSelected;
 
-    public GameObject playButton;
+    //public GameObject cGameCanvas;
 
-    public void OnClickPlay()
+    //public GameObject playButton;
+
+    public override void TriggerInteraction()
     {
-        playButton.SetActive(false);
-        gameList.SetActive(true);
+        base.TriggerInteraction();
+        
+        // turns on game canvas
+        gamesCanvas.SetActive(true);
+
+        // turns off player movement
+        sPlayer.playerGlobal.ToggleMovement(false);
+
+        // sets button controls
+        sGameManager.gm.SetEventSystem(buttonFirstSelected);
     }
 
+    // Buttons will call this and feed the game type through
     public void StartGame(eVideoGames _game)
     {
+        // starts the player game
         sPlayer.playerGlobal.PlayVideoGame(_game);
     }
 
-    // Toggles canvas on/off with Play? button
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void QuitGames()
     {
-        if(collision.CompareTag("Player"))
-        {
-            cGameCanvas.SetActive(true);
-        }
-    }
+        // turns off game canvas
+        gamesCanvas.SetActive(false);
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            cGameCanvas.SetActive(false);
-        }
+        // turns off player movement
+        sPlayer.playerGlobal.ToggleMovement(true);
     }
 }

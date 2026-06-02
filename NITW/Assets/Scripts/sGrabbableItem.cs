@@ -12,6 +12,8 @@ public class sGrabbableItem : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            // triggers event
+            item.OnGrabTrigger();
             
             // adds item to inventory
             cInventory.inventoryGlobal.AddItem(item);

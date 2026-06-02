@@ -13,7 +13,7 @@ public class sCharacterDelivery : sCharacterGigMaster
     {
         base.OnTriggerEnter2D(other);
 
-        Debug.Log("Delivery character is being triggered after base trigger");
+        //Debug.Log("Delivery character is being triggered after base trigger");
     }
 
     public override void TriggerInteraction()
