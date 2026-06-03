@@ -1,99 +1,112 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class sParallaxingBackground : MonoBehaviour
 {
-    /*float length, startPos;
-
-    public GameObject cam;
-
-    public float parallaxEffect;*/
-
     [SerializeField] private Transform camTransform;
-
     [SerializeField] private Vector2 parallaxEffectMultiplier;
-
     [SerializeField] private bool infiniteLoopVertical = true;
     [SerializeField] private bool infiniteLoopHorizontal = false;
 
     Vector3 lastCamPos;
     float textureUnitSizeX;
     float textureUnitySizeY;
-
     Vector3 startingOffset;
 
-    // toggle this statically to turn off parallaxing for all instances
-    public static bool canParralax = false;
+    public static bool canParralax = true;
+
+    bool initialized = false;
 
     private void OnEnable()
     {
-        startingOffset = new Vector2(transform.position.x, transform.position.y);
-        //ResetBGX();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // Fires after every scene load — snaps the baseline cleanly
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        EnsureCamera();
+        lastCamPos = camTransform.position;
+        startingOffset = transform.position;
+    }
+
+    private void Awake()
+    {
+        // Move texture sizing here so it's ready before Start/ReInitialize
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            textureUnitSizeX = sr.sprite.texture.width / sr.sprite.pixelsPerUnit;
+            textureUnitySizeY = sr.sprite.texture.height / sr.sprite.pixelsPerUnit;
+        }
+    }
+
     void Start()
     {
-        /*startPos = transform.localPosition.x;
+        EnsureCamera();
+        if (!initialized)   // don't overwrite if ReInitialize already ran
+        {
+            lastCamPos = camTransform.position;
+            startingOffset = transform.position;
+        }
+    }
 
-        length = GetComponent<SpriteRenderer>().bounds.size.x;*/
-
-
-        //startingOffset = new Vector2(transform.localPosition.x, transform.localPosition.y);
-
+    private void EnsureCamera()
+    {
         if (camTransform == null)
-        {
             camTransform = Camera.main.transform;
-        }
+    }
 
+    public void ReInitialize()
+    {
+        EnsureCamera();
         lastCamPos = camTransform.position;
-
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if(spriteRenderer != null)
-        {
-            Sprite sprite = spriteRenderer.sprite;
-            Texture2D texture = sprite.texture;
-            textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
-            textureUnitySizeY = texture.height / sprite.pixelsPerUnit;
-        }
-    }
-
-    public void ResetX()
-    {
-        transform.position = new Vector2(transform.position.x + startingOffset.x, 0f);
-    }
-
-    public void ResetY()
-    {
-        transform.position = new Vector3(transform.position.x, startingOffset.y, 0f);
+        startingOffset = transform.position;
+        initialized = true;
     }
 
     private void LateUpdate()
     {
+        // Original behavior preserved — building transport still works
         if (!canParralax) return;
 
         Vector3 deltaMovement = camTransform.position - lastCamPos;
-
-        transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y, 0f);
+        transform.position += new Vector3(
+            deltaMovement.x * parallaxEffectMultiplier.x,
+            deltaMovement.y * parallaxEffectMultiplier.y, 0f);
         lastCamPos = camTransform.position;
 
-        if(infiniteLoopHorizontal)
+        if (infiniteLoopHorizontal)
         {
-            if(Mathf.Abs(camTransform.position.x - transform.position.x) >= textureUnitSizeX )
+            if (Mathf.Abs(camTransform.position.x - transform.position.x) >= textureUnitSizeX)
             {
                 float offsetPosX = (camTransform.position.x - transform.position.x) % textureUnitSizeX;
-                transform.position = new Vector3(camTransform.position.x - offsetPosX + startingOffset.x, transform.position.y);
+                transform.position = new Vector3(
+                    camTransform.position.x - offsetPosX + startingOffset.x,
+                    transform.position.y, 0f);
             }
         }
 
-        if(infiniteLoopVertical)
+        if (infiniteLoopVertical)
         {
-            if(Mathf.Abs(camTransform.position.y - transform.position.y) >= textureUnitySizeY)
+            if (Mathf.Abs(camTransform.position.y - transform.position.y) >= textureUnitySizeY)
             {
                 float offsetPosY = (camTransform.position.y - transform.position.y) % textureUnitySizeY;
-                transform.position = new Vector3(transform.position.x, camTransform.position.y - offsetPosY + startingOffset.y);
+                transform.position = new Vector3(
+                    transform.position.x,
+                    camTransform.position.y - offsetPosY + startingOffset.y, 0f);
             }
         }
     }
+
+    public void ResetX() =>
+        transform.position = new Vector3(startingOffset.x, transform.position.y, 0f);
+
+    public void ResetY() =>
+        transform.position = new Vector3(transform.position.x, startingOffset.y, 0f);
 }

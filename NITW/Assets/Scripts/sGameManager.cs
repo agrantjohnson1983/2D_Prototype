@@ -95,7 +95,7 @@ public class sGameManager : MonoBehaviour
     // This gets called to change game mode
     public void SetGameMode(eMode _mode)
     {
-        Debug.Log("GameManager setting mode to: " + _mode);
+        //Debug.Log("GameManager setting mode to: " + _mode);
 
         gameMode = _mode;
     }
@@ -193,7 +193,7 @@ public class sGameManager : MonoBehaviour
 
             case eMode.dungeon:
 
-                ToggleDungeonCanvas(true);
+                //ToggleDungeonCanvas(true);
 
                 break;
         }

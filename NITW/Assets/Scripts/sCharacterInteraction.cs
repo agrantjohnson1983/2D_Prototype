@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem.Interactions;
 
 // Attach this to a GameObject with a Trigger Collider.
 // When the player enters, a UI popup appears prompting them to hold Space.
@@ -10,9 +9,6 @@ public class sCharacterInteraction : MonoBehaviour
     [Header("Hold Settings")]
     [Tooltip("How long (in seconds) the player must hold Space to trigger the event.")]
     float holdDuration = 0f;
-
-    [Tooltip("Tag used to identify the player GameObject.")]
-    public string playerTag = "Player";
 
     [Header("UI Reference")]
     [Tooltip("Drag your HoldInteractionUI component here.")]
@@ -30,27 +26,6 @@ public class sCharacterInteraction : MonoBehaviour
 
     // Sets to none to start
     KeyCode currentKeyCode = KeyCode.None;
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!other.CompareTag(playerTag)) return;
-
-    //    _playerInside = true;
-    //    _holdCompleted = false;
-    //    _holdTimer = 0f;
-
-    //    interactionUI?.ShowPopup();
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (!other.CompareTag(playerTag)) return;
-
-    //    _playerInside = false;
-    //    _holdTimer = 0f;
-
-    //    interactionUI?.HidePopup();
-    //}
 
     // This gets called by other scripts to toggle popup on/off
     public void TogglePopup(bool _isOn, sInteractable _interactable)

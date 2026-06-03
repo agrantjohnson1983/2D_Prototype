@@ -44,7 +44,7 @@ public class sAudioManager : MonoBehaviour
 
     void CheckActiveAudio()
     {
-        Debug.Log("Checking Active Audio");
+        //Debug.Log("Checking Active Audio");
 
         //if(activeAudioSources.Count > 0)
 

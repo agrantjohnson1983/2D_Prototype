@@ -1,5 +1,7 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -114,18 +116,26 @@ public class sSceneManger : MonoBehaviour
 
     void SetPlayer()
     {
-        // sets player pos
         if (loadPos != Vector2.zero)
             player.SetPosition(loadPos);
 
-        // sets camera to load pos
-        Camera.main.transform.localPosition = loadPos;
-
-        // turns on parralaxing AFTER player and camera has moved
-        sParallaxingBackground.canParralax = true;
-
-        // resets load pos
         loadPos = Vector2.zero;
+        StartCoroutine(EnableParallaxNextFrame());
+    }
+
+    IEnumerator EnableParallaxNextFrame()
+    {
+        var brain = Camera.main.GetComponent<CinemachineBrain>();
+        if (brain != null) brain.ManualUpdate();
+
+        yield return null;  // let all Start()s run first
+
+        if (brain != null) brain.ManualUpdate();  // settle camera after Start()s
+
+        foreach (var bg in FindObjectsByType<sParallaxingBackground>(FindObjectsSortMode.None))
+            bg.ReInitialize();
+
+        sParallaxingBackground.canParralax = true;
     }
 
     // This returns a bool whether a scene is in scene list

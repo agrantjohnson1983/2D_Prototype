@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc04064fbc87574428586ac59ed924fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingSelectedButton: {fileID: 7297123563560084506}
   inventoryItemTransform: {fileID: 2216184366822000887}
   potionInventoryButtonPrefab: {fileID: 7656575442662295265, guid: 13b48b120fc3f4544acdedba6c7ef3b6, type: 3}
 --- !u!1 &2971890217301700989
@@ -531,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -561,7 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -572,7 +573,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.99133945, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1011,6 +1012,7 @@ MonoBehaviour:
   level: {fileID: 0}
   cameraMain: {fileID: 2971890217301700989}
   startOutside: 1
+  broomItem: {fileID: 11400000, guid: 2b4f379c8b3d47647aafdac8473cbbf4, type: 2}
   stateSwitchCooldownTime: 2.5
 --- !u!1 &7297123563560084506
 GameObject:
@@ -1072,7 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.05528426, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1102,7 +1104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1113,7 +1115,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.99133945, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2806,9 +2808,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 6803262296234542354}
     m_Modifications:
     - target: {fileID: 381225127457009110, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
+      propertyPath: broom
+      value: 
+      objectReference: {fileID: 1142127686981069299}
+    - target: {fileID: 381225127457009110, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
+      propertyPath: broomItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b4f379c8b3d47647aafdac8473cbbf4, type: 2}
+    - target: {fileID: 381225127457009110, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 6913455589187911682}
+    - target: {fileID: 381225127457009110, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
+      propertyPath: projectileController
+      value: 
+      objectReference: {fileID: 5678492229199421815}
+    - target: {fileID: 1441109868804544190, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1944368207117476300, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
       propertyPath: audioData
       value: 
@@ -2881,6 +2899,11 @@ PrefabInstance:
       insertIndex: 3
       addedObject: {fileID: 5491224175321391539}
   m_SourcePrefab: {fileID: 100100000, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
+--- !u!1 &1142127686981069299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5974148354341199418, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
+  m_PrefabInstance: {fileID: 6715385270354114505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2167826584050615310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4838129991585936327, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
@@ -2988,6 +3011,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5678492229199421815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1441109868804544190, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
+  m_PrefabInstance: {fileID: 6715385270354114505}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267168417971271888}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca4c11d3ff3106489dd0771a178ddff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &6913455589187911682 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 198246792597665739, guid: eb46cd3e4af340948a0cabe8c8bd588e, type: 3}
