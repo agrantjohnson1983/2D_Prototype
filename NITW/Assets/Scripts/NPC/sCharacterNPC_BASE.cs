@@ -1,16 +1,18 @@
+using TMPro;
 using UnityEngine;
 
-public class sCharacterNPC_BASE : MonoBehaviour
+public class sCharacterNPC_BASE : sInteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Space]
+    [Header("Dialogue")]
+    public GameObject canvasDialogue;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public TextMeshProUGUI characterDialogueTextMesh;
+
+    public TextMeshProUGUI textButtonYes, textButtonNo;
+    [Space]
+    public GameObject buttonYes, buttonNo;
+
+    //public TextMeshProUGUI characterTextMeshGigOffer;
+    public uTypewriter typewriter;
 }
