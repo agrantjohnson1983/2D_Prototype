@@ -7,18 +7,25 @@ public class sSceneTransition : MonoBehaviour
 
     public eMode modeToTransitionTo;
 
+    public bool triggerOnEnable = false;
 
-    // This handles the top down
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnEnable()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if(triggerOnEnable)
         {
-            Debug.Log("Scene change triggered - now going to " + sceneToTransitionTo);
-
-            sGameManager.gm.SetGameMode(modeToTransitionTo);
-
-            SceneManager.LoadScene(sceneToTransitionTo);
+            TriggerSceneChange();
         }
+
+    }
+
+    void TriggerSceneChange()
+    {
+        Debug.Log("Scene change triggered - now going to " + sceneToTransitionTo);
+
+        sGameManager.gm.SetGameMode(modeToTransitionTo);
+
+        SceneManager.LoadScene(sceneToTransitionTo);
     }
 
     // this is for the 2d side scroll
@@ -26,11 +33,7 @@ public class sSceneTransition : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            Debug.Log("Scene change triggered - now going to " + sceneToTransitionTo);
-
-            sGameManager.gm.SetGameMode(modeToTransitionTo);
-
-            SceneManager.LoadScene(sceneToTransitionTo);
+            TriggerSceneChange();
         }
     }
 }
