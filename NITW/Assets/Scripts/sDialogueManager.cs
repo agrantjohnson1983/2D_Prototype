@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public enum eDialogueBoxLocation { top, center, bottom }
 
@@ -42,6 +43,8 @@ public class sDialogueManager : MonoBehaviour
 
     // active button references
     private List<GameObject> activeButtons = new List<GameObject>();
+
+    UnityEvent onCompleteEvent = null;
 
     private void Awake()
     {
@@ -94,12 +97,16 @@ public class sDialogueManager : MonoBehaviour
     }
 
     // Call this at the beginning of a dialogue sequence
-    public void StartDialogue(SO_Dialogue _dialogue, eDialogueBoxLocation _boxLocation)
+    public void StartDialogue(SO_Dialogue _dialogue, eDialogueBoxLocation _boxLocation, UnityEvent _OnCompleteEvent)
     {
         //Debug.Log("Dialogue starting with " + _dialogue.ToString());
 
+        dialogueBox.SetActive(true);
+
         // sets current dialogue
         currentDialogue = _dialogue;
+
+        onCompleteEvent = _OnCompleteEvent;
 
         // Clears Buttons
         ClearButtons();
@@ -151,8 +158,7 @@ public class sDialogueManager : MonoBehaviour
         // then there are no more dialogue bits and dialogue can end
         else
         {
-            // ends dialogue
-            EndDialogue();
+            EndDialogue(currentDialogue.turnsOffDialogueAtEnd);
         }
     }
 
@@ -215,11 +221,12 @@ public class sDialogueManager : MonoBehaviour
 
             else
             {
+                // delay before next bit
+                yield return new WaitForSeconds(_dialogueBit.delayBetweenBits);
+
                 // calls the next branching dialogue bit - there should only be one so the array index will always be 0
                 NextBranchingDialogueBit(_dialogueBit.nextDialogueBit[0]);
             }
-
-            
         }
 
         // if there are choices in the dialogue bit it will spawn and assign buttons
@@ -287,7 +294,7 @@ public class sDialogueManager : MonoBehaviour
         activeButtons.Clear();
     }
 
-    void EndDialogue()
+    void EndDialogue(bool _turnsOffDialogue)
     {
         // turns off dialogue canvas box
         //dialogueTransforms.SetActive(false);
@@ -301,7 +308,13 @@ public class sDialogueManager : MonoBehaviour
         // resets index
         currentIndex = 0;
 
+        dialogueBox.SetActive(false);
+
+        if (onCompleteEvent != null)
+            onCompleteEvent.Invoke();
+
         // toggles dialogue mode off
-        sGameManager.gm.ToggleDialoge(false);
+        if(_turnsOffDialogue)
+            sGameManager.gm.ToggleDialogue(false);
     }
 }

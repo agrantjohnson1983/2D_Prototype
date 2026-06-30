@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a0cc31485e5d64e816e5e788c761ba, type: 3}
+  m_Name: dialogue_Scene_01_Opening 4
+  m_EditorClassIdentifier: 
+  dialogueBits:
+  - character: {fileID: 11400000, guid: 83be67a361ac9124a957f59a4c2e7d6d, type: 2}
+    typingLettersPerSec: 0.15
+    textDialogue: Oh sick, an old Sport Court! Yo let's go see if they have any vintage
+      Dunkers Merch!
+    choices: []
+    nextDialogueBit:
+    - character: {fileID: 11400000, guid: 9bfdc5dc0767a9343bf18bbc1d9e0e8b, type: 2}
+      typingLettersPerSec: 0.15
+      textDialogue: Hell yeah let's go Dunkers!
+      choices: []
+      nextDialogueBit:
+      - character: {fileID: 11400000, guid: 27d2808f3fffcbc4dbc2469ce4028a24, type: 2}
+        typingLettersPerSec: 0.1
+        textDialogue: You meatheads have fun with your sports, I wanna chekc out
+          the old Glamour's
+        choices: []
+        nextDialogueBit: []
+        editorPosition: {x: 0, y: 0}
+        delayBetweenBits: 0
+      editorPosition: {x: 0, y: 0}
+      delayBetweenBits: 1
+    editorPosition: {x: 0, y: 0}
+    delayBetweenBits: 1
+  turnsOffDialogueAtEnd: 1

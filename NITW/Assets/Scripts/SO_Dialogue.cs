@@ -5,6 +5,8 @@ public class SO_Dialogue : ScriptableObject
 {
     public DialogueBits[] dialogueBits;
 
+    public bool turnsOffDialogueAtEnd = false;
+
     [System.Serializable]
     public class DialogueBits
     {
@@ -21,6 +23,8 @@ public class SO_Dialogue : ScriptableObject
 
         [HideInInspector]
         public Vector2 editorPosition;
+
+        public float delayBetweenBits = 0f;
     }
 
     [System.Serializable]

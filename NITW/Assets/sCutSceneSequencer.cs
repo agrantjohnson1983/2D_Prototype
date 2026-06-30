@@ -68,10 +68,10 @@ public class sCutSceneSequencer : MonoBehaviour
         if(cutScenes[sceneIndex].startDialogue != null)
         {
             // toggles dialogue in GM
-            sGameManager.gm.ToggleDialoge(true);
+            sGameManager.gm.ToggleDialogue(true);
 
             // starts dialogue
-            sDialogueManager.dialogueManagerGlobal.StartDialogue(cutScenes[sceneIndex].startDialogue, eDialogueBoxLocation.center);
+            //sDialogueManager.dialogueManagerGlobal.StartDialogue(cutScenes[sceneIndex].startDialogue, eDialogueBoxLocation.center);
 
             // checks character movement array
             for (int i = 0; i < cutScenes[sceneIndex].characterMovements.Length; i++)

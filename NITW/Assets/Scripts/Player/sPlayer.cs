@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class sPlayer : MonoBehaviour
 {
@@ -442,6 +443,11 @@ public class sPlayer : MonoBehaviour
     public void StopText()
     {
         textPopup.StopAllCoroutines();
+    }
+
+    public void SetCamConfiner(Collider2D _cofinerCollider)
+    {
+        activeMovementObject.GetComponentInChildren<CinemachineConfiner2D>().BoundingShape2D = _cofinerCollider;
     }
 }
 

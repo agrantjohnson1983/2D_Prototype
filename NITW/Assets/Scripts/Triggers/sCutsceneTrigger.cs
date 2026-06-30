@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class sCutsceneTrigger : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class sCutsceneTrigger : MonoBehaviour
 
     public SO_Dialogue dialogue;
 
+    public UnityEvent onCompleteEvent = null;
 
     private void OnEnable()
     {
@@ -25,10 +27,10 @@ public class sCutsceneTrigger : MonoBehaviour
     {
         sPlayer.playerGlobal.DisplayText("", 0f);
 
-        sGameManager.gm.ToggleDialoge(true);
+        sGameManager.gm.ToggleDialogue(true);
 
         // Calls dialogue mgr to start Dialogue
-        sDialogueManager.dialogueManagerGlobal.StartDialogue(dialogue, eDialogueBoxLocation.center);
+        sDialogueManager.dialogueManagerGlobal.StartDialogue(dialogue, eDialogueBoxLocation.center, onCompleteEvent);
 
         // Destroys after starting scene
         if (destroyAfterTrigger)

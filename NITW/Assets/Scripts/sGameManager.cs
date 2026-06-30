@@ -153,7 +153,7 @@ public class sGameManager : MonoBehaviour
         canvasMain.SetActive(_isOn);
     }
 
-    public void ToggleDialoge(bool _isOn)
+    public void ToggleDialogue(bool _isOn)
     {
         if(player == null )
         {
@@ -168,7 +168,7 @@ public class sGameManager : MonoBehaviour
         canvasMain.SetActive(!_isOn);
 
         // turns dialogue canvas on when toggled on
-        canvasDialogue.SetActive(_isOn);
+        //canvasDialogue.SetActive(_isOn);
     }
 
     public void SetEventSystem(GameObject _objectToSet)
@@ -181,7 +181,7 @@ public class sGameManager : MonoBehaviour
         //Debug.Log("GameManager called on scene load with mode of: " + gameMode);
 
         // turns off dialogue box
-        ToggleDialoge(false);
+        ToggleDialogue(false);
 
         // runs game mode to toggle canvas
         switch (gameMode)
