@@ -8,6 +8,7 @@ public class sCutsceneTrigger : MonoBehaviour
 
     public SO_Dialogue dialogue;
 
+
     private void OnEnable()
     {
         

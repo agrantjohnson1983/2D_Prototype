@@ -16,7 +16,7 @@ public class sOverworldTrigger : MonoBehaviour
             sGameManager.gm.SetGameMode(eMode.topdownLow);
 
             // loads scene
-            sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData);
+            sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData, eLoadMode.additive);
         }
     }
 }

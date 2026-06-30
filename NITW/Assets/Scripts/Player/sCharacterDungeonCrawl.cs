@@ -185,7 +185,7 @@ public class sCharacterDungeonCrawl : sCharacterControllerBASE
         // ends dungeon crawl
         if(exitDungeonScene != null)
         {
-            sSceneManger.sceneManagerGlobal.LoadScene(dungeonExitOffset, exitLevelData);
+            sSceneManger.sceneManagerGlobal.LoadScene(dungeonExitOffset, exitLevelData, eLoadMode.additive);
         }
     }
 

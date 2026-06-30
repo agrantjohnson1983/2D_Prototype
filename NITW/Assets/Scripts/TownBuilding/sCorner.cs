@@ -17,6 +17,6 @@ public class sCorner : sInteractable
     {
         base.TriggerInteraction();
 
-        sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData);
+        sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData, eLoadMode.additive);
     }
 }

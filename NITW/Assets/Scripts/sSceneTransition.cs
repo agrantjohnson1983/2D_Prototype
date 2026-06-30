@@ -3,12 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class sSceneTransition : MonoBehaviour
 {
-    public string sceneToTransitionTo;
+    public SO_Level levelToLoad;
 
     public eMode modeToTransitionTo;
 
     public bool triggerOnEnable = false;
 
+    public bool additiveLoading = true;
 
     private void OnEnable()
     {
@@ -16,16 +17,20 @@ public class sSceneTransition : MonoBehaviour
         {
             TriggerSceneChange();
         }
-
     }
 
     void TriggerSceneChange()
     {
-        Debug.Log("Scene change triggered - now going to " + sceneToTransitionTo);
+        Debug.Log("Scene change triggered - now going to " + levelToLoad);
 
         sGameManager.gm.SetGameMode(modeToTransitionTo);
 
-        SceneManager.LoadScene(sceneToTransitionTo);
+        if(additiveLoading)
+            sSceneManger.sceneManagerGlobal.LoadScene(Vector3.zero, levelToLoad, eLoadMode.additive);
+        else
+            sSceneManger.sceneManagerGlobal.LoadScene(Vector3.zero, levelToLoad, eLoadMode.normal);
+
+        //SceneManager.LoadScene(sceneToTransitionTo);
     }
 
     // this is for the 2d side scroll

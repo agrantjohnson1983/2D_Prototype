@@ -21,7 +21,7 @@ public class sDungeonTrigger : MonoBehaviour
             sPlayer.playerGlobal.ToggleDungeon(!isDungeonExit);
 
             // Loads scene
-            sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData);
+            sSceneManger.sceneManagerGlobal.LoadScene(loadingOffset, levelData, eLoadMode.additive);
         }
     }
 }

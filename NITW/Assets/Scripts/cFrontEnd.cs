@@ -10,7 +10,7 @@ public class cFrontEnd : sButtonControllerBASE
         sGameManager.gm.StartGame();
 
         // loads scene
-        sSceneManger.sceneManagerGlobal.LoadScene(Vector3.zero, levelData);
+        sSceneManger.sceneManagerGlobal.LoadScene(Vector3.zero, levelData, eLoadMode.normal);
 
         // turns off
         this.gameObject.SetActive(false);

@@ -5,6 +5,8 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum eLoadMode { none, normal, additive }
+
 public class sSceneManger : MonoBehaviour
 {
     public static sSceneManger sceneManagerGlobal;
@@ -51,7 +53,7 @@ public class sSceneManger : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void LoadScene(Vector3 _loadPosOffset, SO_Level _levelData)
+    public void LoadScene(Vector3 _loadPosOffset, SO_Level _levelData, eLoadMode _loadMode)
     {
         // Sets new direction
         //cCompass.compassGlobal.SetDirection(_directionFacing);
@@ -82,8 +84,27 @@ public class sSceneManger : MonoBehaviour
         {
             //Debug.Log("No scene found in dictionary so loading level");
 
-            // Loads scene async
-            SceneManager.LoadSceneAsync(_levelData.sceneName, LoadSceneMode.Additive);
+            switch(_loadMode)
+            {
+                case eLoadMode.additive:
+
+
+                    // Loads scene async
+                    SceneManager.LoadSceneAsync(_levelData.sceneName, LoadSceneMode.Additive);
+
+                    break;
+
+                case eLoadMode.normal:
+
+                    SceneManager.LoadScene(_levelData.sceneName);
+
+                    break;
+
+                case eLoadMode.none:
+
+                    break;
+            }
+
         }
     }
 

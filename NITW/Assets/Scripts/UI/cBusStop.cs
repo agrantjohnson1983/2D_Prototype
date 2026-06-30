@@ -109,35 +109,35 @@ public class cBusStop : sButtonControllerBASE
                 case eNeighborhood.basin:
 
                     cLocation.locationGlobal.SetTextLocation("The Basin");
-                    sSceneManger.sceneManagerGlobal.LoadScene(basinLoadOffset, levelDataBasin);
+                    sSceneManger.sceneManagerGlobal.LoadScene(basinLoadOffset, levelDataBasin, eLoadMode.additive);
 
                     break;
 
                 case eNeighborhood.burbs:
 
                     cLocation.locationGlobal.SetTextLocation("The Burbs");
-                    sSceneManger.sceneManagerGlobal.LoadScene(burbsLoadOffset, levelDataBurbs);
+                    sSceneManger.sceneManagerGlobal.LoadScene(burbsLoadOffset, levelDataBurbs, eLoadMode.additive);
 
                     break;
 
                    case eNeighborhood.downtown:
 
                     cLocation.locationGlobal.SetTextLocation("Downtown");
-                    sSceneManger.sceneManagerGlobal.LoadScene(downtownLoadOffset, levelDataDowntown);
+                    sSceneManger.sceneManagerGlobal.LoadScene(downtownLoadOffset, levelDataDowntown, eLoadMode.additive);
 
                     break;
 
                 case eNeighborhood.outskirts:
 
                     cLocation.locationGlobal.SetTextLocation("The Outskirts");
-                    sSceneManger.sceneManagerGlobal.LoadScene(outskirtsLoadOffset, levelDataOutskirts);
+                    sSceneManger.sceneManagerGlobal.LoadScene(outskirtsLoadOffset, levelDataOutskirts, eLoadMode.additive);
 
                     break;
 
                 case eNeighborhood.centerSquare:
 
                     cLocation.locationGlobal.SetTextLocation("Center Square");
-                    sSceneManger.sceneManagerGlobal.LoadScene(centerSquareLoadOffset, levelDataCenterSquare);
+                    sSceneManger.sceneManagerGlobal.LoadScene(centerSquareLoadOffset, levelDataCenterSquare, eLoadMode.additive);
 
                     break;
             }

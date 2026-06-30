@@ -98,7 +98,32 @@ public class sGameManager : MonoBehaviour
         //Debug.Log("GameManager setting mode to: " + _mode);
 
         gameMode = _mode;
+
+        switch (gameMode)
+        {
+            case eMode.sidescroll:
+
+                break;
+
+            case eMode.topdownLow:
+
+                break;
+
+            case eMode.topdownHigh:
+
+                break;
+
+            case eMode.dungeon:
+
+                break;
+
+            case eMode.frontend:
+
+                break;
+        }
     }
+
+    
 
     public void ToggleOverworld(bool _isInOverworld)
     {
