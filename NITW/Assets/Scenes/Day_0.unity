@@ -1238,6 +1238,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -24.303734
       objectReference: {fileID: 0}
+    - target: {fileID: 2243515749040340449, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -47.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243515749040340449, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 2781520193454305977, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1277,6 +1285,30 @@ PrefabInstance:
     - target: {fileID: 2781520193454305977, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208815353393218602, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208815353393218602, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3943891998280298007, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -61.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3943891998280298007, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696173097460712164, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -34.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696173097460712164, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5996681178144641408, guid: 4e6587e2334b46a4393129efb9532873, type: 3}
       propertyPath: dialogue
@@ -1363,7 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerOnEnable: 1
-  destroyAfterTrigger: 1
+  destroyAfterTrigger: 0
   dialogue: {fileID: 11400000, guid: 2157cf361148deb4aba6c5ca486b8366, type: 2}
   onCompleteEvent:
     m_PersistentCalls:
@@ -1625,7 +1657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerOnEnable: 1
-  destroyAfterTrigger: 1
+  destroyAfterTrigger: 0
   dialogue: {fileID: 11400000, guid: 629007d57fb55314cab3b3e5d73d5ea4, type: 2}
   onCompleteEvent:
     m_PersistentCalls:
@@ -1972,7 +2004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerOnEnable: 1
-  destroyAfterTrigger: 1
+  destroyAfterTrigger: 0
   dialogue: {fileID: 11400000, guid: 339dcaa6dbb8689459ae89db9a965c39, type: 2}
   onCompleteEvent:
     m_PersistentCalls:

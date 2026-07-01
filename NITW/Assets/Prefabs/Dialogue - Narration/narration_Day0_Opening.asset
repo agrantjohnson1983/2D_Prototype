@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   narrationBits:
   - typingLettersPerSec: 0.05
-    textNarration: "Cam the coyote (or &$%#, her deadname) is begrudgingly tagging
-      along with a gaggle of people she wouldn\u2019t call friends (Darren, Luis,
-      and Crystal), but the only people she knows: old high school acquaintances.
-      People who have their lives figured out or have resigned not to. Suburb brats
-      with no connection to nature, and no disgust for the sprawl of San Cemento
-      with which anyone from a greener place is born. The group is exploring some
-      abandoned plaza, a dime a dozen, when Cam veers away to inspect a shuttered
-      oddity shop. \r\n"
+    textNarration: "Cam the coyote is begrudgingly tagging along with a gaggle of
+      people she wouldn\u2019t call friends (Darren, Luis, and Crystal), but the
+      only people she knows: old high school acquaintances. People who have their
+      lives figured out or have resigned not to. Suburb brats with no connection
+      to nature, and no disgust for the sprawl of San Cemento with which anyone from
+      a greener place is born. The group is exploring some abandoned plaza, a dime
+      a dozen, when Cam veers away to inspect a shuttered oddity shop. \r\n"
     nextNarratorBit: []
     editorPosition: {x: 0, y: 0}
