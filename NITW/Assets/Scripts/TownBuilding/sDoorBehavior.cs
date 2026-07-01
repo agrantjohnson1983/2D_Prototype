@@ -11,6 +11,8 @@ public class sDoorBehavior : sInteractable
 
     public Vector2 entranceOffset;
 
+    public Collider2D confinerCollider;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
     {
@@ -39,6 +41,9 @@ public class sDoorBehavior : sInteractable
     {
         base.TriggerInteraction();
 
+        // sets camera confiner
+        sPlayer.playerGlobal.SetCamConfiner(confinerCollider);
+
         // tells player script you are inside
         player.ToggleOutside(false);
 
@@ -66,6 +71,4 @@ public class sDoorBehavior : sInteractable
             turnOffOnEnter[i].SetActive(false);
         }
     }
-
-    
 }

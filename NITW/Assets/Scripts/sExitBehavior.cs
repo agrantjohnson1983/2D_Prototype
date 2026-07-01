@@ -11,6 +11,8 @@ public class sExitBehavior : MonoBehaviour
     public GameObject[] turnOffOnTrigger;
     public GameObject[] turnOnOnTrigger;
 
+    public Collider2D confinerCollider;
+
     sPlayer player;// { get { if (player == null) player = sPlayer.playerGlobal; return player; } set { } }
 
     private void Start()
@@ -20,8 +22,15 @@ public class sExitBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         // Toggles if outside
         player.ToggleOutside(goesOutside);
+
+        if (goesOutside)
+            player.SetCamConfiner(null);
+        else
+            player.SetCamConfiner(confinerCollider);
 
         // calculates offset - needs to convert to vector3 but with no z movement
         Vector3 _offset = new Vector3(exitOffset.x, exitOffset.y, 0);

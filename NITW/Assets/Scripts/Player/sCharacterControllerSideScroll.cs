@@ -103,7 +103,7 @@ public class sCharacterControllerSideScroll : sCharacterControllerBASE
         //projectileController = GetComponent<sProjectileController>();
         //projectileController.enabled = isFlying;
 
-        
+        sPlayer.playerGlobal.SetActiveMovementObject(this.gameObject);
     }
 
     public override void Update()

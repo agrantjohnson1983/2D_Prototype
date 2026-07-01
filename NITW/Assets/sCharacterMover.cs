@@ -74,7 +74,8 @@ public class sCharacterMover : MonoBehaviour
 
             if(index > movements.Length-1)
             {
-
+                if (destroyOnEnd)
+                    Destroy(this.gameObject);
             }
                 
             else
@@ -110,16 +111,20 @@ public class sCharacterMover : MonoBehaviour
 
         // calls the method again if set to loop
         if (isLooping)
+        {
             StartCoroutine(MovementSequence());
+            yield return null;
+        }
+            
         // toggles objects on/off at end
         else
         {
             sObjectsToggler.ToggleObjects(objectsToTurnOnAtEnd, objectsToTurnOffAtEnd);
             eventOnComplete.Invoke();
+            yield return null;
         }
             
 
-        if (destroyOnEnd)
-            Destroy(this.gameObject);
+        
     }
 }
