@@ -1,0 +1,9 @@
+NodeID,Speaker,Text,Choice1Text,Choice1Target,Choice2Text,Choice2Target,Choice3Text,Choice3Target,SetFlag,ContinueTarget
+start,Foreman,"You the new rigger? Truss just came off the truck.",Yeah that's me,start_confirm,Wrong crew I think,start_wrong,,,,
+start_confirm,Foreman,"Good. Grab a harness, we're flying the main truss in ten.",Ask about the harness,ask_harness,Just get to work,go_to_work,,,,
+start_wrong,Foreman,"Huh. Well if you find the right crew send them my way.",,,,,,,,exit_wrong
+ask_harness,Foreman,"Double-back with a chest ascender. Standard stuff, don't overthink it.",Got it,go_to_work,,,,,,
+go_to_work,Foreman,"Alright, let's get this show in the air.",,,,,,,met_foreman,go_to_work_2
+go_to_work_2,Foreman,"Watch your rigging points, this rig's older than you are.",,,,,,,,go_to_work_3
+go_to_work_3,Foreman,"That's it. Get moving.",,,,,,,,
+exit_wrong,Foreman,"Later then.",,,,,,,,

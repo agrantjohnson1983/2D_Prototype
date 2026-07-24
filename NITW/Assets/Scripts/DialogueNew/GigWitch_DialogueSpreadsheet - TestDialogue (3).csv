@@ -1,0 +1,9 @@
+NodeID,Speaker,Text,Choice1Text,Choice1Target,Choice2Text,Choice2Target,Choice3Text,Choice3Target,SetFlag,ContinueTarget,TriggerEvent
+test,Cam,Hmm… I don’t see a way in,,,,,,,,test2,testEvent
+test2,Darren,"When God closes a door, he opens a window",,,,,,,,test3,
+test3,Cam,Are you seri-,,,,,,,,test4,testEvent2
+test4,Crystal,What the fuck Darren!?,Yeah fuck Darrin,fuck,Hey yall let's be cool!,cool,I feel sick,sick,,,
+fuck,Darren,<wiggle>Fuck you &$%#:</wiggle>,,,,,,,,thanks,
+cool,Darren,You wish you were cool &$%#:,,,,,,,,thanks,
+sick,Darren,You are a sick fuck &$%#:,,,,,,,,thanks,
+thanks,&$%#,Thanks Darren,,,,,,,,,

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc3f0be43d8f6541bf5fb0d6c008862, type: 3}
+  m_Name: SO_DialogueTest
+  m_EditorClassIdentifier: 
+  SourceCSV: {fileID: 4900000, guid: b761e0fe32fc3fb40ad89df4c27fb6d8, type: 3}
+  StartNodeID: test
+  Lines:
+  - NodeID: test
+    Speaker: Cam
+    Text: "<shake>Hmm\u2026 I don\u2019t see a way in</shake>"
+    Choices: []
+    SetFlag: 
+    ContinueTarget: test2
+    TriggerEvent: testEvent
+  - NodeID: test2
+    Speaker: Darren
+    Text: <pulse>When God closes a door, he opens a window</pulse>
+    Choices: []
+    SetFlag: 
+    ContinueTarget: test3
+    TriggerEvent: 
+  - NodeID: test3
+    Speaker: Cam
+    Text: Are you seri-
+    Choices: []
+    SetFlag: 
+    ContinueTarget: test4
+    TriggerEvent: testEvent2
+  - NodeID: test4
+    Speaker: Crystal
+    Text: What the fuck Darren!?
+    Choices:
+    - Text: Yeah fuck Darrin
+      TargetNodeID: fuck
+    - Text: Hey yall let's be cool!
+      TargetNodeID: cool
+    - Text: I feel sick
+      TargetNodeID: sick
+    SetFlag: 
+    ContinueTarget: 
+    TriggerEvent: 
+  - NodeID: fuck
+    Speaker: Darren
+    Text: <wiggle>Fuck you</wiggle> &$%#
+    Choices: []
+    SetFlag: 
+    ContinueTarget: thanks
+    TriggerEvent: 
+  - NodeID: cool
+    Speaker: Darren
+    Text: 'You wish you were cool &$%#:'
+    Choices: []
+    SetFlag: 
+    ContinueTarget: thanks
+    TriggerEvent: 
+  - NodeID: sick
+    Speaker: Darren
+    Text: 'You are a sick fuck &$%#:'
+    Choices: []
+    SetFlag: 
+    ContinueTarget: thanks
+    TriggerEvent: 
+  - NodeID: thanks
+    Speaker: '&$%#'
+    Text: Thanks Darren
+    Choices: []
+    SetFlag: 
+    ContinueTarget: 
+    TriggerEvent: 

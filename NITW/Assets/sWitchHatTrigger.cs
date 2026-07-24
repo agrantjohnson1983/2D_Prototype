@@ -19,6 +19,8 @@ public class sWitchHatTrigger : MonoBehaviour
 
     bool hasTriggered = false;
 
+
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
