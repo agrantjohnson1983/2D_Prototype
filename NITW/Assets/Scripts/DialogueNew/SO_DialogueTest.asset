@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc3f0be43d8f6541bf5fb0d6c008862, type: 3}
   m_Name: SO_DialogueTest
   m_EditorClassIdentifier: 
-  SourceCSV: {fileID: 4900000, guid: b761e0fe32fc3fb40ad89df4c27fb6d8, type: 3}
+  SourceCSV: {fileID: 4900000, guid: 40d66f8f88e29464a8f26f77b343ae29, type: 3}
   StartNodeID: test
   Lines:
   - NodeID: test
@@ -31,16 +31,16 @@ MonoBehaviour:
     TriggerEvent: 
   - NodeID: test3
     Speaker: Cam
-    Text: Are you seri-
+    Text: <rotate>Are you seri-<rotate>
     Choices: []
     SetFlag: 
     ContinueTarget: test4
     TriggerEvent: testEvent2
   - NodeID: test4
     Speaker: Crystal
-    Text: What the fuck Darren!?
+    Text: <wave>What the fuck Darren!?</wave>
     Choices:
-    - Text: Yeah fuck Darrin
+    - Text: <pulse>Yeah fuck Darrin</pulse>
       TargetNodeID: fuck
     - Text: Hey yall let's be cool!
       TargetNodeID: cool

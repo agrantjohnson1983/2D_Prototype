@@ -1,12 +1,16 @@
 using AVSim.TextFX;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class ParsedCharacter
 {
-    public char Character;
+    public char character;
 
-    public List<TextEffectType> Effects =
-        new List<TextEffectType>();
+    public List<TextEffectType> effects = new();
+
+    public bool revealed;
+
+    public float revealTime;
 }
 
 public class ParsedText

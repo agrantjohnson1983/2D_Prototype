@@ -15,8 +15,11 @@ namespace AVSim.TextFX
     {
         public char Character;
 
-        public List<TextEffectType> Effects =
-            new List<TextEffectType>();
+        public List<TextEffectType> Effects = new();
+
+        public bool Revealed = false;
+
+        public float RevealTime;
     }
 
     public class ParsedText

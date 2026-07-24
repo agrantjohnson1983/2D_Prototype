@@ -586,6 +586,7 @@ GameObject:
   - component: {fileID: 447445406}
   - component: {fileID: 447445405}
   - component: {fileID: 447445407}
+  - component: {fileID: 447445408}
   m_Layer: 5
   m_Name: textBody
   m_TagString: Untagged
@@ -723,6 +724,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0748b040373adda4bb5333ce6a74d887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &447445408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447445403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d77e54bf0f8de54689aa400e5aa39f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charactersPerSecond: 35
 --- !u!1 &477968815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,6 +1081,7 @@ MonoBehaviour:
   PortraitImage: {fileID: 1283313657}
   PortraitLibrary: {fileID: 11400000, guid: 19a27cdfb4493cd489f54206085e4932, type: 2}
   TextAnimator: {fileID: 447445407}
+  typewriter: {fileID: 447445408}
 --- !u!1 &866101360
 GameObject:
   m_ObjectHideFlags: 0

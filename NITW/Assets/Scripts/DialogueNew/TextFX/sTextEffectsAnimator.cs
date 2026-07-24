@@ -14,10 +14,24 @@ namespace AVSim.TextFX
 
         private ParsedText currentParsedText;
 
+        [SerializeField]
+        bool autoParse = false;
+
         void Awake()
         {
             text = GetComponent<TMP_Text>();
         }
+        void Start()
+        {
+            if (!autoParse)
+                return;
+
+            ParsedText parsed =
+                sTextTagParser.Parse(text.text);
+
+            SetParsedText(parsed);
+        }
+
 
         void Update()
         {
@@ -27,6 +41,9 @@ namespace AVSim.TextFX
 
         void AnimateText()
         {
+            if (currentParsedText == null)
+                return;
+
             text.ForceMeshUpdate();
 
             TMP_TextInfo textInfo = text.textInfo;
@@ -50,6 +67,9 @@ namespace AVSim.TextFX
                 //{
                 //    AnimateWiggle(charInfo, textInfo);
                 //}
+
+                if (i >= currentParsedText.Characters.Count)
+                    continue;
 
                 ParsedCharacter characterData = currentParsedText.Characters[i];
 
@@ -104,6 +124,16 @@ namespace AVSim.TextFX
             TMP_CharacterInfo charInfo,
             TMP_TextInfo textInfo)
         {
+            ParsedCharacter data = currentParsedText.Characters[characterIndex];
+
+            if (!data.Revealed)
+                return;
+
+            float delay = .15f;
+
+            if (Time.time < data.RevealTime + delay)
+                return;
+
             float y =
                 Mathf.Sin(Time.time * 4f + characterIndex * .5f)
                 * 8f;
@@ -199,12 +229,28 @@ namespace AVSim.TextFX
             text.text = parsed.VisibleText;
 
             currentParsedText = parsed;
-            
-            foreach (var ch in parsed.Characters)
-            {
-                Debug.Log($"{ch.Character} : {string.Join(", ", ch.Effects)}");
-            }
 
+            text.ForceMeshUpdate();
+
+            Debug.Log(
+                "TMP Character Count After Set: " +
+                text.textInfo.characterCount
+            );
+        }
+
+        public void RevealCharacter(int index)
+        {
+            if (currentParsedText == null)
+                return;
+
+            if (index < 0 || index >= currentParsedText.Characters.Count)
+                return;
+
+            ParsedCharacter character =
+                currentParsedText.Characters[index];
+
+            character.Revealed = true;
+            character.RevealTime = Time.time;
         }
 
         void TransformCharacter(
@@ -236,5 +282,8 @@ namespace AVSim.TextFX
                     center + matrix.MultiplyPoint3x4(offset);
             }
         }
+
+
+        
     }
 }

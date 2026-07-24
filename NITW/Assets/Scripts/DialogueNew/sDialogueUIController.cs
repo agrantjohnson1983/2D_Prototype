@@ -1,8 +1,9 @@
+using AVSim.TextFX;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using AVSim.TextFX;
 
 namespace AVSim.Dialogue
 {
@@ -85,7 +86,9 @@ namespace AVSim.Dialogue
 
             TextAnimator.SetParsedText(parsed);
 
-            typewriter.BeginTyping();
+            //typewriter.BeginTyping();
+
+            StartCoroutine(StartTypingNextFrame());
 
             if (PortraitImage != null && PortraitLibrary != null)
             {
@@ -114,6 +117,13 @@ namespace AVSim.Dialogue
                     ChoiceLabels[i].text = line.Choices[i].Text;
                 }
             }
+        }
+
+        IEnumerator StartTypingNextFrame()
+        {
+            yield return null;
+
+            typewriter.BeginTyping();
         }
 
         private void HandleConversationEnded()
